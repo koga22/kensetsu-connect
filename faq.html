@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>よくある質問 - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .faq-category {
+      margin-bottom: 40px;
+    }
+    .faq-category-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 3px solid #ED8936;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .faq-item {
+      background: #FFF;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+    .faq-item summary {
+      padding: 20px 24px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a365d;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      list-style: none;
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-item summary::before {
+      content: 'Q';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #ED8936, #DD6B20);
+      color: #FFF;
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .faq-item summary::after {
+      content: '＋';
+      margin-left: auto;
+      font-size: 20px;
+      color: #A0AEC0;
+      transition: transform 0.3s ease;
+    }
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 0 24px 20px 64px;
+      font-size: 14px;
+      color: #4A5568;
+      line-height: 1.8;
+    }
+    .faq-answer p {
+      margin: 0 0 12px 0;
+    }
+    .faq-answer p:last-child {
+      margin-bottom: 0;
+    }
+    .faq-answer ul {
+      margin: 12px 0;
+      padding-left: 20px;
+    }
+    .faq-answer li {
+      margin-bottom: 8px;
+    }
+    .faq-search {
+      background: #FFF;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .faq-search-input {
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 16px;
+      border: 2px solid #E2E8F0;
+      border-radius: 10px;
+      background: #F7FAFC;
+    }
+    .faq-search-input:focus {
+      border-color: #ED8936;
+      background: #FFF;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="login.html" class="btn-login">ログイン</a>
+        <a href="register.html" class="btn-register">会員登録（無料）</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ヒーロー -->
+  <section style="background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%); padding: 50px 20px; text-align: center;">
+    <h2 style="font-size: 32px; font-weight: 800; color: #FFF; margin-bottom: 16px;">❓ よくある質問</h2>
+    <p style="font-size: 16px; color: #E2E8F0; max-width: 600px; margin: 0 auto;">
+      建設コネクトに関するよくあるご質問をまとめました。<br>お探しの回答が見つからない場合は、お気軽にお問い合わせください。
+    </p>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main style="max-width: 900px; margin: 0 auto; padding: 40px 20px;">
+    <!-- 検索 -->
+    <div class="faq-search">
+      <div style="display: flex; gap: 12px;">
+        <input type="text" class="faq-search-input" placeholder="🔍 キーワードで検索（例：料金、登録、チケット）">
+        <button class="btn btn-primary">検索</button>
+      </div>
+    </div>
+
+    <!-- カテゴリナビ -->
+    <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px;">
+      <a href="#basic" class="btn btn-outline btn-sm">📝 基本的な使い方</a>
+      <a href="#register" class="btn btn-outline btn-sm">👤 会員登録・ログイン</a>
+      <a href="#pricing" class="btn btn-outline btn-sm">💰 料金・お支払い</a>
+      <a href="#message" class="btn btn-outline btn-sm">✉️ メッセージ・連絡</a>
+      <a href="#post" class="btn btn-outline btn-sm">📋 求人投稿</a>
+      <a href="#rank" class="btn btn-outline btn-sm">🏆 ランク制度</a>
+      <a href="#safety" class="btn btn-outline btn-sm">🔒 安全性・プライバシー</a>
+      <a href="#other" class="btn btn-outline btn-sm">📦 その他</a>
+    </div>
+
+    <!-- 基本的な使い方 -->
+    <div id="basic" class="faq-category">
+      <h3 class="faq-category-title">📝 基本的な使い方</h3>
+
+      <details class="faq-item">
+        <summary>建設コネクトとはどのようなサービスですか？</summary>
+        <div class="faq-answer">
+          <p>建設コネクトは、建設業界に特化した人材マッチングプラットフォームです。職人と企業をつなぎ、求人掲示板を中心としたコミュニティサイトを提供しています。</p>
+          <p>電気工事、配管工事、大工、塗装、足場、内装、空調、清掃、土木など、様々な職種に対応しています。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>どのような人が利用できますか？</summary>
+        <div class="faq-answer">
+          <p>以下のような方々にご利用いただけます：</p>
+          <ul>
+            <li><strong>職人の方</strong>：仕事を探している一人親方、経験者、未経験者など</li>
+            <li><strong>建設会社・工務店</strong>：人材を探している企業</li>
+            <li><strong>協力業者・個人事業主</strong>：案件を探している事業者</li>
+          </ul>
+          <p>50〜60代の方から若年層まで、幅広い年齢層の方にご利用いただけるよう、シンプルで使いやすいUIを心がけています。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>スマートフォンからも利用できますか？</summary>
+        <div class="faq-answer">
+          <p>はい、スマートフォン、タブレット、パソコンなど、あらゆるデバイスからご利用いただけます。特にスマートフォンでの操作性を重視した設計になっています。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>利用するのに費用はかかりますか？</summary>
+        <div class="faq-answer">
+          <p>会員登録は<strong>無料</strong>です。求人の閲覧や検索も無料でご利用いただけます。</p>
+          <p>メッセージ機能を利用する場合は、有料プラン（ライト480円〜/月）へのご加入が必要です。現在、<strong>初回3ヶ月無料キャンペーン</strong>を実施中です。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- 会員登録・ログイン -->
+    <div id="register" class="faq-category">
+      <h3 class="faq-category-title">👤 会員登録・ログイン</h3>
+
+      <details class="faq-item">
+        <summary>会員登録の方法を教えてください</summary>
+        <div class="faq-answer">
+          <p>会員登録は以下の手順で行えます：</p>
+          <ol>
+            <li>トップページの「会員登録（無料）」ボタンをクリック</li>
+            <li>「職人として登録」または「企業として登録」を選択</li>
+            <li>氏名、ニックネーム、メールアドレス、電話番号、パスワードを入力</li>
+            <li>利用規約に同意して登録完了</li>
+          </ol>
+          <p>Googleアカウントをお持ちの方は、Googleログインで簡単に登録することもできます。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>パスワードを忘れてしまいました</summary>
+        <div class="faq-answer">
+          <p>ログイン画面の「パスワードを忘れた方」リンクからパスワードの再設定が可能です。</p>
+          <p>登録されているメールアドレス宛に、パスワード再設定用のリンクをお送りします。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>登録情報を変更したい</summary>
+        <div class="faq-answer">
+          <p>ログイン後、マイページの「編集」ボタンから、以下の情報を変更できます：</p>
+          <ul>
+            <li>プロフィール（自己紹介文）</li>
+            <li>基本情報（職種、活動エリアなど）</li>
+            <li>保有資格・スキル</li>
+            <li>メールアドレス、パスワード</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>退会するにはどうすればよいですか？</summary>
+        <div class="faq-answer">
+          <p>マイページの設定画面から退会手続きを行うことができます。</p>
+          <p>退会すると、プロフィール情報、投稿履歴、メッセージ履歴などすべてのデータが削除されます。一度退会すると元に戻すことはできませんのでご注意ください。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- 料金・お支払い -->
+    <div id="pricing" class="faq-category">
+      <h3 class="faq-category-title">💰 料金・お支払い</h3>
+
+      <details class="faq-item">
+        <summary>料金プランの違いを教えてください</summary>
+        <div class="faq-answer">
+          <p>3つのプランをご用意しています：</p>
+          <ul>
+            <li><strong>ライト（480円/月）</strong>：メッセージ月3人まで、銅ランクまで到達可能</li>
+            <li><strong>ベーシック（980円/月）</strong>：メッセージ月10人まで、銀ランクまで到達可能</li>
+            <li><strong>プロ（1,980円/月）</strong>：メッセージ月30人まで、金ランクまで到達可能、AIマッチング・スカウト機能付き</li>
+          </ul>
+          <p>詳しくは<a href="pricing.html" style="color: #4299E1;">料金プランページ</a>をご覧ください。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>途中でプランを変更できますか？</summary>
+        <div class="faq-answer">
+          <p>はい、いつでもプランの変更が可能です。</p>
+          <ul>
+            <li><strong>アップグレードの場合</strong>：即時反映され、差額分を日割りで計算してお支払いいただきます</li>
+            <li><strong>ダウングレードの場合</strong>：次回更新日から新しいプランが適用されます</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>支払い方法は何がありますか？</summary>
+        <div class="faq-answer">
+          <p>クレジットカードでのお支払いに対応しています。</p>
+          <ul>
+            <li>VISA</li>
+            <li>MasterCard</li>
+            <li>JCB</li>
+            <li>American Express</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>解約・キャンセルはいつでもできますか？</summary>
+        <div class="faq-answer">
+          <p>はい、いつでも解約可能です。解約後も契約期間終了までサービスをご利用いただけます。</p>
+          <p>解約手続きはマイページの「プラン設定」から行えます。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>チケットとは何ですか？</summary>
+        <div class="faq-answer">
+          <p>チケットは、プランの上限を超えてメッセージを送りたい場合に使用できる追加オプションです。</p>
+          <ul>
+            <li>1枚：100円</li>
+            <li>5枚：450円（10%OFF）</li>
+            <li>10枚：900円（10%OFF）</li>
+          </ul>
+          <p>購入したチケットに有効期限はありません。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- メッセージ・連絡 -->
+    <div id="message" class="faq-category">
+      <h3 class="faq-category-title">✉️ メッセージ・連絡</h3>
+
+      <details class="faq-item">
+        <summary>メッセージを送るにはどうすればよいですか？</summary>
+        <div class="faq-answer">
+          <p>求人詳細ページの「この案件に連絡する」ボタンから、メッセージを送信できます。</p>
+          <p>初回のメッセージ送信時にチケット1枚を消費します。同じ相手への2回目以降のメッセージはチケット不要です。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>メッセージの送信数に制限はありますか？</summary>
+        <div class="faq-answer">
+          <p>プランによって月間のメッセージ送信可能人数が異なります：</p>
+          <ul>
+            <li>ライト：月3人まで</li>
+            <li>ベーシック：月10人まで</li>
+            <li>プロ：月30人まで</li>
+          </ul>
+          <p>上限を超える場合は、チケットを追加購入することで送信できます。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>スカウト機能とは何ですか？</summary>
+        <div class="faq-answer">
+          <p>スカウト機能は、プロプラン限定の機能です。登録している職人に対して、企業側から直接オファーのメッセージを送ることができます。</p>
+          <p>条件に合った人材を見つけたら、積極的にアプローチすることが可能です。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- 求人投稿 -->
+    <div id="post" class="faq-category">
+      <h3 class="faq-category-title">📋 求人投稿</h3>
+
+      <details class="faq-item">
+        <summary>求人を投稿するにはどうすればよいですか？</summary>
+        <div class="faq-answer">
+          <p>ログイン後、以下の手順で求人を投稿できます：</p>
+          <ol>
+            <li>掲示板一覧ページの「求人を投稿する」ボタンをクリック</li>
+            <li>募集タイプ、タイトル、職種、エリア、給与などを入力</li>
+            <li>「投稿する」ボタンで公開</li>
+          </ol>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>投稿した求人を編集・削除できますか？</summary>
+        <div class="faq-answer">
+          <p>はい、マイページの「投稿履歴」から、投稿した求人の編集・削除が可能です。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>「急募」マークとは何ですか？</summary>
+        <div class="faq-answer">
+          <p>急募マークを付けた求人は、一覧ページで目立つ表示になり、赤い枠線で囲まれます。すぐに人材を見つけたい場合にご活用ください。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- ランク制度 -->
+    <div id="rank" class="faq-category">
+      <h3 class="faq-category-title">🏆 ランク制度</h3>
+
+      <details class="faq-item">
+        <summary>ランク制度とは何ですか？</summary>
+        <div class="faq-answer">
+          <p>建設コネクトでは、利用実績に応じて「銅」「銀」「金」の3段階のランクが付与されます。</p>
+          <ul>
+            <li><strong>銅ランク</strong>：ライトプラン加入で取得、基本表示</li>
+            <li><strong>銀ランク</strong>：ベーシック以上 + 実績で取得、表示枠デザイン変更</li>
+            <li><strong>金ランク</strong>：プロプラン + 実績で取得、上位表示・目立つ枠</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>ランクを上げるにはどうすればよいですか？</summary>
+        <div class="faq-answer">
+          <p>ランクアップには、対応するプランへの加入と利用実績が必要です。</p>
+          <p>具体的には、取引完了数、口コミ評価、プロフィールの充実度などが考慮されます。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>本人確認バッジとは何ですか？</summary>
+        <div class="faq-answer">
+          <p>本人確認バッジは、運転免許証などの身分証明書を提出し、運営による審査を通過したユーザーに付与されるマークです。</p>
+          <p>バッジがあることで、相手に信頼性をアピールできます。プロプランでは本人確認バッジの取得が可能です。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- 安全性・プライバシー -->
+    <div id="safety" class="faq-category">
+      <h3 class="faq-category-title">🔒 安全性・プライバシー</h3>
+
+      <details class="faq-item">
+        <summary>個人情報は安全に管理されていますか？</summary>
+        <div class="faq-answer">
+          <p>はい、お客様の個人情報は厳重に管理しています。</p>
+          <ul>
+            <li>SSL/TLSによる通信の暗号化</li>
+            <li>個人情報保護法に準拠した管理体制</li>
+            <li>第三者への情報提供は行いません（法令に基づく場合を除く）</li>
+          </ul>
+          <p>詳しくは<a href="#" style="color: #4299E1;">プライバシーポリシー</a>をご覧ください。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>足跡機能を非公開にできますか？</summary>
+        <div class="faq-answer">
+          <p>はい、マイページの設定から足跡機能をOFFにすることができます。</p>
+          <p>また、足跡の表示方法を「人数のみ表示」「匿名表示」に変更したり、個別に削除することも可能です。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>不適切なユーザーを報告できますか？</summary>
+        <div class="faq-answer">
+          <p>はい、不適切な行為を行うユーザーを発見した場合は、プロフィールページまたはメッセージ画面から報告することができます。</p>
+          <p>運営チームが確認し、利用規約に違反している場合は適切な対応を行います。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- その他 -->
+    <div id="other" class="faq-category">
+      <h3 class="faq-category-title">📦 その他</h3>
+
+      <details class="faq-item">
+        <summary>ユーザー間の金銭取引はサポートしていますか？</summary>
+        <div class="faq-answer">
+          <p>当サービスはユーザー間の金銭取引には関与しておりません。</p>
+          <p>報酬のお支払いについては、当事者間で直接お取り決めください。トラブル防止のため、事前に条件を明確にすることをお勧めします。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>友達紹介特典はありますか？</summary>
+        <div class="faq-answer">
+          <p>はい、友達紹介で<strong>100ポイント</strong>をプレゼントしています。</p>
+          <p>マイページの「友達紹介」から専用の紹介リンクを取得し、友達にシェアしてください。友達が会員登録を完了すると、ポイントが付与されます。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>お問い合わせ方法を教えてください</summary>
+        <div class="faq-answer">
+          <p>お問い合わせは以下の方法で受け付けています：</p>
+          <ul>
+            <li><strong>お問い合わせフォーム</strong>：<a href="#" style="color: #4299E1;">こちら</a>からお送りください</li>
+            <li><strong>メール</strong>：support@kensetsu-connect.jp</li>
+          </ul>
+          <p>営業時間：平日 9:00〜18:00（土日祝日を除く）</p>
+          <p>通常、2営業日以内にご返信いたします。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>アプリはありますか？</summary>
+        <div class="faq-answer">
+          <p>現在、スマートフォンアプリは提供しておりませんが、ブラウザからスマートフォンに最適化された画面でご利用いただけます。</p>
+          <p>アプリのリリースは将来的に検討しております。</p>
+        </div>
+      </details>
+    </div>
+
+    <!-- 問い合わせCTA -->
+    <div class="card text-center" style="background: linear-gradient(135deg, #EBF8FF, #E6FFFA); border: 2px solid #4299E1; margin-top: 40px;">
+      <div style="font-size: 48px; margin-bottom: 16px;">💬</div>
+      <h4 style="font-size: 20px; font-weight: 700; color: #1a365d; margin-bottom: 12px;">お探しの回答が見つかりませんか？</h4>
+      <p style="font-size: 14px; color: #4A5568; margin-bottom: 20px;">お気軽にお問い合わせください。サポートチームが対応いたします。</p>
+      <a href="#" class="btn btn-secondary">お問い合わせはこちら</a>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

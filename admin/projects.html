@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案件管理 | 建設コネクト 管理画面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: #f1f5f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* サイドバー */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .sidebar-logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar-logo span {
+            color: #fbbf24;
+        }
+
+        .sidebar-subtitle {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 5px;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .nav-section {
+            margin-bottom: 20px;
+        }
+
+        .nav-section-title {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #64748b;
+            padding: 0 20px;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.05);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border-left-color: #3b82f6;
+        }
+
+        .nav-icon {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: #ef4444;
+            color: white;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+
+        /* ヘッダー */
+        .top-header {
+            background: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .admin-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .admin-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .admin-name {
+            font-size: 0.9rem;
+            color: #1e293b;
+        }
+
+        /* コンテンツエリア */
+        .content {
+            padding: 30px;
+        }
+
+        /* ツールバー */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 0 15px;
+        }
+
+        .search-box input {
+            border: none;
+            padding: 10px;
+            font-size: 0.9rem;
+            width: 250px;
+            outline: none;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+
+        .btn-success {
+            background: #16a34a;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-outline {
+            background: white;
+            color: #3b82f6;
+            border: 2px solid #3b82f6;
+        }
+
+        .btn-outline:hover {
+            background: #f0f6ff;
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+
+        /* タブ */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .tab {
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #64748b;
+            transition: all 0.2s;
+            border: none;
+            background: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab:hover {
+            background: #f1f5f9;
+        }
+
+        .tab.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .tab-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+        }
+
+        .tab:not(.active) .tab-badge {
+            background: #e2e8f0;
+        }
+
+        /* 案件カード */
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .project-card.pending {
+            border-left: 4px solid #f59e0b;
+        }
+
+        .project-card.reported {
+            border-left: 4px solid #ef4444;
+        }
+
+        .project-card.active {
+            border-left: 4px solid #16a34a;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .project-info {
+            flex: 1;
+        }
+
+        .project-id {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 5px;
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.85rem;
+            color: #64748b;
+            flex-wrap: wrap;
+        }
+
+        .project-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .project-status {
+            text-align: right;
+        }
+
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-urgent {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .badge-new {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .badge-reported {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .badge-sponsor {
+            background: #ede9fe;
+            color: #7c3aed;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-closed {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .status-rejected {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .project-body {
+            padding: 20px;
+        }
+
+        .project-company {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .company-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .company-info {
+            flex: 1;
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 0.95rem;
+        }
+
+        .company-plan {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .project-stats {
+            display: flex;
+            gap: 30px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .report-alert {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: #fef2f2;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #fecaca;
+        }
+
+        .report-icon {
+            font-size: 1.2rem;
+            color: #dc2626;
+        }
+
+        .report-content {
+            flex: 1;
+        }
+
+        .report-title {
+            font-weight: 600;
+            color: #991b1b;
+            font-size: 0.9rem;
+            margin-bottom: 3px;
+        }
+
+        .report-text {
+            font-size: 0.85rem;
+            color: #b91c1c;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* ページネーション */
+        .pagination-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .pagination-info {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .pagination {
+            display: flex;
+            gap: 5px;
+        }
+
+        .page-btn {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover {
+            background: #f1f5f9;
+            border-color: #3b82f6;
+        }
+
+        .page-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        /* モーダル */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #1e293b;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #64748b;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .detail-section {
+            margin-bottom: 25px;
+        }
+
+        .detail-section-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #64748b;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .detail-item {
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .detail-full {
+            grid-column: span 2;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .modal-footer-left {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-footer-right {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .project-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .project-status {
+                text-align: left;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-full {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- サイドバー -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="sidebar-logo">建設<span>コネクト</span></a>
+            <p class="sidebar-subtitle">管理者コンソール</p>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <p class="nav-section-title">メイン</p>
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">&#128202;</span>
+                    ダッシュボード
+                </a>
+                <a href="users.html" class="nav-item">
+                    <span class="nav-icon">&#128101;</span>
+                    ユーザー管理
+                    <span class="nav-badge">5</span>
+                </a>
+                <a href="projects.html" class="nav-item active">
+                    <span class="nav-icon">&#128203;</span>
+                    案件管理
+                    <span class="nav-badge">3</span>
+                </a>
+            </div>
+            <div class="nav-section">
+                <p class="nav-section-title">売上・決済</p>
+                <a href="sales.html" class="nav-item">
+                    <span class="nav-icon">&#128176;</span>
+                    売上管理
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">&#128179;</span>
+                    決済履歴
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">&#127915;</span>
+                    チケット管理
+                </a>
+            </div>
+            <div class="nav-section">
+                <p class="nav-section-title">コンテンツ</p>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">&#128240;</span>
+                    お知らせ管理
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">&#128172;</span>
+                    問い合わせ
+                    <span class="nav-badge">8</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">&#9888;</span>
+                    通報管理
+                    <span class="nav-badge">2</span>
+                </a>
+            </div>
+            <div class="nav-section">
+                <p class="nav-section-title">設定</p>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">&#9881;</span>
+                    システム設定
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">&#128272;</span>
+                    管理者アカウント
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="nav-icon">&#128195;</span>
+                    ログ
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- メインコンテンツ -->
+    <div class="main-content">
+        <!-- ヘッダー -->
+        <header class="top-header">
+            <h1 class="header-title">案件管理</h1>
+            <div class="header-actions">
+                <div class="admin-profile">
+                    <div class="admin-avatar">管</div>
+                    <span class="admin-name">管理者</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- コンテンツ -->
+        <div class="content">
+            <!-- タブ -->
+            <div class="tabs">
+                <button class="tab active">
+                    すべて
+                    <span class="tab-badge">456</span>
+                </button>
+                <button class="tab">
+                    公開中
+                    <span class="tab-badge">312</span>
+                </button>
+                <button class="tab">
+                    審査待ち
+                    <span class="tab-badge">3</span>
+                </button>
+                <button class="tab">
+                    通報あり
+                    <span class="tab-badge">2</span>
+                </button>
+                <button class="tab">
+                    終了
+                    <span class="tab-badge">139</span>
+                </button>
+            </div>
+
+            <!-- ツールバー -->
+            <div class="toolbar">
+                <div class="filter-group">
+                    <select class="filter-select">
+                        <option>職種: すべて</option>
+                        <option>電気工事</option>
+                        <option>内装工事</option>
+                        <option>配管工事</option>
+                        <option>塗装工事</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>エリア: すべて</option>
+                        <option>東京都</option>
+                        <option>神奈川県</option>
+                        <option>埼玉県</option>
+                        <option>千葉県</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>投稿日: すべて</option>
+                        <option>今日</option>
+                        <option>今週</option>
+                        <option>今月</option>
+                    </select>
+                    <div class="search-box">
+                        <span>&#128269;</span>
+                        <input type="text" placeholder="案件名、企業名で検索...">
+                    </div>
+                </div>
+                <button class="btn btn-outline">&#128229; エクスポート</button>
+            </div>
+
+            <!-- 案件リスト -->
+            <div class="projects-grid">
+                <!-- 審査待ち案件 -->
+                <div class="project-card pending">
+                    <div class="project-header">
+                        <div class="project-info">
+                            <p class="project-id">#PRJ-2025-1234</p>
+                            <h3 class="project-title">
+                                内装工事スタッフ募集【急募】
+                                <span class="badge badge-urgent">急募</span>
+                                <span class="badge badge-new">NEW</span>
+                            </h3>
+                            <div class="project-meta">
+                                <span>&#128197; 投稿: 2025/12/15 10:30</span>
+                                <span>&#128205; 渋谷区</span>
+                                <span>&#128176; 日給 18,000円〜</span>
+                            </div>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge status-pending">
+                                <span class="status-dot"></span>
+                                審査待ち
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-company">
+                            <div class="company-avatar">&#128188;</div>
+                            <div class="company-info">
+                                <p class="company-name">株式会社サンライズ建設</p>
+                                <p class="company-plan">プレミアムプラン / 投稿実績: 15件</p>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary" onclick="openModal()">&#128065; 詳細確認</button>
+                            <button class="btn btn-success">&#9989; 承認</button>
+                            <button class="btn btn-danger">&#10060; 却下</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 通報あり案件 -->
+                <div class="project-card reported">
+                    <div class="project-header">
+                        <div class="project-info">
+                            <p class="project-id">#PRJ-2025-1198</p>
+                            <h3 class="project-title">
+                                電気配線工事
+                                <span class="badge badge-reported">&#9888; 通報2件</span>
+                            </h3>
+                            <div class="project-meta">
+                                <span>&#128197; 投稿: 2025/12/10</span>
+                                <span>&#128205; 新宿区</span>
+                                <span>&#128176; 日給 22,000円</span>
+                            </div>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge status-active">
+                                <span class="status-dot"></span>
+                                公開中
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-company">
+                            <div class="company-avatar">&#128188;</div>
+                            <div class="company-info">
+                                <p class="company-name">有限会社山田電設</p>
+                                <p class="company-plan">ベーシックプラン / 投稿実績: 8件</p>
+                            </div>
+                        </div>
+                        <div class="report-alert">
+                            <span class="report-icon">&#128680;</span>
+                            <div class="report-content">
+                                <p class="report-title">通報内容</p>
+                                <p class="report-text">「報酬が相場より極端に低い」「実際の業務内容と異なる」</p>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary">&#128065; 詳細確認</button>
+                            <button class="btn btn-secondary">&#128172; 企業に連絡</button>
+                            <button class="btn btn-danger">&#128683; 掲載停止</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- スポンサー案件 -->
+                <div class="project-card active">
+                    <div class="project-header">
+                        <div class="project-info">
+                            <p class="project-id">#PRJ-2025-1150</p>
+                            <h3 class="project-title">
+                                マンション大規模改修工事 現場監督
+                                <span class="badge badge-sponsor">&#9733; スポンサー</span>
+                            </h3>
+                            <div class="project-meta">
+                                <span>&#128197; 投稿: 2025/12/08</span>
+                                <span>&#128205; 目黒区</span>
+                                <span>&#128176; 月給 450,000円〜</span>
+                            </div>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge status-active">
+                                <span class="status-dot"></span>
+                                公開中
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-company">
+                            <div class="company-avatar">&#128188;</div>
+                            <div class="company-info">
+                                <p class="company-name">株式会社東京建設</p>
+                                <p class="company-plan">プレミアムプラン / 投稿実績: 42件</p>
+                            </div>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <p class="stat-value">1,245</p>
+                                <p class="stat-label">閲覧数</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">23</p>
+                                <p class="stat-label">応募数</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">5</p>
+                                <p class="stat-label">お気に入り</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">12日</p>
+                                <p class="stat-label">残り日数</p>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary">&#128065; 詳細確認</button>
+                            <button class="btn btn-outline">&#9998; 編集</button>
+                            <button class="btn btn-secondary">&#128683; 掲載停止</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 通常の公開中案件 -->
+                <div class="project-card active">
+                    <div class="project-header">
+                        <div class="project-info">
+                            <p class="project-id">#PRJ-2025-1145</p>
+                            <h3 class="project-title">
+                                戸建住宅リフォーム工事
+                            </h3>
+                            <div class="project-meta">
+                                <span>&#128197; 投稿: 2025/12/05</span>
+                                <span>&#128205; 品川区</span>
+                                <span>&#128176; 日給 16,000円</span>
+                            </div>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge status-active">
+                                <span class="status-dot"></span>
+                                公開中
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-company">
+                            <div class="company-avatar">&#128188;</div>
+                            <div class="company-info">
+                                <p class="company-name">リフォームプロ株式会社</p>
+                                <p class="company-plan">ライトプラン / 投稿実績: 3件</p>
+                            </div>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <p class="stat-value">456</p>
+                                <p class="stat-label">閲覧数</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">8</p>
+                                <p class="stat-label">応募数</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">2</p>
+                                <p class="stat-label">お気に入り</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">5日</p>
+                                <p class="stat-label">残り日数</p>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary">&#128065; 詳細確認</button>
+                            <button class="btn btn-outline">&#9998; 編集</button>
+                            <button class="btn btn-secondary">&#128683; 掲載停止</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 終了案件 -->
+                <div class="project-card" style="opacity: 0.7;">
+                    <div class="project-header">
+                        <div class="project-info">
+                            <p class="project-id">#PRJ-2025-1089</p>
+                            <h3 class="project-title">
+                                オフィスビル設備点検
+                            </h3>
+                            <div class="project-meta">
+                                <span>&#128197; 投稿: 2025/11/20</span>
+                                <span>&#128205; 港区</span>
+                                <span>&#128176; 日給 15,000円</span>
+                            </div>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge status-closed">
+                                <span class="status-dot"></span>
+                                終了
+                            </span>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-company">
+                            <div class="company-avatar">&#128188;</div>
+                            <div class="company-info">
+                                <p class="company-name">ビル管理株式会社</p>
+                                <p class="company-plan">ベーシックプラン</p>
+                            </div>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <p class="stat-value">892</p>
+                                <p class="stat-label">閲覧数</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">15</p>
+                                <p class="stat-label">応募数</p>
+                            </div>
+                            <div class="stat-item">
+                                <p class="stat-value">3</p>
+                                <p class="stat-label">成約数</p>
+                            </div>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn btn-primary">&#128065; 詳細確認</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ページネーション -->
+            <div class="pagination-wrapper">
+                <p class="pagination-info">全 456 件中 1-5 件を表示</p>
+                <div class="pagination">
+                    <button class="page-btn">&lt;</button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">...</button>
+                    <button class="page-btn">92</button>
+                    <button class="page-btn">&gt;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 案件詳細モーダル -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">案件詳細 #PRJ-2025-1234</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-section">
+                    <h4 class="detail-section-title">基本情報</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item detail-full">
+                            <p class="detail-label">案件タイトル</p>
+                            <p class="detail-value">内装工事スタッフ募集【急募】</p>
+                        </div>
+                        <div class="detail-item">
+                            <p class="detail-label">職種</p>
+                            <p class="detail-value">内装工事</p>
+                        </div>
+                        <div class="detail-item">
+                            <p class="detail-label">報酬</p>
+                            <p class="detail-value">日給 18,000円〜25,000円</p>
+                        </div>
+                        <div class="detail-item">
+                            <p class="detail-label">勤務地</p>
+                            <p class="detail-value">東京都渋谷区恵比寿</p>
+                        </div>
+                        <div class="detail-item">
+                            <p class="detail-label">作業期間</p>
+                            <p class="detail-value">2025/12/20 - 2025/12/25</p>
+                        </div>
+                        <div class="detail-item detail-full">
+                            <p class="detail-label">業務内容</p>
+                            <p class="detail-value">マンションの内装工事（クロス張り、床張り）。経験者歓迎。工具は支給します。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h4 class="detail-section-title">投稿企業</h4>
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <p class="detail-label">企業名</p>
+                            <p class="detail-value">株式会社サンライズ建設</p>
+                        </div>
+                        <div class="detail-item">
+                            <p class="detail-label">プラン</p>
+                            <p class="detail-value">プレミアム</p>
+                        </div>
+                        <div class="detail-item">
+                            <p class="detail-label">登録日</p>
+                            <p class="detail-value">2024/06/15</p>
+                        </div>
+                        <div class="detail-item">
+                            <p class="detail-label">投稿実績</p>
+                            <p class="detail-value">15件（成約率: 80%）</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h4 class="detail-section-title">審査チェックリスト</h4>
+                    <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
+                        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer;">
+                            <input type="checkbox" checked> 報酬が適正範囲内
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer;">
+                            <input type="checkbox" checked> 業務内容が明確
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; cursor: pointer;">
+                            <input type="checkbox" checked> 連絡先が有効
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox"> 禁止ワードなし
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer-left">
+                    <button class="btn btn-danger">&#10060; 却下</button>
+                </div>
+                <div class="modal-footer-right">
+                    <button class="btn btn-secondary" onclick="closeModal()">閉じる</button>
+                    <button class="btn btn-success">&#9989; 承認する</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // タブ切替
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // モーダル
+        function openModal() {
+            document.getElementById('projectModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.remove('active');
+        }
+
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

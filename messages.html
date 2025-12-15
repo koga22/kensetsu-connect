@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>メッセージ - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .messages-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .messages-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    .messages-header h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1a365d;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .messages-header h2 .icon {
+      font-size: 28px;
+    }
+    .messages-stats {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      color: #718096;
+    }
+    .messages-stats span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .messages-stats .unread {
+      color: #E53E3E;
+      font-weight: 600;
+    }
+    .messages-filter {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .messages-filter-btn {
+      padding: 8px 16px;
+      border: 2px solid #E2E8F0;
+      border-radius: 20px;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      color: #4A5568;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .messages-filter-btn:hover {
+      border-color: #4299E1;
+      color: #4299E1;
+    }
+    .messages-filter-btn.active {
+      background: #4299E1;
+      border-color: #4299E1;
+      color: #fff;
+    }
+    .messages-search {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .messages-search input {
+      width: 100%;
+      padding: 12px 16px 12px 44px;
+      border: 2px solid #E2E8F0;
+      border-radius: 12px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .messages-search input:focus {
+      outline: none;
+      border-color: #4299E1;
+      box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+    }
+    .messages-search::before {
+      content: '🔍';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+    }
+    .message-list {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .message-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px;
+      border-bottom: 1px solid #E2E8F0;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .message-item:last-child {
+      border-bottom: none;
+    }
+    .message-item:hover {
+      background: #F7FAFC;
+    }
+    .message-item.unread {
+      background: #EBF8FF;
+    }
+    .message-item.unread:hover {
+      background: #BEE3F8;
+    }
+    .message-avatar {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .message-avatar-img {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #4299E1, #3182CE);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .message-avatar-badge {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      border: 2px solid #fff;
+    }
+    .message-avatar-badge.gold {
+      background: linear-gradient(135deg, #F6E05E, #ECC94B);
+    }
+    .message-avatar-badge.silver {
+      background: linear-gradient(135deg, #E2E8F0, #CBD5E0);
+    }
+    .message-avatar-badge.bronze {
+      background: linear-gradient(135deg, #F6AD55, #ED8936);
+    }
+    .message-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .message-content-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .message-sender {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a365d;
+    }
+    .message-job-title {
+      font-size: 12px;
+      color: #718096;
+      background: #F7FAFC;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+    .message-preview {
+      font-size: 14px;
+      color: #4A5568;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 4px;
+    }
+    .message-item.unread .message-preview {
+      font-weight: 600;
+      color: #2D3748;
+    }
+    .message-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: #A0AEC0;
+    }
+    .message-time {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .message-time-text {
+      font-size: 12px;
+      color: #A0AEC0;
+    }
+    .message-unread-badge {
+      background: #E53E3E;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      min-width: 20px;
+      text-align: center;
+    }
+    .message-empty {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .message-empty .icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+    }
+    .message-empty h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 8px;
+    }
+    .message-empty p {
+      font-size: 14px;
+      color: #718096;
+      margin-bottom: 24px;
+    }
+    .ticket-info {
+      background: #FFFAF0;
+      border: 2px solid #F6AD55;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .ticket-info .icon {
+      font-size: 32px;
+    }
+    .ticket-info-content {
+      flex: 1;
+    }
+    .ticket-info-content p {
+      margin: 0;
+      font-size: 14px;
+      color: #4A5568;
+    }
+    .ticket-info-content strong {
+      color: #DD6B20;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="mypage.html" class="nav-btn">👤 マイページ</a>
+        <button class="btn-login" style="border: 2px solid #FC8181; color: #FC8181;">ログアウト</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+    <div class="messages-container">
+      <!-- ヘッダー -->
+      <div class="messages-header">
+        <h2>
+          <span class="icon">✉️</span>
+          メッセージ
+        </h2>
+        <div class="messages-stats">
+          <span class="unread">未読 3件</span>
+          <span>全 8件</span>
+        </div>
+      </div>
+
+      <!-- チケット情報 -->
+      <div class="ticket-info">
+        <div class="icon">🎫</div>
+        <div class="ticket-info-content">
+          <p>残りチケット: <strong>3枚</strong>（ライトプラン: 月3人まで）</p>
+          <p style="font-size: 12px; color: #718096; margin-top: 4px;">※新しい相手への初回メッセージにチケット1枚を消費します</p>
+        </div>
+        <a href="pricing.html" class="btn btn-primary btn-sm">チケット購入</a>
+      </div>
+
+      <!-- フィルター -->
+      <div class="messages-filter">
+        <button class="messages-filter-btn active">すべて</button>
+        <button class="messages-filter-btn">未読のみ</button>
+        <button class="messages-filter-btn">既読</button>
+      </div>
+
+      <!-- 検索 -->
+      <div class="messages-search">
+        <input type="text" placeholder="相手の名前やメッセージ内容で検索...">
+      </div>
+
+      <!-- メッセージ一覧 -->
+      <div class="message-list">
+        <!-- 未読メッセージ1 -->
+        <a href="message-detail.html" class="message-item unread">
+          <div class="message-avatar">
+            <div class="message-avatar-img">🏢</div>
+            <div class="message-avatar-badge gold">🥇</div>
+          </div>
+          <div class="message-content">
+            <div class="message-content-header">
+              <span class="message-sender">株式会社サンライズ電気</span>
+              <span class="message-job-title">電気工事士募集【経験者優遇】</span>
+            </div>
+            <p class="message-preview">ご応募ありがとうございます。ぜひ一度、面談のお時間をいただければと思います。ご都合の良い日時を...</p>
+            <div class="message-meta">
+              <span>✅ 本人確認済み</span>
+            </div>
+          </div>
+          <div class="message-time">
+            <span class="message-time-text">14:32</span>
+            <span class="message-unread-badge">2</span>
+          </div>
+        </a>
+
+        <!-- 未読メッセージ2 -->
+        <a href="message-detail.html" class="message-item unread">
+          <div class="message-avatar">
+            <div class="message-avatar-img">🏗️</div>
+            <div class="message-avatar-badge gold">🥇</div>
+          </div>
+          <div class="message-content">
+            <div class="message-content-header">
+              <span class="message-sender">株式会社山本建設</span>
+              <span class="message-job-title">足場組立解体スタッフ募集</span>
+            </div>
+            <p class="message-preview">お問い合わせありがとうございます。現場見学についてですが、来週でしたら火曜日か木曜日が...</p>
+            <div class="message-meta">
+              <span>✅ 本人確認済み</span>
+            </div>
+          </div>
+          <div class="message-time">
+            <span class="message-time-text">12:15</span>
+            <span class="message-unread-badge">1</span>
+          </div>
+        </a>
+
+        <!-- 既読メッセージ1 -->
+        <a href="message-detail.html" class="message-item">
+          <div class="message-avatar">
+            <div class="message-avatar-img">🔧</div>
+            <div class="message-avatar-badge silver">🥈</div>
+          </div>
+          <div class="message-content">
+            <div class="message-content-header">
+              <span class="message-sender">大野工務店</span>
+              <span class="message-job-title">大工見習い・経験者募集</span>
+            </div>
+            <p class="message-preview">承知いたしました。それでは12月10日の10時に現場でお待ちしております。場所は...</p>
+            <div class="message-meta">
+              <span>✅ 本人確認済み</span>
+            </div>
+          </div>
+          <div class="message-time">
+            <span class="message-time-text">昨日</span>
+          </div>
+        </a>
+
+        <!-- 既読メッセージ2 -->
+        <a href="message-detail.html" class="message-item">
+          <div class="message-avatar">
+            <div class="message-avatar-img">⚡</div>
+            <div class="message-avatar-badge bronze">🥉</div>
+          </div>
+          <div class="message-content">
+            <div class="message-content-header">
+              <span class="message-sender">田中電気工事</span>
+              <span class="message-job-title">電気工事スタッフ急募</span>
+            </div>
+            <p class="message-preview">ありがとうございます。検討させていただき、改めてご連絡いたします。</p>
+            <div class="message-meta">
+              <span>東京都世田谷区</span>
+            </div>
+          </div>
+          <div class="message-time">
+            <span class="message-time-text">12/08</span>
+          </div>
+        </a>
+
+        <!-- 既読メッセージ3 -->
+        <a href="message-detail.html" class="message-item">
+          <div class="message-avatar">
+            <div class="message-avatar-img">🎨</div>
+            <div class="message-avatar-badge silver">🥈</div>
+          </div>
+          <div class="message-content">
+            <div class="message-content-header">
+              <span class="message-sender">株式会社カラーワークス</span>
+              <span class="message-job-title">塗装工募集【未経験歓迎】</span>
+            </div>
+            <p class="message-preview">お返事が遅くなり申し訳ございません。採用担当の鈴木です。履歴書を拝見しました...</p>
+            <div class="message-meta">
+              <span>✅ 本人確認済み</span>
+            </div>
+          </div>
+          <div class="message-time">
+            <span class="message-time-text">12/05</span>
+          </div>
+        </a>
+
+        <!-- 既読メッセージ4 -->
+        <a href="message-detail.html" class="message-item">
+          <div class="message-avatar">
+            <div class="message-avatar-img">🏠</div>
+            <div class="message-avatar-badge bronze">🥉</div>
+          </div>
+          <div class="message-content">
+            <div class="message-content-header">
+              <span class="message-sender">有限会社内装のプロ</span>
+              <span class="message-job-title">内装工事スタッフ募集</span>
+            </div>
+            <p class="message-preview">この度は弊社求人にご応募いただきありがとうございます。誠に残念ではございますが...</p>
+            <div class="message-meta">
+              <span>神奈川県横浜市</span>
+            </div>
+          </div>
+          <div class="message-time">
+            <span class="message-time-text">12/01</span>
+          </div>
+        </a>
+
+        <!-- 既読メッセージ5 -->
+        <a href="message-detail.html" class="message-item">
+          <div class="message-avatar">
+            <div class="message-avatar-img">❄️</div>
+            <div class="message-avatar-badge gold">🥇</div>
+          </div>
+          <div class="message-content">
+            <div class="message-content-header">
+              <span class="message-sender">株式会社クールテック</span>
+              <span class="message-job-title">空調設備工事スタッフ募集</span>
+            </div>
+            <p class="message-preview">面接のご案内です。12月3日（火）14:00より弊社オフィスにてお待ちしております...</p>
+            <div class="message-meta">
+              <span>✅ 本人確認済み</span>
+            </div>
+          </div>
+          <div class="message-time">
+            <span class="message-time-text">11/28</span>
+          </div>
+        </a>
+
+        <!-- 既読メッセージ6 -->
+        <a href="message-detail.html" class="message-item">
+          <div class="message-avatar">
+            <div class="message-avatar-img">🚰</div>
+            <div class="message-avatar-badge silver">🥈</div>
+          </div>
+          <div class="message-content">
+            <div class="message-content-header">
+              <span class="message-sender">水道屋さとう</span>
+              <span class="message-job-title">配管工募集【急募】</span>
+            </div>
+            <p class="message-preview">お問い合わせありがとうございます。現在、急募で人材を探しておりますので、なるべく早く...</p>
+            <div class="message-meta">
+              <span>埼玉県さいたま市</span>
+            </div>
+          </div>
+          <div class="message-time">
+            <span class="message-time-text">11/25</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- ページネーション -->
+      <div style="display: flex; justify-content: center; gap: 8px; margin-top: 24px;">
+        <button class="btn btn-gray btn-sm" disabled>← 前へ</button>
+        <button class="btn btn-primary btn-sm">1</button>
+        <button class="btn btn-gray btn-sm">2</button>
+        <button class="btn btn-gray btn-sm">次へ →</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // フィルターボタンの切り替え
+    document.querySelectorAll('.messages-filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.messages-filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

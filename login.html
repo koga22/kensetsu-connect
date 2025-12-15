@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ログイン - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="login.html" class="btn-login">ログイン</a>
+        <a href="register.html" class="btn-register">会員登録（無料）</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ログインフォーム -->
+  <main style="padding: 60px 20px;">
+    <div class="container-sm">
+      <div class="card" style="padding: 40px 32px;">
+        <div class="text-center mb-4">
+          <div style="font-size: 48px; margin-bottom: 12px;">🏗️</div>
+          <h2 style="font-size: 24px; font-weight: 800; color: #1a365d; margin-bottom: 8px;">ログイン</h2>
+          <p style="font-size: 14px; color: #718096;">建設コネクトへようこそ</p>
+        </div>
+
+        <!-- Google登録 -->
+        <button class="btn btn-outline btn-block mb-2" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+          <span style="font-size: 18px; color: #4285F4; font-weight: 700;">G</span>
+          Googleでログイン
+        </button>
+
+        <div style="text-align: center; margin: 24px 0; color: #A0AEC0; font-size: 13px; position: relative;">
+          <span style="background: #FFF; padding: 0 16px;">または</span>
+          <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #E2E8F0; z-index: -1;"></div>
+        </div>
+
+        <form>
+          <!-- メールアドレス -->
+          <div class="form-group">
+            <label class="form-label">メールアドレス</label>
+            <input type="email" class="form-input" placeholder="example@email.com">
+          </div>
+
+          <!-- パスワード -->
+          <div class="form-group">
+            <label class="form-label">パスワード</label>
+            <input type="password" class="form-input" placeholder="••••••••">
+          </div>
+
+          <!-- ログイン状態を保持 -->
+          <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">ログイン状態を保持</span>
+            </label>
+            <a href="#" style="font-size: 13px; color: #4299E1;">パスワードを忘れた方</a>
+          </div>
+
+          <!-- ログインボタン -->
+          <button type="submit" class="btn btn-primary btn-block btn-lg" onclick="location.href='mypage.html'">
+            ログイン
+          </button>
+        </form>
+
+        <p style="text-align: center; font-size: 14px; color: #718096; margin-top: 24px;">
+          アカウントをお持ちでない方は<a href="register.html" style="color: #4299E1; font-weight: 600;">会員登録</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,1227 @@
+/* =============================================
+   建設コネクト - 共通スタイル
+   ============================================= */
+
+/* リセット・ベース */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  background: #F7FAFC;
+  color: #1a365d;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid #ED8936;
+  outline-offset: 2px;
+}
+
+/* =============================================
+   カラー変数
+   ============================================= */
+:root {
+  --primary-blue: #1a365d;
+  --primary-blue-light: #2c5282;
+  --primary-orange: #ED8936;
+  --primary-orange-dark: #DD6B20;
+  --text-dark: #1a365d;
+  --text-gray: #4A5568;
+  --text-light: #718096;
+  --text-muted: #A0AEC0;
+  --bg-white: #FFFFFF;
+  --bg-light: #F7FAFC;
+  --bg-gray: #EDF2F7;
+  --border-color: #E2E8F0;
+  --success: #48BB78;
+  --danger: #E53E3E;
+  --warning: #ECC94B;
+  --rank-gold: linear-gradient(135deg, #FFD700, #FFA500);
+  --rank-silver: linear-gradient(135deg, #C0C0C0, #A8A8A8);
+  --rank-bronze: linear-gradient(135deg, #CD7F32, #8B4513);
+}
+
+/* =============================================
+   レイアウト
+   ============================================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.container-sm {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.container-md {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =============================================
+   ヘッダー
+   ============================================= */
+.header {
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #F6AD55 0%, #ED8936 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.logo-text h1 {
+  color: #FFF;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.logo-text p {
+  color: #90CDF4;
+  font-size: 10px;
+}
+
+.nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-btn {
+  background: transparent;
+  border: 2px solid transparent;
+  color: #FFF;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: rgba(255,255,255,0.2);
+  border-color: #F6AD55;
+}
+
+.btn-login {
+  background: transparent;
+  border: 2px solid #90CDF4;
+  color: #90CDF4;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-login:hover {
+  background: rgba(144, 205, 244, 0.2);
+}
+
+.btn-register {
+  background: linear-gradient(135deg, #ED8936, #DD6B20);
+  border: none;
+  color: #FFF;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-register:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(237, 137, 54, 0.4);
+}
+
+/* =============================================
+   ボタン
+   ============================================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ED8936, #DD6B20);
+  color: #FFF;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(237, 137, 54, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #4299E1, #3182CE);
+  color: #FFF;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(66, 153, 225, 0.4);
+}
+
+.btn-outline {
+  background: #FFF;
+  border: 2px solid #E2E8F0;
+  color: #4A5568;
+}
+
+.btn-outline:hover {
+  border-color: #ED8936;
+  color: #ED8936;
+}
+
+.btn-gray {
+  background: #EDF2F7;
+  color: #4A5568;
+}
+
+.btn-gray:hover {
+  background: #E2E8F0;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-lg {
+  padding: 16px 32px;
+  font-size: 16px;
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+/* =============================================
+   カード
+   ============================================= */
+.card {
+  background: #FFF;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* =============================================
+   フォーム
+   ============================================= */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4A5568;
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  border: 2px solid #E2E8F0;
+  border-radius: 10px;
+  background: #F7FAFC;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: #ED8936;
+  background: #FFF;
+}
+
+.form-select {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  border: 2px solid #E2E8F0;
+  border-radius: 10px;
+  background: #F7FAFC;
+  cursor: pointer;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 15px;
+  border: 2px solid #E2E8F0;
+  border-radius: 10px;
+  background: #F7FAFC;
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.form-checkbox input {
+  width: 18px;
+  height: 18px;
+}
+
+.form-radio-group {
+  display: flex;
+  gap: 12px;
+}
+
+.form-radio-label {
+  flex: 1;
+  padding: 14px;
+  border: 2px solid #E2E8F0;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4A5568;
+  transition: all 0.2s ease;
+}
+
+.form-radio-label:hover {
+  border-color: #ED8936;
+}
+
+.form-radio-label input {
+  margin-right: 8px;
+}
+
+.form-radio-label.selected {
+  border-color: #ED8936;
+  background: #FFFAF0;
+}
+
+/* =============================================
+   バッジ・タグ
+   ============================================= */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge-urgent {
+  background: #E53E3E;
+  color: #FFF;
+}
+
+.badge-category {
+  background: #EDF2F7;
+  color: #4A5568;
+}
+
+.badge-area {
+  background: #E6FFFA;
+  color: #234E52;
+}
+
+.badge-type {
+  background: #FED7E2;
+  color: #702459;
+}
+
+.badge-available {
+  background: #48BB78;
+  color: #FFF;
+}
+
+/* ランクバッジ */
+.rank-badge {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.rank-gold {
+  background: var(--rank-gold);
+  color: #5C4813;
+}
+
+.rank-silver {
+  background: var(--rank-silver);
+  color: #404040;
+}
+
+.rank-bronze {
+  background: var(--rank-bronze);
+  color: #FFF;
+}
+
+.rank-label {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.rank-label-gold {
+  background: var(--rank-gold);
+  color: #5C4813;
+}
+
+.rank-label-silver {
+  background: var(--rank-silver);
+  color: #404040;
+}
+
+.rank-label-bronze {
+  background: var(--rank-bronze);
+  color: #FFF;
+}
+
+/* =============================================
+   ヒーローセクション
+   ============================================= */
+.hero {
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #2B6CB0 100%);
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #FFF;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.hero h2 span {
+  color: #F6AD55;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #E2E8F0;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =============================================
+   セクション
+   ============================================= */
+.section {
+  padding: 50px 20px;
+}
+
+.section-white {
+  background: #FFF;
+}
+
+.section-gray {
+  background: #F7FAFC;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 36px;
+}
+
+.section-title span {
+  color: #ED8936;
+}
+
+/* =============================================
+   グリッド
+   ============================================= */
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* =============================================
+   フィルター
+   ============================================= */
+.filter-section {
+  background: #FFF;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  margin-bottom: 24px;
+}
+
+.filter-group {
+  margin-bottom: 16px;
+}
+
+.filter-group:last-child {
+  margin-bottom: 0;
+}
+
+.filter-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4A5568;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: #F7FAFC;
+  color: #4A5568;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  background: #EDF2F7;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #ED8936, #DD6B20);
+  color: #FFF;
+}
+
+.filter-btn.active-blue {
+  background: linear-gradient(135deg, #4299E1, #3182CE);
+  color: #FFF;
+}
+
+/* =============================================
+   求人カード
+   ============================================= */
+.job-card {
+  background: #FFF;
+  border-radius: 16px;
+  padding: 20px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid #E2E8F0;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.job-card.urgent {
+  border: 2px solid #E53E3E;
+}
+
+.job-card-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.job-card-content {
+  flex: 1;
+}
+
+.job-card-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.job-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 6px;
+}
+
+.job-card-company {
+  font-size: 14px;
+  color: #718096;
+  margin-bottom: 8px;
+}
+
+.job-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  color: #A0AEC0;
+}
+
+.job-card-salary {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.job-card-salary-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ED8936;
+  margin-bottom: 8px;
+}
+
+.job-card-link {
+  font-size: 13px;
+  color: #4299E1;
+  font-weight: 600;
+}
+
+/* =============================================
+   職人カード
+   ============================================= */
+.worker-card {
+  background: #FFF;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.worker-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.worker-card-available {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #48BB78;
+  color: #FFF;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.worker-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.worker-avatar {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #4299E1, #3182CE);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.worker-card-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #1a365d;
+  margin-bottom: 4px;
+}
+
+.worker-card-nickname {
+  font-size: 12px;
+  color: #718096;
+  margin-bottom: 6px;
+}
+
+.worker-card-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.worker-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.worker-card-rating-stars {
+  color: #ECC94B;
+  font-size: 14px;
+}
+
+.worker-card-rating-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a365d;
+}
+
+.worker-card-rating-count {
+  font-size: 12px;
+  color: #A0AEC0;
+}
+
+.worker-card-skills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.skill-tag {
+  background: #FFF5F5;
+  color: #C53030;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+/* =============================================
+   フッター
+   ============================================= */
+.footer {
+  background: #1a365d;
+  padding: 40px 20px;
+}
+
+.footer-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.footer-logo-icon {
+  font-size: 28px;
+}
+
+.footer-logo-text {
+  color: #FFF;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.footer-logo-sub {
+  color: #90CDF4;
+  font-size: 11px;
+}
+
+.footer-desc {
+  color: #90CDF4;
+  font-size: 13px;
+  max-width: 300px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.footer-links-group h4 {
+  color: #FFF;
+  font-weight: 600;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.footer-links-group a {
+  display: block;
+  color: #90CDF4;
+  font-size: 13px;
+  margin-bottom: 8px;
+  transition: color 0.2s ease;
+}
+
+.footer-links-group a:hover {
+  color: #FFF;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  text-align: center;
+}
+
+.footer-copyright {
+  color: #718096;
+  font-size: 12px;
+}
+
+/* =============================================
+   ユーティリティ
+   ============================================= */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-muted { color: #718096; }
+.text-small { font-size: 12px; }
+.text-orange { color: #ED8936; }
+.text-blue { color: #4299E1; }
+
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mt-4 { margin-top: 32px; }
+.mb-1 { margin-top: 8px; }
+.mb-2 { margin-bottom: 16px; }
+.mb-3 { margin-bottom: 24px; }
+.mb-4 { margin-bottom: 32px; }
+
+.flex { display: flex; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 8px; }
+.gap-2 { gap: 16px; }
+.gap-3 { gap: 24px; }
+
+/* =============================================
+   料金プラン
+   ============================================= */
+.pricing-card {
+  background: #FFF;
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+}
+
+.pricing-card.featured {
+  border: 3px solid #ED8936;
+  transform: scale(1.05);
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.05) translateY(-8px);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #ED8936, #DD6B20);
+  color: #FFF;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pricing-name {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1a365d;
+  margin-bottom: 8px;
+}
+
+.pricing-price {
+  font-size: 48px;
+  font-weight: 800;
+  color: #ED8936;
+  margin-bottom: 4px;
+}
+
+.pricing-price span {
+  font-size: 16px;
+  color: #718096;
+}
+
+.pricing-period {
+  font-size: 14px;
+  color: #718096;
+  margin-bottom: 24px;
+}
+
+.pricing-features {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.pricing-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #E2E8F0;
+  font-size: 14px;
+  color: #4A5568;
+}
+
+.pricing-feature:last-child {
+  border-bottom: none;
+}
+
+.pricing-feature-icon {
+  width: 20px;
+  text-align: center;
+}
+
+/* =============================================
+   チケット
+   ============================================= */
+.ticket-card {
+  background: #FFF;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  border: 2px solid #E2E8F0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.ticket-card:hover {
+  border-color: #ED8936;
+}
+
+.ticket-card.selected {
+  border-color: #ED8936;
+  background: #FFFAF0;
+}
+
+.ticket-count {
+  font-size: 36px;
+  font-weight: 800;
+  color: #1a365d;
+  margin-bottom: 4px;
+}
+
+.ticket-label {
+  font-size: 14px;
+  color: #718096;
+  margin-bottom: 12px;
+}
+
+.ticket-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ED8936;
+}
+
+.ticket-discount {
+  display: inline-block;
+  background: #E53E3E;
+  color: #FFF;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+/* =============================================
+   マイページ
+   ============================================= */
+.mypage-header {
+  background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.mypage-avatar {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #4299E1, #3182CE);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+  margin: 0 auto 16px;
+  border: 4px solid #FFF;
+}
+
+.mypage-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #FFF;
+  margin-bottom: 4px;
+}
+
+.mypage-nickname {
+  font-size: 14px;
+  color: #90CDF4;
+  margin-bottom: 16px;
+}
+
+.mypage-stats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.mypage-stat {
+  text-align: center;
+}
+
+.mypage-stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.mypage-stat-label {
+  font-size: 12px;
+  color: #90CDF4;
+}
+
+.mypage-tabs {
+  display: flex;
+  border-bottom: 2px solid #E2E8F0;
+  margin-bottom: 24px;
+}
+
+.mypage-tab {
+  padding: 16px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #718096;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s ease;
+}
+
+.mypage-tab:hover {
+  color: #1a365d;
+}
+
+.mypage-tab.active {
+  color: #ED8936;
+  border-bottom-color: #ED8936;
+}
+
+/* =============================================
+   足跡
+   ============================================= */
+.footprint-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #FFF;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.footprint-avatar {
+  width: 48px;
+  height: 48px;
+  background: #EDF2F7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.footprint-info {
+  flex: 1;
+}
+
+.footprint-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a365d;
+}
+
+.footprint-time {
+  font-size: 12px;
+  color: #A0AEC0;
+}
+
+/* =============================================
+   レスポンシブ
+   ============================================= */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav {
+    justify-content: center;
+  }
+
+  .hero h2 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .job-card-inner {
+    flex-direction: column;
+  }
+
+  .job-card-salary {
+    text-align: left;
+  }
+
+  .pricing-card.featured {
+    transform: none;
+  }
+
+  .pricing-card.featured:hover {
+    transform: translateY(-8px);
+  }
+
+  .footer-top {
+    flex-direction: column;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

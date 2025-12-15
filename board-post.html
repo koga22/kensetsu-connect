@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>求人を投稿 - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="mypage.html" class="nav-btn">👤 マイページ</a>
+        <button class="btn-login" style="border: 2px solid #FC8181; color: #FC8181;">ログアウト</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+    <div style="margin-bottom: 24px;">
+      <a href="board.html" style="color: #4299E1; font-size: 14px; font-weight: 600;">← 掲示板一覧に戻る</a>
+    </div>
+
+    <div class="card" style="padding: 40px 32px;">
+      <div class="text-center mb-4">
+        <div style="font-size: 48px; margin-bottom: 12px;">✏️</div>
+        <h2 style="font-size: 24px; font-weight: 800; color: #1a365d; margin-bottom: 8px;">求人を投稿</h2>
+        <p style="font-size: 14px; color: #718096;">必要事項を入力して求人を投稿しましょう</p>
+      </div>
+
+      <form>
+        <!-- 募集タイプ -->
+        <div class="form-group">
+          <label class="form-label">募集タイプ <span style="color: #E53E3E;">*</span></label>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;">
+            <label class="form-radio-label selected">
+              <input type="radio" name="jobType" value="employee" checked>
+              社員募集
+            </label>
+            <label class="form-radio-label">
+              <input type="radio" name="jobType" value="parttime">
+              アルバイト募集
+            </label>
+            <label class="form-radio-label">
+              <input type="radio" name="jobType" value="partner">
+              協力業者募集
+            </label>
+            <label class="form-radio-label">
+              <input type="radio" name="jobType" value="worker">
+              職人募集
+            </label>
+          </div>
+        </div>
+
+        <!-- タイトル -->
+        <div class="form-group">
+          <label class="form-label">タイトル <span style="color: #E53E3E;">*</span></label>
+          <input type="text" class="form-input" placeholder="例：電気工事士募集【経験者優遇】">
+          <p style="font-size: 12px; color: #718096; margin-top: 4px;">※50文字以内で入力してください</p>
+        </div>
+
+        <!-- 職種 -->
+        <div class="form-group">
+          <label class="form-label">職種 <span style="color: #E53E3E;">*</span></label>
+          <select class="form-select">
+            <option value="">選択してください</option>
+            <option value="electric">電気工事</option>
+            <option value="plumbing">配管工事</option>
+            <option value="carpentry">大工</option>
+            <option value="painting">塗装</option>
+            <option value="scaffolding">足場</option>
+            <option value="interior">内装</option>
+            <option value="aircon">空調</option>
+            <option value="cleaning">清掃</option>
+            <option value="civil">土木</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <!-- エリア -->
+        <div class="form-group">
+          <label class="form-label">エリア <span style="color: #E53E3E;">*</span></label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <select class="form-select">
+              <option value="">都道府県を選択</option>
+              <option value="hokkaido">北海道</option>
+              <option value="aomori">青森県</option>
+              <option value="tokyo">東京都</option>
+              <option value="kanagawa">神奈川県</option>
+              <option value="osaka">大阪府</option>
+              <option value="fukuoka">福岡県</option>
+              <!-- 他の都道府県 -->
+            </select>
+            <input type="text" class="form-input" placeholder="市区町村（例：新宿区）">
+          </div>
+        </div>
+
+        <!-- 給与 -->
+        <div class="form-group">
+          <label class="form-label">給与・報酬 <span style="color: #E53E3E;">*</span></label>
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+            <select class="form-select" style="width: auto;">
+              <option value="daily">日給</option>
+              <option value="hourly">時給</option>
+              <option value="monthly">月給</option>
+              <option value="project">案件単価</option>
+            </select>
+            <input type="text" class="form-input" placeholder="下限（例：15000）" style="width: 140px;">
+            <span style="color: #718096;">〜</span>
+            <input type="text" class="form-input" placeholder="上限（例：22000）" style="width: 140px;">
+            <span style="color: #718096;">円</span>
+          </div>
+        </div>
+
+        <!-- 仕事内容 -->
+        <div class="form-group">
+          <label class="form-label">仕事内容 <span style="color: #E53E3E;">*</span></label>
+          <textarea class="form-textarea" placeholder="仕事内容を詳しく記載してください&#10;&#10;例：&#10;・新築住宅の電気配線工事&#10;・ビル・マンションの電気設備工事&#10;・エアコン設置工事" style="min-height: 200px;"></textarea>
+        </div>
+
+        <!-- 応募条件 -->
+        <div class="form-group">
+          <label class="form-label">応募条件</label>
+          <textarea class="form-textarea" placeholder="応募に必要な条件を記載してください&#10;&#10;例：&#10;・第二種電気工事士以上の資格保有者&#10;・普通自動車免許&#10;・未経験者歓迎"></textarea>
+        </div>
+
+        <!-- 待遇・福利厚生 -->
+        <div class="form-group">
+          <label class="form-label">待遇・福利厚生</label>
+          <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;">
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">社会保険完備</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">交通費支給</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">資格取得支援</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">工具貸与</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">制服貸与</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">車通勤可</span>
+            </label>
+          </div>
+          <textarea class="form-textarea" placeholder="その他の待遇があれば記載してください" style="min-height: 80px;"></textarea>
+        </div>
+
+        <!-- 急募フラグ -->
+        <div class="form-group">
+          <label class="form-checkbox" style="background: #FFF5F5; padding: 16px; border-radius: 12px; border: 2px solid #FED7D7;">
+            <input type="checkbox">
+            <span style="font-size: 15px; font-weight: 600; color: #E53E3E;">🔥 急募として投稿する</span>
+          </label>
+          <p style="font-size: 12px; color: #718096; margin-top: 8px;">※急募マークが付き、一覧で目立つ表示になります</p>
+        </div>
+
+        <!-- プレビュー -->
+        <div style="background: #F7FAFC; padding: 20px; border-radius: 12px; margin-bottom: 24px;">
+          <h4 style="font-size: 14px; font-weight: 600; color: #4A5568; margin-bottom: 12px;">💡 投稿のヒント</h4>
+          <ul style="font-size: 13px; color: #718096; line-height: 1.8; margin: 0; padding-left: 20px;">
+            <li>タイトルは具体的に（職種名・条件・アピールポイントを含める）</li>
+            <li>仕事内容は箇条書きで分かりやすく</li>
+            <li>給与は可能な限り具体的な金額を記載</li>
+            <li>応募条件は必須条件と歓迎条件を分けると分かりやすい</li>
+          </ul>
+        </div>
+
+        <!-- 投稿ボタン -->
+        <div style="display: flex; gap: 12px;">
+          <button type="button" class="btn btn-gray btn-lg" style="flex: 1;">下書き保存</button>
+          <button type="submit" class="btn btn-primary btn-lg" style="flex: 2;">投稿する</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ラジオボタンの選択状態を反映
+    document.querySelectorAll('.form-radio-label input').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.querySelectorAll('.form-radio-label').forEach(label => {
+          label.classList.remove('selected');
+        });
+        if (this.checked) {
+          this.closest('.form-radio-label').classList.add('selected');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

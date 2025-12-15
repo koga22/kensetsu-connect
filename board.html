@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>掲示板一覧 - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn active">📋 掲示板</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="login.html" class="btn-login">ログイン</a>
+        <a href="register.html" class="btn-register">会員登録（無料）</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main style="max-width: 1100px; margin: 0 auto; padding: 30px 20px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h2 style="font-size: 26px; font-weight: 700; color: #1a365d; margin-bottom: 4px; display: flex; align-items: center; gap: 10px;">
+          📋 掲示板一覧
+        </h2>
+        <p style="font-size: 14px; color: #718096;">条件に合った案件を見つけて応募しよう</p>
+      </div>
+      <a href="board-post.html" class="btn btn-primary">✏️ 求人を投稿する</a>
+    </div>
+
+    <!-- フィルター -->
+    <div class="filter-section">
+      <!-- 職種フィルター -->
+      <div class="filter-group">
+        <label class="filter-label">職種で絞り込む</label>
+        <div class="filter-buttons">
+          <button class="filter-btn active">🏗️ すべて</button>
+          <button class="filter-btn">⚡ 電気工事</button>
+          <button class="filter-btn">🔧 配管工事</button>
+          <button class="filter-btn">🪚 大工</button>
+          <button class="filter-btn">🎨 塗装</button>
+          <button class="filter-btn">🪜 足場</button>
+          <button class="filter-btn">🏠 内装</button>
+          <button class="filter-btn">❄️ 空調</button>
+          <button class="filter-btn">🧹 清掃</button>
+          <button class="filter-btn">🚜 土木</button>
+          <button class="filter-btn">📦 その他</button>
+        </div>
+      </div>
+
+      <!-- エリアフィルター -->
+      <div class="filter-group">
+        <label class="filter-label">エリアで絞り込む</label>
+        <div class="filter-buttons">
+          <button class="filter-btn active-blue">全国</button>
+          <button class="filter-btn">北海道</button>
+          <button class="filter-btn">東北</button>
+          <button class="filter-btn">関東</button>
+          <button class="filter-btn">中部</button>
+          <button class="filter-btn">近畿</button>
+          <button class="filter-btn">中国</button>
+          <button class="filter-btn">四国</button>
+          <button class="filter-btn">九州</button>
+          <button class="filter-btn">沖縄</button>
+        </div>
+      </div>
+
+      <!-- 募集タイプフィルター -->
+      <div class="filter-group">
+        <label class="filter-label">募集タイプ</label>
+        <div class="filter-buttons">
+          <button class="filter-btn active">すべて</button>
+          <button class="filter-btn">社員募集</button>
+          <button class="filter-btn">アルバイト募集</button>
+          <button class="filter-btn">協力業者募集</button>
+          <button class="filter-btn">職人募集</button>
+        </div>
+      </div>
+
+      <!-- 詳細検索トグル -->
+      <details style="margin-top: 16px;">
+        <summary style="cursor: pointer; font-size: 14px; font-weight: 600; color: #4299E1;">🔍 詳細検索を開く</summary>
+        <div style="margin-top: 16px; padding: 20px; background: #F7FAFC; border-radius: 12px;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">希望日給</label>
+              <select class="form-select">
+                <option value="">指定なし</option>
+                <option value="10000">10,000円以上</option>
+                <option value="12000">12,000円以上</option>
+                <option value="15000">15,000円以上</option>
+                <option value="18000">18,000円以上</option>
+                <option value="20000">20,000円以上</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">曜日</label>
+              <select class="form-select">
+                <option value="">指定なし</option>
+                <option value="weekday">平日のみ</option>
+                <option value="weekend">土日可</option>
+                <option value="all">全日可</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">時間帯</label>
+              <select class="form-select">
+                <option value="">指定なし</option>
+                <option value="day">日勤</option>
+                <option value="night">夜勤</option>
+                <option value="both">両方可</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label class="form-label">期間</label>
+              <select class="form-select">
+                <option value="">指定なし</option>
+                <option value="short">短期（1ヶ月以内）</option>
+                <option value="long">長期（1ヶ月以上）</option>
+              </select>
+            </div>
+          </div>
+          <div style="margin-top: 16px; display: flex; gap: 16px; flex-wrap: wrap;">
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">車通勤可</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">道具貸与あり</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">資格不問</span>
+            </label>
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">未経験歓迎</span>
+            </label>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- 表示順 -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+      <p style="font-size: 14px; color: #718096;">8件の案件が見つかりました</p>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 13px; color: #718096;">表示順:</span>
+        <select class="form-select" style="width: auto; padding: 8px 12px; font-size: 13px;">
+          <option value="new">新着順</option>
+          <option value="recommend">おすすめ順</option>
+          <option value="salary">給与高い順</option>
+          <option value="views">閲覧数順</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 求人一覧 -->
+    <div style="display: grid; gap: 16px;">
+      <!-- 求人カード1（急募・金ランク） -->
+      <a href="board-detail.html" class="job-card urgent">
+        <div class="job-card-inner">
+          <div class="rank-badge rank-gold">金</div>
+          <div class="job-card-content">
+            <div class="job-card-badges">
+              <span class="badge badge-urgent">🔥 急募</span>
+              <span class="badge badge-category">電気工事</span>
+              <span class="badge badge-area">関東</span>
+              <span class="badge badge-type">社員募集</span>
+            </div>
+            <h4 class="job-card-title">電気工事士募集【経験者優遇】</h4>
+            <p class="job-card-company">株式会社サンライズ電気 | 東京都新宿区</p>
+            <div class="job-card-meta">
+              <span>📅 2025/12/02</span>
+              <span>👁 234回閲覧</span>
+            </div>
+          </div>
+          <div class="job-card-salary">
+            <p class="job-card-salary-text">日給15,000円〜22,000円</p>
+            <span class="job-card-link">詳細を見る →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 求人カード2（急募・金ランク） -->
+      <a href="board-detail.html" class="job-card urgent">
+        <div class="job-card-inner">
+          <div class="rank-badge rank-gold">金</div>
+          <div class="job-card-content">
+            <div class="job-card-badges">
+              <span class="badge badge-urgent">🔥 急募</span>
+              <span class="badge badge-category">足場</span>
+              <span class="badge badge-area">関東</span>
+              <span class="badge badge-type">社員募集</span>
+            </div>
+            <h4 class="job-card-title">足場組立解体スタッフ募集</h4>
+            <p class="job-card-company">株式会社山本建設 | 東京都渋谷区</p>
+            <div class="job-card-meta">
+              <span>📅 2025/12/02</span>
+              <span>👁 156回閲覧</span>
+            </div>
+          </div>
+          <div class="job-card-salary">
+            <p class="job-card-salary-text">日給14,000円〜20,000円</p>
+            <span class="job-card-link">詳細を見る →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 求人カード3（銀ランク） -->
+      <a href="board-detail.html" class="job-card">
+        <div class="job-card-inner">
+          <div class="rank-badge rank-silver">銀</div>
+          <div class="job-card-content">
+            <div class="job-card-badges">
+              <span class="badge badge-category">大工</span>
+              <span class="badge badge-area">関東</span>
+              <span class="badge badge-type">アルバイト募集</span>
+            </div>
+            <h4 class="job-card-title">大工見習い・経験者募集</h4>
+            <p class="job-card-company">大野工務店 | 東京都世田谷区</p>
+            <div class="job-card-meta">
+              <span>📅 2025/12/01</span>
+              <span>👁 89回閲覧</span>
+            </div>
+          </div>
+          <div class="job-card-salary">
+            <p class="job-card-salary-text">日給12,000円〜18,000円</p>
+            <span class="job-card-link">詳細を見る →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 求人カード4（銀ランク） -->
+      <a href="board-detail.html" class="job-card">
+        <div class="job-card-inner">
+          <div class="rank-badge rank-silver">銀</div>
+          <div class="job-card-content">
+            <div class="job-card-badges">
+              <span class="badge badge-category">空調</span>
+              <span class="badge badge-area">近畿</span>
+              <span class="badge badge-type">協力業者募集</span>
+            </div>
+            <h4 class="job-card-title">エアコン工事 協力業者募集</h4>
+            <p class="job-card-company">K-tec | 大阪市中央区</p>
+            <div class="job-card-meta">
+              <span>📅 2025/12/02</span>
+              <span>👁 178回閲覧</span>
+            </div>
+          </div>
+          <div class="job-card-salary">
+            <p class="job-card-salary-text">1件 8,000円〜</p>
+            <span class="job-card-link">詳細を見る →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 求人カード5（急募・金ランク） -->
+      <a href="board-detail.html" class="job-card urgent">
+        <div class="job-card-inner">
+          <div class="rank-badge rank-gold">金</div>
+          <div class="job-card-content">
+            <div class="job-card-badges">
+              <span class="badge badge-urgent">🔥 急募</span>
+              <span class="badge badge-category">塗装</span>
+              <span class="badge badge-area">九州</span>
+              <span class="badge badge-type">社員募集</span>
+            </div>
+            <h4 class="job-card-title">塗装工 急募！</h4>
+            <p class="job-card-company">カラーペイント福岡 | 福岡市西区</p>
+            <div class="job-card-meta">
+              <span>📅 2025/12/02</span>
+              <span>👁 145回閲覧</span>
+            </div>
+          </div>
+          <div class="job-card-salary">
+            <p class="job-card-salary-text">日給13,000円〜</p>
+            <span class="job-card-link">詳細を見る →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 求人カード6（銅ランク） -->
+      <a href="board-detail.html" class="job-card">
+        <div class="job-card-inner">
+          <div class="rank-badge rank-bronze">銅</div>
+          <div class="job-card-content">
+            <div class="job-card-badges">
+              <span class="badge badge-category">土木</span>
+              <span class="badge badge-area">関東</span>
+              <span class="badge badge-type">社員募集</span>
+            </div>
+            <h4 class="job-card-title">土木作業員募集 未経験歓迎</h4>
+            <p class="job-card-company">合同会社ホーミーズ | 埼玉県さいたま市</p>
+            <div class="job-card-meta">
+              <span>📅 2025/12/01</span>
+              <span>👁 112回閲覧</span>
+            </div>
+          </div>
+          <div class="job-card-salary">
+            <p class="job-card-salary-text">日給11,000円〜16,000円</p>
+            <span class="job-card-link">詳細を見る →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 求人カード7（銀ランク） -->
+      <a href="board-detail.html" class="job-card">
+        <div class="job-card-inner">
+          <div class="rank-badge rank-silver">銀</div>
+          <div class="job-card-content">
+            <div class="job-card-badges">
+              <span class="badge badge-category">配管工事</span>
+              <span class="badge badge-area">九州</span>
+              <span class="badge badge-type">社員募集</span>
+            </div>
+            <h4 class="job-card-title">配管工 経験者優遇</h4>
+            <p class="job-card-company">有限会社ミヤケ設備 | 福岡市中央区</p>
+            <div class="job-card-meta">
+              <span>📅 2025/12/01</span>
+              <span>👁 98回閲覧</span>
+            </div>
+          </div>
+          <div class="job-card-salary">
+            <p class="job-card-salary-text">日給14,000円〜</p>
+            <span class="job-card-link">詳細を見る →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 求人カード8（銅ランク） -->
+      <a href="board-detail.html" class="job-card">
+        <div class="job-card-inner">
+          <div class="rank-badge rank-bronze">銅</div>
+          <div class="job-card-content">
+            <div class="job-card-badges">
+              <span class="badge badge-category">内装</span>
+              <span class="badge badge-area">中部</span>
+              <span class="badge badge-type">アルバイト募集</span>
+            </div>
+            <h4 class="job-card-title">内装工事スタッフ募集</h4>
+            <p class="job-card-company">株式会社インテリアワークス | 名古屋市中区</p>
+            <div class="job-card-meta">
+              <span>📅 2025/11/30</span>
+              <span>👁 76回閲覧</span>
+            </div>
+          </div>
+          <div class="job-card-salary">
+            <p class="job-card-salary-text">日給12,000円〜17,000円</p>
+            <span class="job-card-link">詳細を見る →</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- ページネーション -->
+    <div style="display: flex; justify-content: center; gap: 8px; margin-top: 32px;">
+      <button class="btn btn-gray btn-sm" disabled>← 前へ</button>
+      <button class="btn btn-primary btn-sm">1</button>
+      <button class="btn btn-gray btn-sm">2</button>
+      <button class="btn btn-gray btn-sm">3</button>
+      <button class="btn btn-gray btn-sm">次へ →</button>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // フィルターボタンのクリック処理
+    document.querySelectorAll('.filter-buttons').forEach(group => {
+      group.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          group.querySelectorAll('.filter-btn').forEach(b => {
+            b.classList.remove('active', 'active-blue');
+          });
+          this.classList.add(group.closest('.filter-group').querySelector('.filter-label').textContent.includes('エリア') ? 'active-blue' : 'active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

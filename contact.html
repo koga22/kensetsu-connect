@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>連絡画面 - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="mypage.html" class="nav-btn">👤 マイページ</a>
+        <button class="btn-login" style="border: 2px solid #FC8181; color: #FC8181;">ログアウト</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main style="max-width: 700px; margin: 40px auto; padding: 0 20px;">
+    <div style="margin-bottom: 24px;">
+      <a href="board-detail.html" style="color: #4299E1; font-size: 14px; font-weight: 600;">← 求人詳細に戻る</a>
+    </div>
+
+    <!-- チケット残高アラート -->
+    <div style="background: #FFFAF0; border: 2px solid #F6AD55; border-radius: 12px; padding: 16px; margin-bottom: 24px; display: flex; align-items: center; gap: 16px;">
+      <div style="font-size: 32px;">🎫</div>
+      <div style="flex: 1;">
+        <p style="font-size: 14px; font-weight: 600; color: #DD6B20; margin: 0 0 4px 0;">メッセージ送信にはチケットが必要です</p>
+        <p style="font-size: 13px; color: #4A5568; margin: 0;">
+          現在の残りチケット: <strong style="color: #ED8936;">3枚</strong>（ライトプラン: 月3人まで）
+        </p>
+      </div>
+      <a href="pricing.html" class="btn btn-primary btn-sm">チケット購入</a>
+    </div>
+
+    <div class="card" style="padding: 32px;">
+      <!-- 送信先情報 -->
+      <div style="background: #F7FAFC; padding: 20px; border-radius: 12px; margin-bottom: 24px;">
+        <p style="font-size: 12px; color: #718096; margin-bottom: 8px;">送信先</p>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #4299E1, #3182CE); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px;">🏢</div>
+          <div>
+            <p style="font-size: 16px; font-weight: 700; color: #1a365d; margin: 0 0 4px 0;">株式会社サンライズ電気</p>
+            <p style="font-size: 13px; color: #718096; margin: 0;">電気工事士募集【経験者優遇】</p>
+          </div>
+          <span class="rank-label rank-label-gold" style="margin-left: auto;">金ランク</span>
+        </div>
+      </div>
+
+      <div class="text-center mb-3">
+        <div style="font-size: 40px; margin-bottom: 8px;">✉️</div>
+        <h2 style="font-size: 22px; font-weight: 800; color: #1a365d; margin-bottom: 4px;">メッセージを送信</h2>
+        <p style="font-size: 13px; color: #718096;">求人についてのお問い合わせや応募ができます</p>
+      </div>
+
+      <form>
+        <!-- 件名 -->
+        <div class="form-group">
+          <label class="form-label">件名 <span style="color: #E53E3E;">*</span></label>
+          <select class="form-select">
+            <option value="">選択してください</option>
+            <option value="apply">この求人に応募したい</option>
+            <option value="question">求人内容について質問したい</option>
+            <option value="visit">現場見学を希望したい</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+
+        <!-- メッセージ -->
+        <div class="form-group">
+          <label class="form-label">メッセージ <span style="color: #E53E3E;">*</span></label>
+          <textarea class="form-textarea" placeholder="メッセージを入力してください&#10;&#10;例：&#10;はじめまして。○○と申します。&#10;貴社の求人を拝見し、応募させていただきます。&#10;&#10;【経験】&#10;・電気工事士として5年の経験があります&#10;・第一種電気工事士の資格を保有しています&#10;&#10;ご検討のほど、よろしくお願いいたします。" style="min-height: 250px;"></textarea>
+          <p style="font-size: 12px; color: #718096; margin-top: 4px;">※個人情報（住所・電話番号等）の記載はお控えください</p>
+        </div>
+
+        <!-- 添付ファイル -->
+        <div class="form-group">
+          <label class="form-label">添付ファイル（任意）</label>
+          <div style="border: 2px dashed #E2E8F0; border-radius: 12px; padding: 24px; text-align: center; background: #F7FAFC;">
+            <div style="font-size: 32px; margin-bottom: 8px;">📎</div>
+            <p style="font-size: 14px; color: #4A5568; margin-bottom: 8px;">ファイルをドラッグ＆ドロップ</p>
+            <p style="font-size: 12px; color: #A0AEC0; margin-bottom: 12px;">または</p>
+            <button type="button" class="btn btn-outline btn-sm">ファイルを選択</button>
+            <p style="font-size: 11px; color: #A0AEC0; margin-top: 12px;">PDF、画像ファイル（5MB以内）</p>
+          </div>
+        </div>
+
+        <!-- チケット消費通知 -->
+        <div style="background: #EBF8FF; border: 1px solid #90CDF4; border-radius: 12px; padding: 16px; margin-bottom: 24px;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="font-size: 24px;">ℹ️</div>
+            <div>
+              <p style="font-size: 14px; font-weight: 600; color: #2B6CB0; margin: 0 0 4px 0;">チケット消費について</p>
+              <p style="font-size: 13px; color: #4A5568; margin: 0;">
+                この相手への初回メッセージ送信時に<strong>チケット1枚</strong>を消費します。<br>
+                同じ相手への2回目以降のメッセージはチケット不要です。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 送信ボタン -->
+        <div style="display: flex; gap: 12px;">
+          <a href="board-detail.html" class="btn btn-gray btn-lg" style="flex: 1;">キャンセル</a>
+          <button type="submit" class="btn btn-primary btn-lg" style="flex: 2;">
+            🎫 チケット1枚を使用して送信
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="card mt-3" style="background: #F7FAFC;">
+      <h4 style="font-size: 14px; font-weight: 600; color: #4A5568; margin-bottom: 12px;">📌 ご注意</h4>
+      <ul style="font-size: 13px; color: #718096; line-height: 1.8; margin: 0; padding-left: 20px;">
+        <li>メッセージの内容は運営が確認する場合があります</li>
+        <li>不適切なメッセージは削除される場合があります</li>
+        <li>ユーザー間の金銭取引には当サービスは関与しません</li>
+        <li>詳細は<a href="#" style="color: #4299E1;">利用規約</a>をご確認ください</li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

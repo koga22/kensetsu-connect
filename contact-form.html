@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="login.html" class="btn-login">ログイン</a>
+        <a href="register.html" class="btn-register">会員登録（無料）</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ヒーロー -->
+  <section style="background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%); padding: 50px 20px; text-align: center;">
+    <h2 style="font-size: 32px; font-weight: 800; color: #FFF; margin-bottom: 16px;">📩 お問い合わせ</h2>
+    <p style="font-size: 16px; color: #E2E8F0; max-width: 600px; margin: 0 auto;">
+      ご質問・ご要望・不具合報告など、お気軽にお問い合わせください。<br>通常2営業日以内にご返信いたします。
+    </p>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main style="max-width: 800px; margin: 0 auto; padding: 40px 20px;">
+    <!-- お問い合わせ前の案内 -->
+    <div class="card mb-3" style="background: #EBF8FF; border: 1px solid #90CDF4;">
+      <div style="display: flex; align-items: flex-start; gap: 16px;">
+        <div style="font-size: 32px;">💡</div>
+        <div>
+          <h4 style="font-size: 16px; font-weight: 700; color: #2B6CB0; margin-bottom: 8px;">お問い合わせの前に</h4>
+          <p style="font-size: 14px; color: #4A5568; margin: 0; line-height: 1.7;">
+            よくあるご質問は<a href="faq.html" style="color: #4299E1; font-weight: 600;">FAQ</a>にまとめています。<br>
+            お探しの回答が見つかるかもしれませんので、ぜひご確認ください。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 300px; gap: 24px;">
+      <!-- お問い合わせフォーム -->
+      <div class="card">
+        <h3 style="font-size: 20px; font-weight: 700; color: #1a365d; margin-bottom: 24px; display: flex; align-items: center; gap: 10px;">
+          ✉️ お問い合わせフォーム
+        </h3>
+
+        <form>
+          <!-- お問い合わせ種別 -->
+          <div class="form-group">
+            <label class="form-label">お問い合わせ種別 <span style="color: #E53E3E;">*</span></label>
+            <select class="form-select">
+              <option value="">選択してください</option>
+              <option value="service">サービスについて</option>
+              <option value="account">アカウント・登録について</option>
+              <option value="payment">料金・お支払いについて</option>
+              <option value="bug">不具合・エラー報告</option>
+              <option value="request">機能追加・改善のご要望</option>
+              <option value="report">不正利用・違反報告</option>
+              <option value="partnership">法人・提携のご相談</option>
+              <option value="media">取材・メディア掲載について</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+
+          <!-- 会員区分 -->
+          <div class="form-group">
+            <label class="form-label">会員区分</label>
+            <div class="form-radio-group">
+              <label class="form-radio-label">
+                <input type="radio" name="memberType" value="member">
+                会員
+              </label>
+              <label class="form-radio-label selected">
+                <input type="radio" name="memberType" value="nonmember" checked>
+                非会員
+              </label>
+            </div>
+          </div>
+
+          <!-- 会員の場合：登録メールアドレス -->
+          <div class="form-group" id="memberEmail" style="display: none;">
+            <label class="form-label">登録メールアドレス</label>
+            <input type="email" class="form-input" placeholder="登録時のメールアドレスを入力">
+            <p style="font-size: 12px; color: #718096; margin-top: 4px;">※アカウントの確認に使用します</p>
+          </div>
+
+          <!-- 氏名 -->
+          <div class="form-group">
+            <label class="form-label">お名前 <span style="color: #E53E3E;">*</span></label>
+            <input type="text" class="form-input" placeholder="例：山田 太郎">
+          </div>
+
+          <!-- メールアドレス -->
+          <div class="form-group">
+            <label class="form-label">メールアドレス <span style="color: #E53E3E;">*</span></label>
+            <input type="email" class="form-input" placeholder="例：example@email.com">
+            <p style="font-size: 12px; color: #718096; margin-top: 4px;">※返信先となりますので、正確にご入力ください</p>
+          </div>
+
+          <!-- 電話番号 -->
+          <div class="form-group">
+            <label class="form-label">電話番号（任意）</label>
+            <input type="tel" class="form-input" placeholder="例：090-1234-5678">
+            <p style="font-size: 12px; color: #718096; margin-top: 4px;">※緊急のご連絡が必要な場合に使用します</p>
+          </div>
+
+          <!-- 件名 -->
+          <div class="form-group">
+            <label class="form-label">件名 <span style="color: #E53E3E;">*</span></label>
+            <input type="text" class="form-input" placeholder="お問い合わせ内容を簡潔にご記入ください">
+          </div>
+
+          <!-- お問い合わせ内容 -->
+          <div class="form-group">
+            <label class="form-label">お問い合わせ内容 <span style="color: #E53E3E;">*</span></label>
+            <textarea class="form-textarea" placeholder="お問い合わせ内容を詳しくご記入ください&#10;&#10;【不具合報告の場合】&#10;・発生日時&#10;・ご利用の端末・ブラウザ&#10;・操作手順&#10;・エラーメッセージ（あれば）&#10;などをご記入いただけると、早期解決につながります。" style="min-height: 200px;"></textarea>
+          </div>
+
+          <!-- 添付ファイル -->
+          <div class="form-group">
+            <label class="form-label">添付ファイル（任意）</label>
+            <div style="border: 2px dashed #E2E8F0; border-radius: 12px; padding: 24px; text-align: center; background: #F7FAFC;">
+              <div style="font-size: 32px; margin-bottom: 8px;">📎</div>
+              <p style="font-size: 14px; color: #4A5568; margin-bottom: 8px;">ファイルをドラッグ＆ドロップ</p>
+              <p style="font-size: 12px; color: #A0AEC0; margin-bottom: 12px;">または</p>
+              <button type="button" class="btn btn-outline btn-sm">ファイルを選択</button>
+              <p style="font-size: 11px; color: #A0AEC0; margin-top: 12px;">
+                スクリーンショット、エラー画面などを添付できます<br>
+                （PNG, JPG, PDF / 最大5MB）
+              </p>
+            </div>
+          </div>
+
+          <!-- 個人情報の取り扱い -->
+          <div class="form-group">
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;">
+                <a href="#" style="color: #4299E1;">プライバシーポリシー</a>に同意します <span style="color: #E53E3E;">*</span>
+              </span>
+            </label>
+          </div>
+
+          <!-- 送信ボタン -->
+          <button type="submit" class="btn btn-primary btn-block btn-lg">
+            送信する
+          </button>
+        </form>
+      </div>
+
+      <!-- サイドバー -->
+      <div>
+        <!-- 営業時間 -->
+        <div class="card mb-3">
+          <h4 style="font-size: 16px; font-weight: 700; color: #1a365d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+            🕐 対応時間
+          </h4>
+          <div style="font-size: 14px; color: #4A5568; line-height: 1.8;">
+            <p style="margin: 0 0 8px 0;"><strong>平日</strong> 9:00〜18:00</p>
+            <p style="margin: 0; color: #718096; font-size: 13px;">※土日祝日はお休みをいただいております</p>
+          </div>
+        </div>
+
+        <!-- 返信について -->
+        <div class="card mb-3">
+          <h4 style="font-size: 16px; font-weight: 700; color: #1a365d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+            ⏰ 返信について
+          </h4>
+          <div style="font-size: 14px; color: #4A5568; line-height: 1.8;">
+            <p style="margin: 0 0 12px 0;">通常<strong>2営業日以内</strong>にご返信いたします。</p>
+            <p style="margin: 0; color: #718096; font-size: 13px;">
+              ※お問い合わせが集中している場合、お時間をいただく場合がございます。
+            </p>
+          </div>
+        </div>
+
+        <!-- よくある問い合わせ -->
+        <div class="card mb-3">
+          <h4 style="font-size: 16px; font-weight: 700; color: #1a365d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+            📌 よくあるお問い合わせ
+          </h4>
+          <ul style="font-size: 13px; color: #4A5568; line-height: 2; margin: 0; padding-left: 18px;">
+            <li><a href="faq.html#register" style="color: #4299E1;">会員登録の方法</a></li>
+            <li><a href="faq.html#pricing" style="color: #4299E1;">料金プランの違い</a></li>
+            <li><a href="faq.html#message" style="color: #4299E1;">メッセージの送り方</a></li>
+            <li><a href="faq.html#pricing" style="color: #4299E1;">解約・退会の方法</a></li>
+            <li><a href="faq.html" style="color: #4299E1;">すべてのFAQを見る →</a></li>
+          </ul>
+        </div>
+
+        <!-- その他の連絡先 -->
+        <div class="card" style="background: #F7FAFC;">
+          <h4 style="font-size: 16px; font-weight: 700; color: #1a365d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+            📧 その他の連絡先
+          </h4>
+          <div style="font-size: 14px; color: #4A5568;">
+            <p style="margin: 0 0 12px 0;">
+              <strong>メール</strong><br>
+              <a href="mailto:support@kensetsu-connect.jp" style="color: #4299E1;">support@kensetsu-connect.jp</a>
+            </p>
+            <p style="margin: 0; font-size: 13px; color: #718096;">
+              ※フォームからのお問い合わせを推奨しております
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="card mt-4" style="background: #FFFAF0; border: 1px solid #F6AD55;">
+      <h4 style="font-size: 14px; font-weight: 600; color: #DD6B20; margin-bottom: 12px;">⚠️ ご注意ください</h4>
+      <ul style="font-size: 13px; color: #4A5568; line-height: 1.8; margin: 0; padding-left: 20px;">
+        <li>お問い合わせ内容によっては、ご返信にお時間をいただく場合や、ご返信できない場合がございます。</li>
+        <li>ユーザー間のトラブルについては、当事者間での解決をお願いしております。</li>
+        <li>営業・勧誘目的のお問い合わせにはご返信いたしません。</li>
+        <li>ご入力いただいた個人情報は、お問い合わせへの対応以外の目的では使用いたしません。</li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ラジオボタンの選択状態を反映
+    document.querySelectorAll('.form-radio-label input').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.querySelectorAll('.form-radio-label').forEach(label => {
+          label.classList.remove('selected');
+        });
+        if (this.checked) {
+          this.closest('.form-radio-label').classList.add('selected');
+        }
+
+        // 会員選択時に登録メールアドレス欄を表示
+        const memberEmailDiv = document.getElementById('memberEmail');
+        if (this.value === 'member') {
+          memberEmailDiv.style.display = 'block';
+        } else {
+          memberEmailDiv.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

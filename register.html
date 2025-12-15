@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会員登録 - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="login.html" class="btn-login">ログイン</a>
+        <a href="register.html" class="btn-register">会員登録（無料）</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 会員登録フォーム -->
+  <main style="padding: 40px 20px;">
+    <div class="container-sm">
+      <div class="card" style="padding: 40px 32px;">
+        <div class="text-center mb-4">
+          <div style="font-size: 48px; margin-bottom: 12px;">🏗️</div>
+          <h2 style="font-size: 24px; font-weight: 800; color: #1a365d; margin-bottom: 8px;">会員登録（無料）</h2>
+          <p style="font-size: 14px; color: #718096;">1分で簡単登録！</p>
+        </div>
+
+        <!-- Google登録 -->
+        <button class="btn btn-outline btn-block mb-2" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+          <span style="font-size: 18px; color: #4285F4; font-weight: 700;">G</span>
+          Googleで登録
+        </button>
+
+        <div style="text-align: center; margin: 24px 0; color: #A0AEC0; font-size: 13px; position: relative;">
+          <span style="background: #FFF; padding: 0 16px;">または</span>
+          <div style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: #E2E8F0; z-index: -1;"></div>
+        </div>
+
+        <form>
+          <!-- 登録タイプ -->
+          <div class="form-group">
+            <label class="form-label">登録タイプ <span style="color: #E53E3E;">*</span></label>
+            <div class="form-radio-group">
+              <label class="form-radio-label">
+                <input type="radio" name="userType" value="worker" checked>
+                👷 職人として登録
+              </label>
+              <label class="form-radio-label">
+                <input type="radio" name="userType" value="company">
+                🏢 企業として登録
+              </label>
+            </div>
+          </div>
+
+          <!-- 氏名 -->
+          <div class="form-group">
+            <label class="form-label">氏名 <span style="color: #E53E3E;">*</span></label>
+            <div style="display: flex; gap: 12px;">
+              <input type="text" class="form-input" placeholder="姓" style="flex: 1;">
+              <input type="text" class="form-input" placeholder="名" style="flex: 1;">
+            </div>
+          </div>
+
+          <!-- ニックネーム -->
+          <div class="form-group">
+            <label class="form-label">ニックネーム <span style="color: #E53E3E;">*</span></label>
+            <input type="text" class="form-input" placeholder="表示名として使用されます">
+            <p style="font-size: 12px; color: #718096; margin-top: 4px;">※プロプランでは本名・会社名が必須となります</p>
+          </div>
+
+          <!-- メールアドレス -->
+          <div class="form-group">
+            <label class="form-label">メールアドレス <span style="color: #E53E3E;">*</span></label>
+            <input type="email" class="form-input" placeholder="example@email.com">
+          </div>
+
+          <!-- 電話番号 -->
+          <div class="form-group">
+            <label class="form-label">電話番号 <span style="color: #E53E3E;">*</span></label>
+            <input type="tel" class="form-input" placeholder="090-1234-5678">
+          </div>
+
+          <!-- パスワード -->
+          <div class="form-group">
+            <label class="form-label">パスワード <span style="color: #E53E3E;">*</span></label>
+            <input type="password" class="form-input" placeholder="8文字以上">
+          </div>
+
+          <!-- パスワード確認 -->
+          <div class="form-group">
+            <label class="form-label">パスワード（確認） <span style="color: #E53E3E;">*</span></label>
+            <input type="password" class="form-input" placeholder="パスワードを再入力">
+          </div>
+
+          <!-- 利用規約 -->
+          <div class="form-group">
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 14px; color: #4A5568;"><a href="#" style="color: #4299E1;">利用規約</a>と<a href="#" style="color: #4299E1;">プライバシーポリシー</a>に同意します</span>
+            </label>
+          </div>
+
+          <!-- 登録ボタン -->
+          <button type="submit" class="btn btn-primary btn-block btn-lg" onclick="location.href='mypage.html'">
+            会員登録（無料）
+          </button>
+        </form>
+
+        <p style="text-align: center; font-size: 14px; color: #718096; margin-top: 24px;">
+          すでにアカウントをお持ちの方は<a href="login.html" style="color: #4299E1; font-weight: 600;">ログイン</a>
+        </p>
+      </div>
+
+      <!-- キャンペーン情報 -->
+      <div class="card mt-3" style="background: linear-gradient(135deg, #FFFAF0, #FFF5E6); border: 2px solid #ED8936;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div style="font-size: 40px;">🎉</div>
+          <div>
+            <h4 style="font-size: 16px; font-weight: 700; color: #DD6B20; margin-bottom: 4px;">今なら初回3ヶ月無料！</h4>
+            <p style="font-size: 13px; color: #4A5568; margin: 0;">ライトプラン（月額480円）が3ヶ月間無料でお試しいただけます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ラジオボタンの選択状態を反映
+    document.querySelectorAll('.form-radio-label input').forEach(radio => {
+      radio.addEventListener('change', function() {
+        document.querySelectorAll('.form-radio-label').forEach(label => {
+          label.classList.remove('selected');
+        });
+        if (this.checked) {
+          this.closest('.form-radio-label').classList.add('selected');
+        }
+      });
+    });
+    // 初期状態
+    document.querySelector('.form-radio-label input:checked')?.closest('.form-radio-label').classList.add('selected');
+  </script>
+</body>
+</html>

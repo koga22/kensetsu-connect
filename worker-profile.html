@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>山田 太郎さんのプロフィール - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .profile-header {
+      background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+      padding: 40px 20px;
+    }
+    .profile-header-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+    .profile-avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      border: 4px solid #FFF;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      flex-shrink: 0;
+    }
+    .profile-info {
+      color: #FFF;
+      flex: 1;
+    }
+    .profile-name {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .profile-job {
+      font-size: 16px;
+      color: #90CDF4;
+      margin-bottom: 12px;
+    }
+    .profile-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .profile-badge {
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .profile-badge.verified {
+      background: #48BB78;
+      color: #FFF;
+    }
+    .profile-badge.rank {
+      background: linear-gradient(135deg, #ECC94B, #D69E2E);
+      color: #744210;
+    }
+    .profile-stats {
+      display: flex;
+      gap: 24px;
+    }
+    .profile-stat {
+      text-align: center;
+    }
+    .profile-stat-value {
+      font-size: 24px;
+      font-weight: 800;
+    }
+    .profile-stat-label {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    .profile-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .calendar-preview {
+      background: #F7FAFC;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      text-align: center;
+    }
+    .calendar-day-header {
+      font-size: 11px;
+      color: #A0AEC0;
+      padding: 4px;
+    }
+    .calendar-day {
+      padding: 8px 4px;
+      font-size: 12px;
+      border-radius: 6px;
+    }
+    .calendar-day.available {
+      background: #C6F6D5;
+      color: #22543D;
+    }
+    .calendar-day.busy {
+      background: #FED7D7;
+      color: #9B2C2C;
+    }
+    .calendar-day.partial {
+      background: #FEFCBF;
+      color: #744210;
+    }
+    .work-history-item {
+      display: flex;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .work-history-item:last-child {
+      border-bottom: none;
+    }
+    .work-history-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #EDF2F7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .work-history-content {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="worker-search.html" class="nav-btn">👷 職人を探す</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="mypage.html" class="nav-btn">👤 マイページ</a>
+        <button class="btn-login" style="border: 2px solid #FC8181; color: #FC8181;">ログアウト</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- プロフィールヘッダー -->
+  <div class="profile-header">
+    <div class="profile-header-inner">
+      <div class="profile-avatar">👷</div>
+      <div class="profile-info">
+        <div class="profile-name">山田 太郎</div>
+        <div class="profile-job">電気工事士</div>
+        <div class="profile-badges">
+          <span class="profile-badge verified">✓ 本人確認済</span>
+          <span class="profile-badge rank">⭐ 金ランク</span>
+          <span class="profile-badge" style="background: #4299E1; color: #FFF;">第一種電気工事士</span>
+        </div>
+        <div class="profile-stats">
+          <div class="profile-stat">
+            <div class="profile-stat-value">⭐ 4.9</div>
+            <div class="profile-stat-label">評価</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value">15年</div>
+            <div class="profile-stat-label">経験</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value">48件</div>
+            <div class="profile-stat-label">実績</div>
+          </div>
+          <div class="profile-stat">
+            <div class="profile-stat-value">98%</div>
+            <div class="profile-stat-label">返信率</div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <a href="scout.html" class="btn btn-primary btn-lg">📩 スカウトを送る</a>
+        <button class="btn btn-outline btn-lg" style="background: rgba(255,255,255,0.1); border-color: #FFF; color: #FFF;">
+          ⭐ お気に入り
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main style="max-width: 1000px; margin: 0 auto; padding: 30px 20px;">
+    <!-- パンくずリスト -->
+    <nav style="font-size: 13px; color: #718096; margin-bottom: 24px;">
+      <a href="worker-search.html" style="color: #4299E1;">職人を探す</a> &gt;
+      <span>山田 太郎さん</span>
+    </nav>
+
+    <div style="display: grid; grid-template-columns: 1fr 320px; gap: 24px;">
+      <!-- 左カラム -->
+      <div>
+        <!-- 自己紹介 -->
+        <div class="card mb-3">
+          <h3 style="font-size: 18px; font-weight: 700; color: #1a365d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+            📝 自己紹介
+          </h3>
+          <p style="font-size: 15px; color: #4A5568; line-height: 1.8;">
+            電気工事士として15年の経験があります。住宅の配線工事からビル・工場の電気設備まで幅広く対応可能です。
+            <br><br>
+            特に得意としているのは、既設建物のリニューアル工事です。現場の状況を見て最適な提案ができますので、お気軽にご相談ください。
+            <br><br>
+            資格を活かした確実な施工を心がけています。安全第一で、丁寧な仕事をお約束します。
+          </p>
+        </div>
+
+        <!-- 保有資格・スキル -->
+        <div class="card mb-3">
+          <h3 style="font-size: 18px; font-weight: 700; color: #1a365d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+            🎓 保有資格・スキル
+          </h3>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="skill-tag">第一種電気工事士</span>
+            <span class="skill-tag">2級電気工事施工管理技士</span>
+            <span class="skill-tag">低圧電気取扱者</span>
+            <span class="skill-tag">高所作業車運転者</span>
+            <span class="skill-tag">普通自動車免許</span>
+          </div>
+        </div>
+
+        <!-- 対応可能な作業 -->
+        <div class="card mb-3">
+          <h3 style="font-size: 18px; font-weight: 700; color: #1a365d; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+            🔧 対応可能な作業
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: #38A169;">✓</span>
+              <span style="font-size: 14px; color: #4A5568;">一般住宅の電気配線</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: #38A169;">✓</span>
+              <span style="font-size: 14px; color: #4A5568;">店舗・オフィスの電気工事</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: #38A169;">✓</span>
+              <span style="font-size: 14px; color: #4A5568;">エアコン電源工事</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: #38A169;">✓</span>
+              <span style="font-size: 14px; color: #4A5568;">照明器具の取付</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: #38A169;">✓</span>
+              <span style="font-size: 14px; color: #4A5568;">分電盤の交換・増設</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: #38A169;">✓</span>
+              <span style="font-size: 14px; color: #4A5568;">LAN配線工事</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: #38A169;">✓</span>
+              <span style="font-size: 14px; color: #4A5568;">太陽光発電設備</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="color: #38A169;">✓</span>
+              <span style="font-size: 14px; color: #4A5568;">EV充電設備</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 実績・過去の仕事 -->
+        <div class="card mb-3">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 18px; font-weight: 700; color: #1a365d; margin: 0; display: flex; align-items: center; gap: 8px;">
+              📋 実績・過去の仕事
+            </h3>
+            <span style="font-size: 13px; color: #718096;">全48件</span>
+          </div>
+
+          <div class="work-history-item">
+            <div class="work-history-icon">🏢</div>
+            <div class="work-history-content">
+              <p style="font-size: 14px; font-weight: 600; color: #1a365d; margin: 0 0 4px 0;">オフィスビル電気設備リニューアル工事</p>
+              <p style="font-size: 13px; color: #718096; margin: 0 0 8px 0;">株式会社○○不動産 | 2025年11月</p>
+              <p style="font-size: 13px; color: #4A5568; margin: 0;">分電盤交換、照明LED化、コンセント増設など。約2週間の工期でスムーズに完了しました。</p>
+            </div>
+          </div>
+
+          <div class="work-history-item">
+            <div class="work-history-icon">🏠</div>
+            <div class="work-history-content">
+              <p style="font-size: 14px; font-weight: 600; color: #1a365d; margin: 0 0 4px 0;">戸建て住宅 全館配線工事</p>
+              <p style="font-size: 13px; color: #718096; margin: 0 0 8px 0;">個人様 | 2025年10月</p>
+              <p style="font-size: 13px; color: #4A5568; margin: 0;">新築住宅の電気配線一式。太陽光発電システムとの連携も対応。</p>
+            </div>
+          </div>
+
+          <div class="work-history-item">
+            <div class="work-history-icon">🏪</div>
+            <div class="work-history-content">
+              <p style="font-size: 14px; font-weight: 600; color: #1a365d; margin: 0 0 4px 0;">飲食店 電気工事</p>
+              <p style="font-size: 13px; color: #718096; margin: 0 0 8px 0;">○○食堂 | 2025年9月</p>
+              <p style="font-size: 13px; color: #4A5568; margin: 0;">厨房機器用の電源増設、客席照明の取付工事。</p>
+            </div>
+          </div>
+
+          <div style="text-align: center; padding-top: 12px;">
+            <button class="btn btn-outline btn-sm">すべての実績を見る</button>
+          </div>
+        </div>
+
+        <!-- 口コミ・評価 -->
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 18px; font-weight: 700; color: #1a365d; margin: 0; display: flex; align-items: center; gap: 8px;">
+              ⭐ 口コミ・評価
+            </h3>
+            <span style="font-size: 13px; color: #718096;">全32件</span>
+          </div>
+
+          <!-- 評価サマリー -->
+          <div style="background: #F7FAFC; padding: 20px; border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 24px;">
+            <div style="text-align: center;">
+              <div style="font-size: 48px; font-weight: 800; color: #1a365d;">4.9</div>
+              <div style="color: #ECC94B; font-size: 18px;">★★★★★</div>
+              <div style="font-size: 13px; color: #718096;">32件の評価</div>
+            </div>
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span style="font-size: 12px; color: #718096; width: 60px;">技術力</span>
+                <div style="flex: 1; height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 98%; height: 100%; background: #ECC94B;"></div>
+                </div>
+                <span style="font-size: 12px; color: #718096;">4.9</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span style="font-size: 12px; color: #718096; width: 60px;">対応</span>
+                <div style="flex: 1; height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 100%; height: 100%; background: #ECC94B;"></div>
+                </div>
+                <span style="font-size: 12px; color: #718096;">5.0</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span style="font-size: 12px; color: #718096; width: 60px;">納期</span>
+                <div style="flex: 1; height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 96%; height: 100%; background: #ECC94B;"></div>
+                </div>
+                <span style="font-size: 12px; color: #718096;">4.8</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 口コミ一覧 -->
+          <div style="border-top: 1px solid #E2E8F0; padding-top: 16px;">
+            <div style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #E2E8F0;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div style="width: 36px; height: 36px; background: #EDF2F7; border-radius: 50%; display: flex; align-items: center; justify-content: center;">🏢</div>
+                  <div>
+                    <p style="font-size: 13px; font-weight: 600; color: #1a365d; margin: 0;">株式会社○○建設</p>
+                    <p style="font-size: 11px; color: #A0AEC0; margin: 0;">2025/11/20</p>
+                  </div>
+                </div>
+                <span style="color: #ECC94B;">★★★★★</span>
+              </div>
+              <p style="font-size: 14px; color: #4A5568; line-height: 1.7; margin: 0;">
+                非常に丁寧な仕事ぶりで、こちらの要望にも柔軟に対応していただきました。納期も守っていただき、大変満足しています。また機会があればぜひお願いしたいです。
+              </p>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div style="width: 36px; height: 36px; background: #EDF2F7; border-radius: 50%; display: flex; align-items: center; justify-content: center;">🏠</div>
+                  <div>
+                    <p style="font-size: 13px; font-weight: 600; color: #1a365d; margin: 0;">匿名</p>
+                    <p style="font-size: 11px; color: #A0AEC0; margin: 0;">2025/11/15</p>
+                  </div>
+                </div>
+                <span style="color: #ECC94B;">★★★★★</span>
+              </div>
+              <p style="font-size: 14px; color: #4A5568; line-height: 1.7; margin: 0;">
+                経験豊富で安心してお任せできました。説明も分かりやすく、追加の相談にも快く対応いただきました。
+              </p>
+            </div>
+          </div>
+
+          <div style="text-align: center; padding-top: 16px;">
+            <button class="btn btn-outline btn-sm">すべての口コミを見る</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右カラム（サイドバー） -->
+      <div>
+        <!-- 基本情報 -->
+        <div class="card mb-3">
+          <h4 style="font-size: 16px; font-weight: 700; color: #1a365d; margin-bottom: 16px;">📋 基本情報</h4>
+          <div style="font-size: 14px; color: #4A5568;">
+            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E2E8F0;">
+              <span style="color: #718096;">職種</span>
+              <strong>電気工事士</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E2E8F0;">
+              <span style="color: #718096;">経験年数</span>
+              <strong>15年</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E2E8F0;">
+              <span style="color: #718096;">活動エリア</span>
+              <strong>東京都・神奈川県</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E2E8F0;">
+              <span style="color: #718096;">希望単価</span>
+              <strong>日給15,000円〜</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 10px 0;">
+              <span style="color: #718096;">最終ログイン</span>
+              <strong>本日</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- 空きスケジュール -->
+        <div class="card mb-3">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h4 style="font-size: 16px; font-weight: 700; color: #1a365d; margin: 0;">📅 空きスケジュール</h4>
+            <span style="font-size: 12px; color: #718096;">12月</span>
+          </div>
+          <div class="calendar-preview">
+            <div class="calendar-days">
+              <div class="calendar-day-header">日</div>
+              <div class="calendar-day-header">月</div>
+              <div class="calendar-day-header">火</div>
+              <div class="calendar-day-header">水</div>
+              <div class="calendar-day-header">木</div>
+              <div class="calendar-day-header">金</div>
+              <div class="calendar-day-header">土</div>
+
+              <div class="calendar-day">15</div>
+              <div class="calendar-day available">16</div>
+              <div class="calendar-day available">17</div>
+              <div class="calendar-day busy">18</div>
+              <div class="calendar-day busy">19</div>
+              <div class="calendar-day available">20</div>
+              <div class="calendar-day available">21</div>
+
+              <div class="calendar-day">22</div>
+              <div class="calendar-day available">23</div>
+              <div class="calendar-day partial">24</div>
+              <div class="calendar-day available">25</div>
+              <div class="calendar-day available">26</div>
+              <div class="calendar-day available">27</div>
+              <div class="calendar-day available">28</div>
+            </div>
+            <div style="display: flex; gap: 16px; justify-content: center; margin-top: 12px; font-size: 11px;">
+              <span><span style="display: inline-block; width: 10px; height: 10px; background: #C6F6D5; border-radius: 2px; margin-right: 4px;"></span>空き</span>
+              <span><span style="display: inline-block; width: 10px; height: 10px; background: #FEFCBF; border-radius: 2px; margin-right: 4px;"></span>一部空き</span>
+              <span><span style="display: inline-block; width: 10px; height: 10px; background: #FED7D7; border-radius: 2px; margin-right: 4px;"></span>予定あり</span>
+            </div>
+          </div>
+          <p style="font-size: 12px; color: #38A169; font-weight: 600; text-align: center; margin: 12px 0 0 0;">
+            ✓ 今すぐ対応可能
+          </p>
+        </div>
+
+        <!-- アクション -->
+        <div class="card mb-3">
+          <a href="scout.html" class="btn btn-primary btn-block btn-lg mb-2">📩 スカウトを送る</a>
+          <button class="btn btn-outline btn-block">⭐ お気に入りに追加</button>
+        </div>
+
+        <!-- 注意事項 -->
+        <div class="card" style="background: #FFFAF0; border: 1px solid #F6AD55;">
+          <h4 style="font-size: 14px; font-weight: 600; color: #DD6B20; margin-bottom: 8px;">💡 スカウトのコツ</h4>
+          <ul style="font-size: 12px; color: #4A5568; line-height: 1.8; margin: 0; padding-left: 16px;">
+            <li>具体的な案件内容を記載すると返信率UP</li>
+            <li>希望日程や現場住所を明記しましょう</li>
+            <li>報酬条件は明確に提示すると好印象</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="worker-search.html">職人を探す</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

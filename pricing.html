@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>料金プラン - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="pricing.html" class="nav-btn active">💰 料金プラン</a>
+        <a href="login.html" class="btn-login">ログイン</a>
+        <a href="register.html" class="btn-register">会員登録（無料）</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ヒーロー -->
+  <section style="background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%); padding: 50px 20px; text-align: center;">
+    <h2 style="font-size: 32px; font-weight: 800; color: #FFF; margin-bottom: 16px;">料金プラン</h2>
+    <p style="font-size: 16px; color: #E2E8F0; max-width: 600px; margin: 0 auto;">
+      あなたのビジネスに合ったプランをお選びください。<br>すべてのプランで基本機能をご利用いただけます。
+    </p>
+  </section>
+
+  <!-- 料金プラン -->
+  <section class="section section-gray">
+    <div class="container">
+      <!-- キャンペーンバナー -->
+      <div style="background: linear-gradient(135deg, #ED8936, #DD6B20); border-radius: 16px; padding: 24px; margin-bottom: 40px; text-align: center; color: #FFF;">
+        <p style="font-size: 14px; margin: 0 0 8px 0; opacity: 0.9;">🎉 期間限定キャンペーン</p>
+        <p style="font-size: 24px; font-weight: 800; margin: 0;">ライトプラン <span style="text-decoration: line-through; opacity: 0.7;">月額480円</span> → 初回3ヶ月無料！</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; align-items: start;">
+        <!-- ライトプラン -->
+        <div class="pricing-card">
+          <div style="font-size: 40px; margin-bottom: 12px;">🌱</div>
+          <h3 class="pricing-name">ライト</h3>
+          <div class="pricing-price">480<span>円</span></div>
+          <p class="pricing-period">/ 月額（税込）</p>
+
+          <div class="pricing-features">
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span>メッセージ: <strong>月3人まで</strong></span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span>表示名: ニックネーム可</span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span>到達ランク: <strong style="color: #CD7F32;">銅</strong>まで</span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">❌</span>
+              <span style="color: #A0AEC0;">AIマッチング</span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">❌</span>
+              <span style="color: #A0AEC0;">スカウト送信</span>
+            </div>
+          </div>
+
+          <div style="background: #E6FFFA; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="font-size: 13px; font-weight: 600; color: #234E52; margin: 0;">🎁 初回3ヶ月無料！</p>
+          </div>
+
+          <a href="register.html" class="btn btn-outline btn-block">このプランで始める</a>
+        </div>
+
+        <!-- ベーシックプラン -->
+        <div class="pricing-card featured">
+          <div class="pricing-badge">おすすめ</div>
+          <div style="font-size: 40px; margin-bottom: 12px;">⭐</div>
+          <h3 class="pricing-name">ベーシック</h3>
+          <div class="pricing-price">980<span>円</span></div>
+          <p class="pricing-period">/ 月額（税込）</p>
+
+          <div class="pricing-features">
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span>メッセージ: <strong>月10人まで</strong></span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span>表示名: ニックネーム可</span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span>到達ランク: <strong style="color: #C0C0C0;">銀</strong>まで</span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">❌</span>
+              <span style="color: #A0AEC0;">AIマッチング</span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">❌</span>
+              <span style="color: #A0AEC0;">スカウト送信</span>
+            </div>
+          </div>
+
+          <a href="register.html" class="btn btn-primary btn-block">このプランで始める</a>
+        </div>
+
+        <!-- プロプラン -->
+        <div class="pricing-card">
+          <div style="font-size: 40px; margin-bottom: 12px;">👑</div>
+          <h3 class="pricing-name">プロ</h3>
+          <div class="pricing-price">1,980<span>円</span></div>
+          <p class="pricing-period">/ 月額（税込）</p>
+
+          <div class="pricing-features">
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span>メッセージ: <strong>月30人まで</strong></span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span>表示名: <strong>本名・会社名必須</strong></span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span>到達ランク: <strong style="color: #FFD700;">金</strong>まで</span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span><strong>AIマッチング</strong></span>
+            </div>
+            <div class="pricing-feature">
+              <span class="pricing-feature-icon">✅</span>
+              <span><strong>スカウト送信</strong></span>
+            </div>
+          </div>
+
+          <div style="background: #FFF5F5; padding: 12px; border-radius: 8px; margin-bottom: 16px;">
+            <p style="font-size: 13px; font-weight: 600; color: #C53030; margin: 0;">🏆 上位表示・本人確認バッジ</p>
+          </div>
+
+          <a href="register.html" class="btn btn-secondary btn-block">このプランで始める</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- チケット購入 -->
+  <section class="section section-white">
+    <div class="container">
+      <h3 class="section-title">🎫 チケット購入</h3>
+      <p style="text-align: center; font-size: 15px; color: #718096; margin-bottom: 32px;">
+        プランの上限を超えてメッセージを送りたい場合は、チケットを追加購入できます。
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; max-width: 600px; margin: 0 auto;">
+        <div class="ticket-card">
+          <div class="ticket-count">1枚</div>
+          <div class="ticket-label">チケット</div>
+          <div class="ticket-price">100円</div>
+        </div>
+        <div class="ticket-card">
+          <div class="ticket-count">5枚</div>
+          <div class="ticket-label">チケット</div>
+          <div class="ticket-price">450円</div>
+          <div class="ticket-discount">10%OFF</div>
+        </div>
+        <div class="ticket-card selected">
+          <div class="ticket-count">10枚</div>
+          <div class="ticket-label">チケット</div>
+          <div class="ticket-price">900円</div>
+          <div class="ticket-discount">10%OFF</div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 32px;">
+        <button class="btn btn-primary btn-lg">チケットを購入する</button>
+      </div>
+
+      <div style="background: #EBF8FF; padding: 16px; border-radius: 12px; margin-top: 24px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <p style="font-size: 14px; color: #2B6CB0; margin: 0; text-align: center;">
+          💡 友達紹介で<strong>100ポイント</strong>プレゼント！
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ランク制度 -->
+  <section class="section section-gray">
+    <div class="container">
+      <h3 class="section-title">🏆 ランク制度</h3>
+      <p style="text-align: center; font-size: 15px; color: #718096; margin-bottom: 32px;">
+        実績に応じてランクアップ！投稿が目立つようになります。
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto;">
+        <div class="card text-center">
+          <div class="rank-badge rank-bronze" style="width: 80px; height: 80px; font-size: 24px; margin: 0 auto 16px;">銅</div>
+          <h4 style="font-size: 20px; font-weight: 700; color: #1a365d; margin-bottom: 8px;">銅ランク</h4>
+          <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">ライトプラン加入</p>
+          <div style="background: #F7FAFC; padding: 12px; border-radius: 8px;">
+            <p style="font-size: 13px; color: #4A5568; margin: 0;">基本表示</p>
+          </div>
+        </div>
+
+        <div class="card text-center">
+          <div class="rank-badge rank-silver" style="width: 80px; height: 80px; font-size: 24px; margin: 0 auto 16px;">銀</div>
+          <h4 style="font-size: 20px; font-weight: 700; color: #1a365d; margin-bottom: 8px;">銀ランク</h4>
+          <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">ベーシック以上 + 実績</p>
+          <div style="background: #F7FAFC; padding: 12px; border-radius: 8px;">
+            <p style="font-size: 13px; color: #4A5568; margin: 0;">表示枠デザイン変更</p>
+          </div>
+        </div>
+
+        <div class="card text-center">
+          <div class="rank-badge rank-gold" style="width: 80px; height: 80px; font-size: 24px; margin: 0 auto 16px;">金</div>
+          <h4 style="font-size: 20px; font-weight: 700; color: #1a365d; margin-bottom: 8px;">金ランク</h4>
+          <p style="font-size: 14px; color: #718096; margin-bottom: 16px;">プロプラン + 実績</p>
+          <div style="background: #FFFAF0; padding: 12px; border-radius: 8px; border: 1px solid #F6AD55;">
+            <p style="font-size: 13px; color: #DD6B20; font-weight: 600; margin: 0;">上位表示・目立つ枠</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-white">
+    <div class="container" style="max-width: 800px;">
+      <h3 class="section-title">❓ よくある質問</h3>
+
+      <div class="card mb-2">
+        <details>
+          <summary style="cursor: pointer; font-size: 16px; font-weight: 600; color: #1a365d; padding: 8px 0;">
+            Q. 途中でプランを変更できますか？
+          </summary>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.8; margin-top: 12px;">
+            はい、いつでもプランの変更が可能です。アップグレードの場合は即時反映され、ダウングレードの場合は次回更新日から適用されます。
+          </p>
+        </details>
+      </div>
+
+      <div class="card mb-2">
+        <details>
+          <summary style="cursor: pointer; font-size: 16px; font-weight: 600; color: #1a365d; padding: 8px 0;">
+            Q. 解約はいつでもできますか？
+          </summary>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.8; margin-top: 12px;">
+            はい、いつでも解約可能です。解約後も契約期間終了までサービスをご利用いただけます。
+          </p>
+        </details>
+      </div>
+
+      <div class="card mb-2">
+        <details>
+          <summary style="cursor: pointer; font-size: 16px; font-weight: 600; color: #1a365d; padding: 8px 0;">
+            Q. チケットの有効期限はありますか？
+          </summary>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.8; margin-top: 12px;">
+            購入したチケットの有効期限はありません。ただし、月額プランに含まれるメッセージ数は翌月に繰り越されません。
+          </p>
+        </details>
+      </div>
+
+      <div class="card mb-2">
+        <details>
+          <summary style="cursor: pointer; font-size: 16px; font-weight: 600; color: #1a365d; padding: 8px 0;">
+            Q. 支払い方法は何がありますか？
+          </summary>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.8; margin-top: 12px;">
+            クレジットカード（VISA、MasterCard、JCB、American Express）でのお支払いに対応しています。
+          </p>
+        </details>
+      </div>
+
+      <div class="card">
+        <details>
+          <summary style="cursor: pointer; font-size: 16px; font-weight: 600; color: #1a365d; padding: 8px 0;">
+            Q. ユーザー間の金銭取引はサポートしていますか？
+          </summary>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.8; margin-top: 12px;">
+            当サービスはユーザー間の金銭取引には関与しておりません。報酬のお支払いについては、当事者間で直接お取り決めください。
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%); padding: 60px 20px; text-align: center;">
+    <h3 style="font-size: 28px; font-weight: 800; color: #FFF; margin-bottom: 16px;">今すぐ無料で始めよう</h3>
+    <p style="font-size: 16px; color: rgba(255,255,255,0.9); margin-bottom: 32px;">登録は1分で完了。まずは無料でお試しください。</p>
+    <a href="register.html" class="btn btn-lg" style="background: #FFF; color: #DD6B20; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">無料会員登録 →</a>
+  </section>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // チケットカード選択
+    document.querySelectorAll('.ticket-card').forEach(card => {
+      card.addEventListener('click', function() {
+        document.querySelectorAll('.ticket-card').forEach(c => c.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>職人を探す - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .worker-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 20px;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+    .worker-card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+    .worker-card.premium {
+      border-color: #ECC94B;
+      background: linear-gradient(to bottom, #FFFDF7, #FFF);
+    }
+    .worker-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin: 0 auto 12px;
+    }
+    .worker-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a365d;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .worker-job {
+      font-size: 14px;
+      color: #4299E1;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .worker-stats {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .worker-stat {
+      text-align: center;
+    }
+    .worker-stat-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a365d;
+    }
+    .worker-stat-label {
+      font-size: 11px;
+      color: #A0AEC0;
+    }
+    .worker-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .worker-tag {
+      background: #EDF2F7;
+      color: #4A5568;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .worker-area {
+      text-align: center;
+      font-size: 13px;
+      color: #718096;
+      margin-bottom: 12px;
+    }
+    .worker-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+    .status-available {
+      color: #38A169;
+    }
+    .status-busy {
+      color: #E53E3E;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .status-dot.available {
+      background: #38A169;
+    }
+    .status-dot.busy {
+      background: #E53E3E;
+    }
+    .ai-recommend {
+      background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .match-score {
+      background: #E6FFFA;
+      color: #234E52;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .filter-section {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    .filter-item {
+      flex: 1;
+      min-width: 150px;
+    }
+    .filter-item label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #4A5568;
+      margin-bottom: 6px;
+    }
+    .workers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .premium-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: linear-gradient(135deg, #ECC94B, #D69E2E);
+      color: #744210;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .blur-info {
+      filter: blur(4px);
+      user-select: none;
+    }
+    .unlock-overlay {
+      background: rgba(255,255,255,0.9);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="worker-search.html" class="nav-btn active">👷 職人を探す</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="mypage.html" class="nav-btn">👤 マイページ</a>
+        <button class="btn-login" style="border: 2px solid #FC8181; color: #FC8181;">ログアウト</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ヒーロー -->
+  <section style="background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%); padding: 40px 20px; text-align: center;">
+    <h2 style="font-size: 28px; font-weight: 800; color: #FFF; margin-bottom: 12px;">👷 職人を探す</h2>
+    <p style="font-size: 15px; color: #E2E8F0; max-width: 600px; margin: 0 auto;">
+      スキル・エリア・空き状況から最適な職人を見つけましょう
+    </p>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main style="max-width: 1200px; margin: 0 auto; padding: 30px 20px;">
+    <!-- 検索フィルター -->
+    <div class="filter-section">
+      <div class="filter-row">
+        <div class="filter-item">
+          <label>職種</label>
+          <select class="form-select">
+            <option value="">すべての職種</option>
+            <option value="electric">電気工事</option>
+            <option value="plumbing">配管工事</option>
+            <option value="carpenter">大工</option>
+            <option value="scaffold">足場</option>
+            <option value="paint">塗装</option>
+            <option value="interior">内装</option>
+            <option value="hvac">空調設備</option>
+            <option value="welding">溶接</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label>エリア</label>
+          <select class="form-select">
+            <option value="">すべてのエリア</option>
+            <option value="tokyo">東京都</option>
+            <option value="kanagawa">神奈川県</option>
+            <option value="saitama">埼玉県</option>
+            <option value="chiba">千葉県</option>
+            <option value="osaka">大阪府</option>
+            <option value="aichi">愛知県</option>
+            <option value="fukuoka">福岡県</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label>経験年数</label>
+          <select class="form-select">
+            <option value="">指定なし</option>
+            <option value="1">1年以上</option>
+            <option value="3">3年以上</option>
+            <option value="5">5年以上</option>
+            <option value="10">10年以上</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <label>空き状況</label>
+          <select class="form-select">
+            <option value="">すべて</option>
+            <option value="available">今すぐ対応可能</option>
+            <option value="week">1週間以内に対応可能</option>
+          </select>
+        </div>
+        <div class="filter-item" style="flex: 0 0 auto;">
+          <button class="btn btn-primary">🔍 検索</button>
+        </div>
+      </div>
+      <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+        <span style="font-size: 13px; color: #718096;">人気のタグ:</span>
+        <button class="worker-tag" style="cursor: pointer; border: none;">第一種電気工事士</button>
+        <button class="worker-tag" style="cursor: pointer; border: none;">即日対応可</button>
+        <button class="worker-tag" style="cursor: pointer; border: none;">土日対応可</button>
+        <button class="worker-tag" style="cursor: pointer; border: none;">経験10年以上</button>
+      </div>
+    </div>
+
+    <!-- AIレコメンド -->
+    <div style="background: linear-gradient(135deg, #EBF4FF 0%, #E9D8FD 100%); border-radius: 16px; padding: 20px; margin-bottom: 24px;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <span class="ai-recommend">✨ AI おすすめ</span>
+        <span style="font-size: 14px; color: #553C9A; font-weight: 600;">あなたの案件にマッチする職人</span>
+      </div>
+      <div style="display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px;">
+        <!-- AIおすすめ職人1 -->
+        <div style="flex: 0 0 200px; background: #fff; border-radius: 12px; padding: 16px; text-align: center;">
+          <div style="width: 60px; height: 60px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 8px;">👷</div>
+          <p style="font-size: 14px; font-weight: 700; color: #1a365d; margin: 0 0 4px 0;">田中 一郎</p>
+          <p style="font-size: 12px; color: #4299E1; margin: 0 0 8px 0;">電気工事士</p>
+          <span class="match-score">マッチ度 95%</span>
+        </div>
+        <!-- AIおすすめ職人2 -->
+        <div style="flex: 0 0 200px; background: #fff; border-radius: 12px; padding: 16px; text-align: center;">
+          <div style="width: 60px; height: 60px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 8px;">👷</div>
+          <p style="font-size: 14px; font-weight: 700; color: #1a365d; margin: 0 0 4px 0;">佐藤 健太</p>
+          <p style="font-size: 12px; color: #4299E1; margin: 0 0 8px 0;">電気工事士</p>
+          <span class="match-score">マッチ度 88%</span>
+        </div>
+        <!-- AIおすすめ職人3 -->
+        <div style="flex: 0 0 200px; background: #fff; border-radius: 12px; padding: 16px; text-align: center;">
+          <div style="width: 60px; height: 60px; border-radius: 50%; background: #E2E8F0; display: flex; align-items: center; justify-content: center; font-size: 28px; margin: 0 auto 8px;">👷</div>
+          <p style="font-size: 14px; font-weight: 700; color: #1a365d; margin: 0 0 4px 0;">山本 修</p>
+          <p style="font-size: 12px; color: #4299E1; margin: 0 0 8px 0;">電気工事士</p>
+          <span class="match-score">マッチ度 82%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 検索結果 -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <p style="font-size: 14px; color: #4A5568; margin: 0;"><strong>156名</strong>の職人が見つかりました</p>
+      <select class="form-select" style="width: auto;">
+        <option>評価が高い順</option>
+        <option>経験年数が長い順</option>
+        <option>最終ログインが新しい順</option>
+      </select>
+    </div>
+
+    <!-- 職人一覧 -->
+    <div class="workers-grid">
+      <!-- 職人カード1（プレミアム・上位表示） -->
+      <div class="worker-card premium" style="position: relative;">
+        <span class="premium-badge">⭐ 上位表示</span>
+        <div class="worker-avatar">👷</div>
+        <div class="worker-name">山田 太郎</div>
+        <div class="worker-job">電気工事士</div>
+        <div class="worker-stats">
+          <div class="worker-stat">
+            <div class="worker-stat-value">⭐ 4.9</div>
+            <div class="worker-stat-label">評価</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">15年</div>
+            <div class="worker-stat-label">経験</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">48件</div>
+            <div class="worker-stat-label">実績</div>
+          </div>
+        </div>
+        <div class="worker-tags">
+          <span class="worker-tag">第一種電気工事士</span>
+          <span class="worker-tag">施工管理技士</span>
+        </div>
+        <div class="worker-area">📍 東京都・神奈川県</div>
+        <div class="worker-status status-available">
+          <span class="status-dot available"></span>
+          今すぐ対応可能
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="worker-profile.html" class="btn btn-outline btn-sm" style="flex: 1;">詳細を見る</a>
+          <a href="scout.html" class="btn btn-primary btn-sm" style="flex: 1;">スカウト</a>
+        </div>
+      </div>
+
+      <!-- 職人カード2 -->
+      <div class="worker-card">
+        <div class="worker-avatar">👷</div>
+        <div class="worker-name">鈴木 健一</div>
+        <div class="worker-job">配管工事</div>
+        <div class="worker-stats">
+          <div class="worker-stat">
+            <div class="worker-stat-value">⭐ 4.8</div>
+            <div class="worker-stat-label">評価</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">12年</div>
+            <div class="worker-stat-label">経験</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">35件</div>
+            <div class="worker-stat-label">実績</div>
+          </div>
+        </div>
+        <div class="worker-tags">
+          <span class="worker-tag">給排水設備</span>
+          <span class="worker-tag">ガス配管</span>
+        </div>
+        <div class="worker-area">📍 埼玉県・東京都</div>
+        <div class="worker-status status-available">
+          <span class="status-dot available"></span>
+          今すぐ対応可能
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="worker-profile.html" class="btn btn-outline btn-sm" style="flex: 1;">詳細を見る</a>
+          <a href="scout.html" class="btn btn-primary btn-sm" style="flex: 1;">スカウト</a>
+        </div>
+      </div>
+
+      <!-- 職人カード3 -->
+      <div class="worker-card">
+        <div class="worker-avatar">👷</div>
+        <div class="worker-name">佐藤 誠</div>
+        <div class="worker-job">大工</div>
+        <div class="worker-stats">
+          <div class="worker-stat">
+            <div class="worker-stat-value">⭐ 4.7</div>
+            <div class="worker-stat-label">評価</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">20年</div>
+            <div class="worker-stat-label">経験</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">62件</div>
+            <div class="worker-stat-label">実績</div>
+          </div>
+        </div>
+        <div class="worker-tags">
+          <span class="worker-tag">木造建築</span>
+          <span class="worker-tag">リフォーム</span>
+        </div>
+        <div class="worker-area">📍 千葉県</div>
+        <div class="worker-status status-busy">
+          <span class="status-dot busy"></span>
+          12/20以降対応可能
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="worker-profile.html" class="btn btn-outline btn-sm" style="flex: 1;">詳細を見る</a>
+          <a href="scout.html" class="btn btn-primary btn-sm" style="flex: 1;">スカウト</a>
+        </div>
+      </div>
+
+      <!-- 職人カード4（詳細閲覧制限） -->
+      <div class="worker-card">
+        <div class="worker-avatar">👷</div>
+        <div class="worker-name">高橋 <span class="blur-info">●●</span></div>
+        <div class="worker-job">足場職人</div>
+        <div class="worker-stats">
+          <div class="worker-stat">
+            <div class="worker-stat-value">⭐ 4.6</div>
+            <div class="worker-stat-label">評価</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">8年</div>
+            <div class="worker-stat-label">経験</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">28件</div>
+            <div class="worker-stat-label">実績</div>
+          </div>
+        </div>
+        <div class="worker-tags">
+          <span class="worker-tag">足場組立</span>
+          <span class="worker-tag">解体作業</span>
+        </div>
+        <div class="worker-area blur-info">📍 ●●県</div>
+        <div class="worker-status status-available">
+          <span class="status-dot available"></span>
+          今すぐ対応可能
+        </div>
+        <div class="unlock-overlay">
+          <p style="font-size: 12px; color: #718096; margin: 0 0 8px 0;">🔒 詳細情報はプレミアム会員限定</p>
+          <a href="pricing.html" class="btn btn-primary btn-sm">アップグレード</a>
+        </div>
+      </div>
+
+      <!-- 職人カード5 -->
+      <div class="worker-card">
+        <div class="worker-avatar">👷</div>
+        <div class="worker-name">伊藤 大輔</div>
+        <div class="worker-job">塗装工</div>
+        <div class="worker-stats">
+          <div class="worker-stat">
+            <div class="worker-stat-value">⭐ 4.9</div>
+            <div class="worker-stat-label">評価</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">18年</div>
+            <div class="worker-stat-label">経験</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">55件</div>
+            <div class="worker-stat-label">実績</div>
+          </div>
+        </div>
+        <div class="worker-tags">
+          <span class="worker-tag">外壁塗装</span>
+          <span class="worker-tag">防水工事</span>
+        </div>
+        <div class="worker-area">📍 神奈川県</div>
+        <div class="worker-status status-available">
+          <span class="status-dot available"></span>
+          今すぐ対応可能
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="worker-profile.html" class="btn btn-outline btn-sm" style="flex: 1;">詳細を見る</a>
+          <a href="scout.html" class="btn btn-primary btn-sm" style="flex: 1;">スカウト</a>
+        </div>
+      </div>
+
+      <!-- 職人カード6 -->
+      <div class="worker-card">
+        <div class="worker-avatar">👷</div>
+        <div class="worker-name">渡辺 正</div>
+        <div class="worker-job">空調設備</div>
+        <div class="worker-stats">
+          <div class="worker-stat">
+            <div class="worker-stat-value">⭐ 4.5</div>
+            <div class="worker-stat-label">評価</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">10年</div>
+            <div class="worker-stat-label">経験</div>
+          </div>
+          <div class="worker-stat">
+            <div class="worker-stat-value">42件</div>
+            <div class="worker-stat-label">実績</div>
+          </div>
+        </div>
+        <div class="worker-tags">
+          <span class="worker-tag">エアコン設置</span>
+          <span class="worker-tag">メンテナンス</span>
+        </div>
+        <div class="worker-area">📍 東京都・埼玉県</div>
+        <div class="worker-status status-available">
+          <span class="status-dot available"></span>
+          今すぐ対応可能
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="worker-profile.html" class="btn btn-outline btn-sm" style="flex: 1;">詳細を見る</a>
+          <a href="scout.html" class="btn btn-primary btn-sm" style="flex: 1;">スカウト</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ページネーション -->
+    <div style="display: flex; justify-content: center; gap: 8px; margin-top: 32px;">
+      <button class="btn btn-gray btn-sm" disabled>← 前へ</button>
+      <button class="btn btn-primary btn-sm">1</button>
+      <button class="btn btn-gray btn-sm">2</button>
+      <button class="btn btn-gray btn-sm">3</button>
+      <button class="btn btn-gray btn-sm">...</button>
+      <button class="btn btn-gray btn-sm">16</button>
+      <button class="btn btn-gray btn-sm">次へ →</button>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="worker-search.html">職人を探す</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

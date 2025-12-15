@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>建設コネクト - 建設業マッチングプラットフォーム</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn active">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="login.html" class="btn-login">ログイン</a>
+        <a href="register.html" class="btn-register">会員登録（無料）</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ヒーローセクション -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>建設業界の<span>マッチング</span>を、<br>もっとスマートに。</h2>
+      <p>職人と企業をつなぐ、信頼のプラットフォーム。<br>全国の建設会社・職人が登録中。</p>
+
+      <!-- 検索ボックス -->
+      <div style="max-width: 600px; margin: 0 auto 40px; background: #FFF; border-radius: 16px; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <select class="form-select" style="flex: 1; min-width: 150px;">
+            <option value="">職種を選択</option>
+            <option value="electric">電気工事</option>
+            <option value="plumbing">配管工事</option>
+            <option value="carpentry">大工</option>
+            <option value="painting">塗装</option>
+            <option value="scaffolding">足場</option>
+            <option value="interior">内装</option>
+            <option value="aircon">空調</option>
+            <option value="cleaning">清掃</option>
+            <option value="civil">土木</option>
+            <option value="other">その他</option>
+          </select>
+          <select class="form-select" style="flex: 1; min-width: 150px;">
+            <option value="">エリアを選択</option>
+            <option value="hokkaido">北海道</option>
+            <option value="tohoku">東北</option>
+            <option value="kanto">関東</option>
+            <option value="chubu">中部</option>
+            <option value="kinki">近畿</option>
+            <option value="chugoku">中国</option>
+            <option value="shikoku">四国</option>
+            <option value="kyushu">九州</option>
+            <option value="okinawa">沖縄</option>
+          </select>
+          <a href="board.html" class="btn btn-primary" style="flex-shrink: 0;">🔍 検索</a>
+        </div>
+      </div>
+
+      <!-- 2つのCTA -->
+      <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; max-width: 700px; margin: 0 auto;">
+        <a href="board.html" style="flex: 1; min-width: 280px; max-width: 320px; background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%); border-radius: 20px; padding: 32px 24px; text-decoration: none; box-shadow: 0 10px 40px rgba(237, 137, 54, 0.4); transition: transform 0.3s ease;">
+          <div style="font-size: 48px; margin-bottom: 12px;">💼</div>
+          <h3 style="font-size: 22px; font-weight: 800; color: #FFF; margin-bottom: 8px;">仕事を探す</h3>
+          <p style="font-size: 14px; color: rgba(255,255,255,0.9); margin-bottom: 16px;">条件に合った案件を見つけて、<br>新しい仕事につなげよう</p>
+          <span style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 13px; color: #FFF; font-weight: 600;">案件一覧を見る →</span>
+        </a>
+
+        <a href="register.html" style="flex: 1; min-width: 280px; max-width: 320px; background: linear-gradient(135deg, #4299E1 0%, #3182CE 100%); border-radius: 20px; padding: 32px 24px; text-decoration: none; box-shadow: 0 10px 40px rgba(66, 153, 225, 0.4); transition: transform 0.3s ease;">
+          <div style="font-size: 48px; margin-bottom: 12px;">👷</div>
+          <h3 style="font-size: 22px; font-weight: 800; color: #FFF; margin-bottom: 8px;">職人として登録</h3>
+          <p style="font-size: 14px; color: rgba(255,255,255,0.9); margin-bottom: 16px;">スキルをアピールして、<br>直接オファーを受けよう</p>
+          <span style="display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 13px; color: #FFF; font-weight: 600;">無料で登録する →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数字で見る建設コネクト -->
+  <section class="section section-white">
+    <div class="container">
+      <h3 class="section-title">📊 数字で見る<span>建設コネクト</span></h3>
+      <div class="grid grid-4">
+        <div class="card text-center">
+          <div style="font-size: 32px; margin-bottom: 8px;">🏢</div>
+          <div style="font-size: 36px; font-weight: 800; color: #1a365d; margin-bottom: 4px;">15,000+</div>
+          <div style="font-size: 14px; font-weight: 600; color: #4A5568; margin-bottom: 4px;">登録事業者数</div>
+          <div style="font-size: 12px; color: #718096;">毎日約10社が新規登録</div>
+        </div>
+        <div class="card text-center">
+          <div style="font-size: 32px; margin-bottom: 8px;">👷</div>
+          <div style="font-size: 36px; font-weight: 800; color: #1a365d; margin-bottom: 4px;">8,500+</div>
+          <div style="font-size: 14px; font-weight: 600; color: #4A5568; margin-bottom: 4px;">登録職人数</div>
+          <div style="font-size: 12px; color: #718096;">全国の職人が活躍中</div>
+        </div>
+        <div class="card text-center">
+          <div style="font-size: 32px; margin-bottom: 8px;">📋</div>
+          <div style="font-size: 36px; font-weight: 800; color: #1a365d; margin-bottom: 4px;">3,200+</div>
+          <div style="font-size: 14px; font-weight: 600; color: #4A5568; margin-bottom: 4px;">掲載案件数</div>
+          <div style="font-size: 12px; color: #718096;">常時3,000件以上</div>
+        </div>
+        <div class="card text-center">
+          <div style="font-size: 32px; margin-bottom: 8px;">🤝</div>
+          <div style="font-size: 36px; font-weight: 800; color: #1a365d; margin-bottom: 4px;">86%</div>
+          <div style="font-size: 14px; font-weight: 600; color: #4A5568; margin-bottom: 4px;">マッチング率</div>
+          <div style="font-size: 12px; color: #718096;">高い成約率を実現</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービスの特徴 -->
+  <section class="section section-gray">
+    <div class="container">
+      <h3 class="section-title">✨ 建設コネクトの<span>特徴</span></h3>
+      <div class="grid grid-3">
+        <div class="card">
+          <div style="font-size: 36px; margin-bottom: 12px;">🆓</div>
+          <h4 style="font-size: 17px; font-weight: 700; color: #1a365d; margin-bottom: 10px;">登録・基本利用無料</h4>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.7;">会員登録は完全無料。案件検索も無料でご利用いただけます。まずはお気軽にお試しください。</p>
+        </div>
+        <div class="card">
+          <div style="font-size: 36px; margin-bottom: 12px;">⭐</div>
+          <h4 style="font-size: 17px; font-weight: 700; color: #1a365d; margin-bottom: 10px;">信頼のランク制度</h4>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.7;">実績に応じて銅→銀→金のランクアップ。取引相手の信頼性が一目でわかります。</p>
+        </div>
+        <div class="card">
+          <div style="font-size: 36px; margin-bottom: 12px;">📱</div>
+          <h4 style="font-size: 17px; font-weight: 700; color: #1a365d; margin-bottom: 10px;">かんたん操作</h4>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.7;">スマホからでも直感的に操作可能。50〜60代の方にも使いやすいシンプルなUI設計。</p>
+        </div>
+        <div class="card">
+          <div style="font-size: 36px; margin-bottom: 12px;">🔒</div>
+          <h4 style="font-size: 17px; font-weight: 700; color: #1a365d; margin-bottom: 10px;">安心の本人確認</h4>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.7;">本人確認バッジで信頼性を担保。安心して取引できる環境を提供します。</p>
+        </div>
+        <div class="card">
+          <div style="font-size: 36px; margin-bottom: 12px;">💬</div>
+          <h4 style="font-size: 17px; font-weight: 700; color: #1a365d; margin-bottom: 10px;">ダイレクトメッセージ</h4>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.7;">気になる相手に直接メッセージ。仲介なしでスピーディーにやり取りできます。</p>
+        </div>
+        <div class="card">
+          <div style="font-size: 36px; margin-bottom: 12px;">🤖</div>
+          <h4 style="font-size: 17px; font-weight: 700; color: #1a365d; margin-bottom: 10px;">AIマッチング</h4>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.7;">プロプランではAIが最適な案件・人材を自動でおすすめ。効率的なマッチングを実現。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 職種から探す -->
+  <section class="section section-white">
+    <div class="container">
+      <h3 class="section-title">🔧 職種から探す</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+        <a href="board.html?category=electric" class="btn btn-outline">⚡ 電気工事</a>
+        <a href="board.html?category=plumbing" class="btn btn-outline">🔧 配管工事</a>
+        <a href="board.html?category=carpentry" class="btn btn-outline">🪚 大工</a>
+        <a href="board.html?category=painting" class="btn btn-outline">🎨 塗装</a>
+        <a href="board.html?category=scaffolding" class="btn btn-outline">🪜 足場</a>
+        <a href="board.html?category=interior" class="btn btn-outline">🏠 内装</a>
+        <a href="board.html?category=aircon" class="btn btn-outline">❄️ 空調</a>
+        <a href="board.html?category=cleaning" class="btn btn-outline">🧹 清掃</a>
+        <a href="board.html?category=civil" class="btn btn-outline">🚜 土木</a>
+        <a href="board.html?category=other" class="btn btn-outline">📦 その他</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- エリアから探す -->
+  <section class="section section-gray">
+    <div class="container">
+      <h3 class="section-title">📍 エリアから探す</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+        <a href="board.html?area=hokkaido" class="btn btn-outline">北海道</a>
+        <a href="board.html?area=tohoku" class="btn btn-outline">東北</a>
+        <a href="board.html?area=kanto" class="btn btn-outline">関東</a>
+        <a href="board.html?area=chubu" class="btn btn-outline">中部</a>
+        <a href="board.html?area=kinki" class="btn btn-outline">近畿</a>
+        <a href="board.html?area=chugoku" class="btn btn-outline">中国</a>
+        <a href="board.html?area=shikoku" class="btn btn-outline">四国</a>
+        <a href="board.html?area=kyushu" class="btn btn-outline">九州</a>
+        <a href="board.html?area=okinawa" class="btn btn-outline">沖縄</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 新着求人 -->
+  <section class="section section-white">
+    <div class="container">
+      <h3 class="section-title">🆕 新着求人</h3>
+      <div style="display: grid; gap: 16px; max-width: 900px; margin: 0 auto;">
+        <!-- 求人カード1 -->
+        <a href="board-detail.html" class="job-card urgent">
+          <div class="job-card-inner">
+            <div class="rank-badge rank-gold">金</div>
+            <div class="job-card-content">
+              <div class="job-card-badges">
+                <span class="badge badge-urgent">🔥 急募</span>
+                <span class="badge badge-category">電気工事</span>
+                <span class="badge badge-area">関東</span>
+                <span class="badge badge-type">社員募集</span>
+              </div>
+              <h4 class="job-card-title">電気工事士募集【経験者優遇】</h4>
+              <p class="job-card-company">株式会社サンライズ電気 | 東京都新宿区</p>
+              <div class="job-card-meta">
+                <span>📅 2025/12/02</span>
+                <span>👁 234回閲覧</span>
+              </div>
+            </div>
+            <div class="job-card-salary">
+              <p class="job-card-salary-text">日給15,000円〜22,000円</p>
+              <span class="job-card-link">詳細を見る →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 求人カード2 -->
+        <a href="board-detail.html" class="job-card urgent">
+          <div class="job-card-inner">
+            <div class="rank-badge rank-gold">金</div>
+            <div class="job-card-content">
+              <div class="job-card-badges">
+                <span class="badge badge-urgent">🔥 急募</span>
+                <span class="badge badge-category">足場</span>
+                <span class="badge badge-area">関東</span>
+                <span class="badge badge-type">社員募集</span>
+              </div>
+              <h4 class="job-card-title">足場組立解体スタッフ募集</h4>
+              <p class="job-card-company">株式会社山本建設 | 東京都渋谷区</p>
+              <div class="job-card-meta">
+                <span>📅 2025/12/02</span>
+                <span>👁 156回閲覧</span>
+              </div>
+            </div>
+            <div class="job-card-salary">
+              <p class="job-card-salary-text">日給14,000円〜20,000円</p>
+              <span class="job-card-link">詳細を見る →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 求人カード3 -->
+        <a href="board-detail.html" class="job-card">
+          <div class="job-card-inner">
+            <div class="rank-badge rank-silver">銀</div>
+            <div class="job-card-content">
+              <div class="job-card-badges">
+                <span class="badge badge-category">大工</span>
+                <span class="badge badge-area">関東</span>
+                <span class="badge badge-type">アルバイト募集</span>
+              </div>
+              <h4 class="job-card-title">大工見習い・経験者募集</h4>
+              <p class="job-card-company">大野工務店 | 東京都世田谷区</p>
+              <div class="job-card-meta">
+                <span>📅 2025/12/01</span>
+                <span>👁 89回閲覧</span>
+              </div>
+            </div>
+            <div class="job-card-salary">
+              <p class="job-card-salary-text">日給12,000円〜18,000円</p>
+              <span class="job-card-link">詳細を見る →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="board.html" class="btn btn-primary btn-lg">すべての求人を見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 利用者の声 -->
+  <section class="section section-gray">
+    <div class="container">
+      <h3 class="section-title">💬 利用者の声</h3>
+      <div class="grid grid-3">
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="font-size: 32px;">🏢</div>
+            <div>
+              <span style="display: inline-block; background: #E6FFFA; color: #234E52; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-bottom: 4px;">発注側</span>
+              <p style="font-size: 13px; font-weight: 600; color: #1a365d; margin: 0;">株式会社○○建設</p>
+              <p style="font-size: 12px; color: #718096; margin: 0;">代表取締役 A様</p>
+            </div>
+          </div>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.7; margin: 0;">「登録から2週間で5社の協力業者とマッチング。急な人手不足にも対応できるようになりました。」</p>
+        </div>
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="font-size: 32px;">👷</div>
+            <div>
+              <span style="display: inline-block; background: #FED7E2; color: #702459; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-bottom: 4px;">受注側</span>
+              <p style="font-size: 13px; font-weight: 600; color: #1a365d; margin: 0;">一人親方</p>
+              <p style="font-size: 12px; color: #718096; margin: 0;">電気工事士 B様</p>
+            </div>
+          </div>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.7; margin: 0;">「空いている日程で仕事が見つかるので助かっています。直接やり取りできるのも良いですね。」</p>
+        </div>
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="font-size: 32px;">🏗️</div>
+            <div>
+              <span style="display: inline-block; background: #E6FFFA; color: #234E52; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-bottom: 4px;">発注側</span>
+              <p style="font-size: 13px; font-weight: 600; color: #1a365d; margin: 0;">有限会社△△工務店</p>
+              <p style="font-size: 12px; color: #718096; margin: 0;">工事部長 C様</p>
+            </div>
+          </div>
+          <p style="font-size: 14px; color: #4A5568; line-height: 1.7; margin: 0;">「ランク制度があるので、信頼できる職人を見つけやすい。ミスマッチが減りました。」</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%); padding: 60px 20px; text-align: center;">
+    <h3 style="font-size: 28px; font-weight: 800; color: #FFF; margin-bottom: 16px;">今すぐ無料で始めよう</h3>
+    <p style="font-size: 16px; color: rgba(255,255,255,0.9); margin-bottom: 32px;">登録は1分で完了。まずは無料でお試しください。</p>
+    <a href="register.html" class="btn btn-lg" style="background: #FFF; color: #DD6B20; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">無料会員登録 →</a>
+  </section>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

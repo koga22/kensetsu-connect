@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マイページ - 建設コネクト</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon">🏗️</div>
+        <div class="logo-text">
+          <h1>建設コネクト</h1>
+          <p>KENSETSU CONNECT</p>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-btn">🏠 トップ</a>
+        <a href="board.html" class="nav-btn">📋 掲示板</a>
+        <a href="messages.html" class="nav-btn" style="position: relative;">
+          ✉️ メッセージ
+          <span style="position: absolute; top: -4px; right: -4px; background: #E53E3E; color: #FFF; font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; border-radius: 9px; display: flex; align-items: center; justify-content: center;">3</span>
+        </a>
+        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
+        <a href="mypage.html" class="nav-btn active">👤 マイページ</a>
+        <button class="btn-login" style="border: 2px solid #FC8181; color: #FC8181;">ログアウト</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- マイページヘッダー -->
+  <div class="mypage-header">
+    <div class="mypage-avatar">👷</div>
+    <h2 class="mypage-name">山田 太郎</h2>
+    <p class="mypage-nickname">@yamada_taro</p>
+    <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+      <span class="rank-label rank-label-silver">銀ランク</span>
+      <span style="background: #48BB78; color: #FFF; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 700;">✓ 本人確認済</span>
+    </div>
+    <div class="mypage-stats">
+      <div class="mypage-stat">
+        <div class="mypage-stat-value">1,250</div>
+        <div class="mypage-stat-label">ポイント</div>
+      </div>
+      <div class="mypage-stat">
+        <div class="mypage-stat-value">5</div>
+        <div class="mypage-stat-label">チケット</div>
+      </div>
+      <div class="mypage-stat">
+        <div class="mypage-stat-value">4.8</div>
+        <div class="mypage-stat-label">評価</div>
+      </div>
+      <div class="mypage-stat">
+        <div class="mypage-stat-value">12</div>
+        <div class="mypage-stat-label">口コミ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main style="max-width: 1000px; margin: 0 auto; padding: 30px 20px;">
+    <!-- タブ -->
+    <div class="mypage-tabs">
+      <div class="mypage-tab active">プロフィール</div>
+      <a href="messages.html" class="mypage-tab" style="text-decoration: none; position: relative;">
+        メッセージ
+        <span style="background: #E53E3E; color: #FFF; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 10px; margin-left: 4px;">3</span>
+      </a>
+      <div class="mypage-tab">投稿履歴</div>
+      <div class="mypage-tab">活動履歴</div>
+      <div class="mypage-tab">口コミ・評価</div>
+      <div class="mypage-tab">足跡</div>
+      <div class="mypage-tab">お気に入り</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 320px; gap: 24px;">
+      <!-- 左カラム -->
+      <div>
+        <!-- プロフィール -->
+        <div class="card mb-3">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="font-size: 18px; font-weight: 700; color: #1a365d;">📝 自己紹介</h3>
+            <button class="btn btn-outline btn-sm">編集</button>
+          </div>
+          <p style="font-size: 15px; color: #4A5568; line-height: 1.8;">
+            電気工事士として15年の経験があります。住宅からビルまで幅広く対応可能です。<br><br>
+            【保有資格】<br>
+            ・第一種電気工事士<br>
+            ・2級電気工事施工管理技士<br><br>
+            丁寧な仕事を心がけています。お気軽にお声がけください。
+          </p>
+        </div>
+
+        <!-- 基本情報 -->
+        <div class="card mb-3">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="font-size: 18px; font-weight: 700; color: #1a365d;">📋 基本情報</h3>
+            <button class="btn btn-outline btn-sm">編集</button>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+            <div>
+              <p style="font-size: 12px; color: #718096; margin-bottom: 4px;">職種</p>
+              <p style="font-size: 15px; font-weight: 600; color: #1a365d; margin: 0;">電気工事</p>
+            </div>
+            <div>
+              <p style="font-size: 12px; color: #718096; margin-bottom: 4px;">活動エリア</p>
+              <p style="font-size: 15px; font-weight: 600; color: #1a365d; margin: 0;">東京都・神奈川県</p>
+            </div>
+            <div>
+              <p style="font-size: 12px; color: #718096; margin-bottom: 4px;">経験年数</p>
+              <p style="font-size: 15px; font-weight: 600; color: #1a365d; margin: 0;">15年</p>
+            </div>
+            <div>
+              <p style="font-size: 12px; color: #718096; margin-bottom: 4px;">登録日</p>
+              <p style="font-size: 15px; font-weight: 600; color: #1a365d; margin: 0;">2024/06/15</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 保有資格・スキル -->
+        <div class="card mb-3">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="font-size: 18px; font-weight: 700; color: #1a365d;">🎓 保有資格・スキル</h3>
+            <button class="btn btn-outline btn-sm">編集</button>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="skill-tag">第一種電気工事士</span>
+            <span class="skill-tag">2級電気工事施工管理技士</span>
+            <span class="skill-tag">低圧電気取扱者</span>
+            <span class="skill-tag">普通自動車免許</span>
+          </div>
+        </div>
+
+        <!-- 口コミ・評価 -->
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="font-size: 18px; font-weight: 700; color: #1a365d;">⭐ 口コミ・評価</h3>
+            <a href="#" style="font-size: 14px; color: #4299E1; font-weight: 600;">すべて見る →</a>
+          </div>
+
+          <!-- 評価サマリー -->
+          <div style="background: #F7FAFC; padding: 20px; border-radius: 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 24px;">
+            <div style="text-align: center;">
+              <div style="font-size: 48px; font-weight: 800; color: #1a365d;">4.8</div>
+              <div style="color: #ECC94B; font-size: 18px;">★★★★★</div>
+              <div style="font-size: 13px; color: #718096;">12件の評価</div>
+            </div>
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span style="font-size: 12px; color: #718096; width: 40px;">5 ★</span>
+                <div style="flex: 1; height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 80%; height: 100%; background: #ECC94B;"></div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span style="font-size: 12px; color: #718096; width: 40px;">4 ★</span>
+                <div style="flex: 1; height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 15%; height: 100%; background: #ECC94B;"></div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span style="font-size: 12px; color: #718096; width: 40px;">3 ★</span>
+                <div style="flex: 1; height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden;">
+                  <div style="width: 5%; height: 100%; background: #ECC94B;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 口コミ一覧 -->
+          <div style="border-top: 1px solid #E2E8F0; padding-top: 16px;">
+            <div style="margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #E2E8F0;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div style="width: 36px; height: 36px; background: #EDF2F7; border-radius: 50%; display: flex; align-items: center; justify-content: center;">🏢</div>
+                  <div>
+                    <p style="font-size: 13px; font-weight: 600; color: #1a365d; margin: 0;">株式会社○○建設</p>
+                    <p style="font-size: 11px; color: #A0AEC0; margin: 0;">2025/11/20</p>
+                  </div>
+                </div>
+                <span style="color: #ECC94B;">★★★★★</span>
+              </div>
+              <p style="font-size: 14px; color: #4A5568; line-height: 1.7; margin: 0;">
+                丁寧な仕事ぶりで、納期もしっかり守っていただきました。また機会があればお願いしたいです。
+              </p>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div style="width: 36px; height: 36px; background: #EDF2F7; border-radius: 50%; display: flex; align-items: center; justify-content: center;">🏠</div>
+                  <div>
+                    <p style="font-size: 13px; font-weight: 600; color: #1a365d; margin: 0;">匿名</p>
+                    <p style="font-size: 11px; color: #A0AEC0; margin: 0;">2025/11/15</p>
+                  </div>
+                </div>
+                <span style="color: #ECC94B;">★★★★☆</span>
+              </div>
+              <p style="font-size: 14px; color: #4A5568; line-height: 1.7; margin: 0;">
+                経験豊富で安心してお任せできました。コミュニケーションも円滑でした。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右カラム（サイドバー） -->
+      <div>
+        <!-- プラン情報 -->
+        <div class="card mb-3">
+          <h3 style="font-size: 16px; font-weight: 700; color: #1a365d; margin-bottom: 16px;">📊 現在のプラン</h3>
+          <div style="background: linear-gradient(135deg, #4299E1, #3182CE); padding: 20px; border-radius: 12px; color: #FFF; margin-bottom: 16px;">
+            <p style="font-size: 12px; opacity: 0.8; margin: 0 0 4px 0;">現在のプラン</p>
+            <p style="font-size: 20px; font-weight: 800; margin: 0;">ベーシック</p>
+            <p style="font-size: 14px; opacity: 0.9; margin: 8px 0 0 0;">月額980円</p>
+          </div>
+          <div style="font-size: 14px; color: #4A5568; margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span>メッセージ残り</span>
+              <strong>5/10人</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span>チケット残り</span>
+              <strong>5枚</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span>次回更新日</span>
+              <strong>2025/01/15</strong>
+            </div>
+          </div>
+          <a href="pricing.html" class="btn btn-primary btn-block btn-sm">プランを変更</a>
+        </div>
+
+        <!-- 新着メッセージ -->
+        <div class="card mb-3">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: #1a365d;">✉️ 新着メッセージ</h3>
+            <a href="messages.html" style="font-size: 13px; color: #4299E1;">すべて見る</a>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 12px; background: #FED7D7; border-radius: 8px;">
+            <span style="font-size: 18px;">🔔</span>
+            <div style="font-size: 13px; color: #C53030; font-weight: 600;">未読メッセージが3件あります</div>
+          </div>
+          <!-- メッセージ1 -->
+          <a href="message-detail.html" style="display: flex; align-items: center; gap: 12px; padding: 12px; margin-bottom: 8px; background: #EBF8FF; border-radius: 8px; text-decoration: none; border-left: 3px solid #4299E1;">
+            <div style="width: 40px; height: 40px; background: #E2E8F0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">🏢</div>
+            <div style="flex: 1; min-width: 0;">
+              <p style="margin: 0; font-size: 13px; font-weight: 600; color: #1a365d;">株式会社サンライズ電気</p>
+              <p style="margin: 0; font-size: 12px; color: #718096; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">ご返信ありがとうございます。それでは...</p>
+            </div>
+            <span style="font-size: 11px; color: #A0AEC0; white-space: nowrap;">10分前</span>
+          </a>
+          <!-- メッセージ2 -->
+          <a href="message-detail.html" style="display: flex; align-items: center; gap: 12px; padding: 12px; margin-bottom: 8px; background: #EBF8FF; border-radius: 8px; text-decoration: none; border-left: 3px solid #4299E1;">
+            <div style="width: 40px; height: 40px; background: #E2E8F0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">🏗️</div>
+            <div style="flex: 1; min-width: 0;">
+              <p style="margin: 0; font-size: 13px; font-weight: 600; color: #1a365d;">有限会社田中工務店</p>
+              <p style="margin: 0; font-size: 12px; color: #718096; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">明日の現場の件、確認させてください</p>
+            </div>
+            <span style="font-size: 11px; color: #A0AEC0; white-space: nowrap;">1時間前</span>
+          </a>
+          <!-- メッセージ3 -->
+          <a href="message-detail.html" style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F7FAFC; border-radius: 8px; text-decoration: none;">
+            <div style="width: 40px; height: 40px; background: #E2E8F0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px;">👷</div>
+            <div style="flex: 1; min-width: 0;">
+              <p style="margin: 0; font-size: 13px; font-weight: 600; color: #1a365d;">鈴木 一郎</p>
+              <p style="margin: 0; font-size: 12px; color: #718096; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">了解しました！よろしくお願いします</p>
+            </div>
+            <span style="font-size: 11px; color: #A0AEC0; white-space: nowrap;">昨日</span>
+          </a>
+        </div>
+
+        <!-- 足跡 -->
+        <div class="card mb-3">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: #1a365d;">👣 最近の足跡</h3>
+            <a href="#" style="font-size: 13px; color: #4299E1;">すべて見る</a>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 12px; background: #F7FAFC; border-radius: 8px;">
+            <div style="font-size: 11px; color: #718096;">今日の訪問者</div>
+            <div style="font-size: 20px; font-weight: 700; color: #1a365d; margin-left: auto;">8人</div>
+          </div>
+          <div class="footprint-item" style="padding: 12px; margin-bottom: 8px;">
+            <div class="footprint-avatar">🏢</div>
+            <div class="footprint-info">
+              <p class="footprint-name">株式会社○○建設</p>
+              <p class="footprint-time">2時間前</p>
+            </div>
+          </div>
+          <div class="footprint-item" style="padding: 12px; margin-bottom: 8px;">
+            <div class="footprint-avatar">🏗️</div>
+            <div class="footprint-info">
+              <p class="footprint-name">匿名ユーザー</p>
+              <p class="footprint-time">5時間前</p>
+            </div>
+          </div>
+          <div class="footprint-item" style="padding: 12px; margin-bottom: 0;">
+            <div class="footprint-avatar">👷</div>
+            <div class="footprint-info">
+              <p class="footprint-name">有限会社△△工務店</p>
+              <p class="footprint-time">昨日</p>
+            </div>
+          </div>
+          <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #E2E8F0;">
+            <label class="form-checkbox">
+              <input type="checkbox">
+              <span style="font-size: 13px; color: #718096;">足跡を非公開にする</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 活動履歴 -->
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: #1a365d;">📈 活動履歴</h3>
+            <a href="#" style="font-size: 13px; color: #4299E1;">すべて見る</a>
+          </div>
+          <div style="font-size: 14px; color: #4A5568;">
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E2E8F0;">
+              <span style="font-size: 18px;">✉️</span>
+              <div>
+                <p style="margin: 0; font-weight: 600;">メッセージを送信</p>
+                <p style="margin: 0; font-size: 12px; color: #A0AEC0;">株式会社サンライズ電気</p>
+              </div>
+              <span style="margin-left: auto; font-size: 12px; color: #A0AEC0;">1時間前</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E2E8F0;">
+              <span style="font-size: 18px;">⭐</span>
+              <div>
+                <p style="margin: 0; font-weight: 600;">お気に入りに追加</p>
+                <p style="margin: 0; font-size: 12px; color: #A0AEC0;">電気工事士募集【経験者優遇】</p>
+              </div>
+              <span style="margin-left: auto; font-size: 12px; color: #A0AEC0;">昨日</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; padding: 12px 0;">
+              <span style="font-size: 18px;">✅</span>
+              <div>
+                <p style="margin: 0; font-weight: 600;">案件完了</p>
+                <p style="margin: 0; font-size: 12px; color: #A0AEC0;">○○ビル電気工事</p>
+              </div>
+              <span style="margin-left: auto; font-size: 12px; color: #A0AEC0;">3日前</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">
+            <span class="footer-logo-icon">🏗️</span>
+            <div>
+              <p class="footer-logo-text">建設コネクト</p>
+              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+            </div>
+          </div>
+          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-links-group">
+            <h4>サービス</h4>
+            <a href="board.html">掲示板</a>
+            <a href="board-post.html">求人を投稿</a>
+            <a href="pricing.html">料金プラン</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>サポート</h4>
+            <a href="guide.html">利用ガイド</a>
+            <a href="faq.html">よくある質問</a>
+            <a href="contact-form.html">お問い合わせ</a>
+          </div>
+          <div class="footer-links-group">
+            <h4>会社情報</h4>
+            <a href="company.html">運営会社</a>
+            <a href="terms.html">利用規約</a>
+            <a href="privacy.html">プライバシーポリシー</a>
+            <a href="tokushoho.html">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // タブ切り替え
+    document.querySelectorAll('.mypage-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.mypage-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>応募管理 | 建設コネクト</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ヘッダー */
+        header {
+            background: linear-gradient(135deg, #1a56db 0%, #1e40af 100%);
+            color: white;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #fbbf24;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-header {
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-mypage {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .btn-mypage:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .notification-icon {
+            position: relative;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* メインコンテンツ */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 90px 20px 40px;
+        }
+
+        /* ページヘッダー */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1a56db;
+        }
+
+        .page-title-sub {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* タブ切替 */
+        .tab-container {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: #666;
+            transition: all 0.2s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover {
+            background: #f0f6ff;
+            color: #1a56db;
+        }
+
+        .tab-btn.active {
+            background: #1a56db;
+            color: white;
+        }
+
+        .tab-count {
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .tab-btn:not(.active) .tab-count {
+            background: #e5e7eb;
+        }
+
+        /* 統計カード */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .stat-icon.blue {
+            background: #dbeafe;
+            color: #1a56db;
+        }
+
+        .stat-icon.green {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .stat-icon.yellow {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .stat-icon.red {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .stat-change {
+            font-size: 0.85rem;
+            color: #16a34a;
+            margin-top: 5px;
+        }
+
+        .stat-change.negative {
+            color: #dc2626;
+        }
+
+        /* フィルター */
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background: white;
+        }
+
+        .filter-group select:focus {
+            outline: none;
+            border-color: #1a56db;
+        }
+
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #1a56db;
+        }
+
+        /* 応募リスト */
+        .applications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .application-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .application-card.urgent {
+            border-left: 4px solid #ef4444;
+        }
+
+        .application-card.new {
+            border-left: 4px solid #1a56db;
+        }
+
+        .application-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .application-info {
+            flex: 1;
+        }
+
+        .application-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .application-title a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .application-title a:hover {
+            color: #1a56db;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .badge-new {
+            background: #dbeafe;
+            color: #1a56db;
+        }
+
+        .badge-urgent {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .badge-scout {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .application-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            flex-wrap: wrap;
+        }
+
+        .application-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .application-status {
+            text-align: right;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-reviewing {
+            background: #dbeafe;
+            color: #1a56db;
+        }
+
+        .status-interview {
+            background: #e0e7ff;
+            color: #4f46e5;
+        }
+
+        .status-accepted {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .status-rejected {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .status-date {
+            font-size: 0.8rem;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .application-body {
+            padding: 20px;
+        }
+
+        .applicant-info {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        .applicant-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a56db 0%, #1e40af 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .applicant-details {
+            flex: 1;
+        }
+
+        .applicant-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .applicant-name a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .applicant-name a:hover {
+            color: #1a56db;
+        }
+
+        .applicant-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .skill-tag {
+            padding: 4px 10px;
+            background: #f3f4f6;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .applicant-stats {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .applicant-stats span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .star-rating {
+            color: #fbbf24;
+        }
+
+        .application-message {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .application-message-label {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .application-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-primary {
+            background: #1a56db;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #1e40af;
+        }
+
+        .btn-success {
+            background: #16a34a;
+            color: white;
+            border: none;
+        }
+
+        .btn-success:hover {
+            background: #15803d;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-outline {
+            background: white;
+            color: #1a56db;
+            border: 2px solid #1a56db;
+        }
+
+        .btn-outline:hover {
+            background: #f0f6ff;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #666;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        /* スカウト送信済み表示 */
+        .scout-sent {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px;
+            background: #fef3c7;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .scout-sent-icon {
+            font-size: 1.5rem;
+        }
+
+        .scout-sent-text {
+            flex: 1;
+        }
+
+        .scout-sent-text strong {
+            color: #d97706;
+        }
+
+        .scout-sent-date {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* 空の状態 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .empty-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .empty-text {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .empty-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #1a56db;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .empty-btn:hover {
+            background: #1e40af;
+        }
+
+        /* ページネーション */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 30px;
+        }
+
+        .page-btn {
+            padding: 10px 15px;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .page-btn:hover {
+            background: #f0f6ff;
+            border-color: #1a56db;
+        }
+
+        .page-btn.active {
+            background: #1a56db;
+            color: white;
+            border-color: #1a56db;
+        }
+
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* モーダル */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-body p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1a56db;
+            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* フッター */
+        footer {
+            background: #1e293b;
+            color: #94a3b8;
+            padding: 60px 20px 30px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand h3 span {
+            color: #fbbf24;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .footer-links h4 {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            font-size: 0.85rem;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .tab-container {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .application-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .application-status {
+                text-align: left;
+            }
+
+            .applicant-info {
+                flex-direction: column;
+            }
+
+            .application-actions {
+                flex-direction: column;
+            }
+
+            .btn-action {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .filter-bar {
+                flex-direction: column;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            .filter-group select,
+            .search-input {
+                width: 100%;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">建設<span>コネクト</span></a>
+            <nav>
+                <a href="board.html">案件を探す</a>
+                <a href="worker-search.html">職人を探す</a>
+                <a href="guide.html">ご利用ガイド</a>
+                <a href="pricing.html">料金プラン</a>
+            </nav>
+            <div class="header-buttons">
+                <div class="notification-icon">
+                    <span>&#128276;</span>
+                    <span class="notification-badge">3</span>
+                </div>
+                <a href="mypage.html" class="btn-header btn-mypage">マイページ</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">応募管理</h1>
+                <p class="page-title-sub">案件への応募状況やスカウトを一元管理できます</p>
+            </div>
+        </div>
+
+        <!-- 統計カード -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-label">新着応募</span>
+                    <div class="stat-icon blue">&#128233;</div>
+                </div>
+                <div class="stat-value">12</div>
+                <div class="stat-change">+5 今週</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-label">選考中</span>
+                    <div class="stat-icon yellow">&#128203;</div>
+                </div>
+                <div class="stat-value">8</div>
+                <div class="stat-change">+2 今週</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-label">成約済み</span>
+                    <div class="stat-icon green">&#9989;</div>
+                </div>
+                <div class="stat-value">24</div>
+                <div class="stat-change">+3 今月</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-header">
+                    <span class="stat-label">マッチング率</span>
+                    <div class="stat-icon red">&#128200;</div>
+                </div>
+                <div class="stat-value">68%</div>
+                <div class="stat-change">+5% 先月比</div>
+            </div>
+        </div>
+
+        <!-- タブ切替 -->
+        <div class="tab-container">
+            <button class="tab-btn active">
+                すべて
+                <span class="tab-count">32</span>
+            </button>
+            <button class="tab-btn">
+                新着
+                <span class="tab-count">12</span>
+            </button>
+            <button class="tab-btn">
+                選考中
+                <span class="tab-count">8</span>
+            </button>
+            <button class="tab-btn">
+                面談予定
+                <span class="tab-count">3</span>
+            </button>
+            <button class="tab-btn">
+                成約済み
+                <span class="tab-count">6</span>
+            </button>
+            <button class="tab-btn">
+                不成立
+                <span class="tab-count">3</span>
+            </button>
+        </div>
+
+        <!-- フィルター -->
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label>案件:</label>
+                <select>
+                    <option>すべての案件</option>
+                    <option>内装工事スタッフ募集</option>
+                    <option>電気配線工事</option>
+                    <option>マンション改修工事</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>期間:</label>
+                <select>
+                    <option>すべて</option>
+                    <option>今日</option>
+                    <option>今週</option>
+                    <option>今月</option>
+                    <option>過去3ヶ月</option>
+                </select>
+            </div>
+            <input type="text" class="search-input" placeholder="応募者名で検索...">
+        </div>
+
+        <!-- 応募リスト -->
+        <div class="applications-list">
+            <!-- 新着応募（急募） -->
+            <div class="application-card urgent new">
+                <div class="application-header">
+                    <div class="application-info">
+                        <h3 class="application-title">
+                            <a href="board-detail.html">内装工事スタッフ募集【急募】</a>
+                            <span class="badge badge-urgent">急募</span>
+                            <span class="badge badge-new">NEW</span>
+                        </h3>
+                        <div class="application-meta">
+                            <span>&#128197; 作業期間: 12/20 - 12/25</span>
+                            <span>&#128205; 渋谷区</span>
+                            <span>&#128176; 日給 18,000円〜</span>
+                        </div>
+                    </div>
+                    <div class="application-status">
+                        <span class="status-badge status-pending">未対応</span>
+                        <p class="status-date">3時間前に応募</p>
+                    </div>
+                </div>
+                <div class="application-body">
+                    <div class="applicant-info">
+                        <div class="applicant-avatar">田</div>
+                        <div class="applicant-details">
+                            <h4 class="applicant-name"><a href="worker-profile.html">田中 太郎</a></h4>
+                            <div class="applicant-skills">
+                                <span class="skill-tag">内装工</span>
+                                <span class="skill-tag">クロス張り</span>
+                                <span class="skill-tag">床張り</span>
+                            </div>
+                            <div class="applicant-stats">
+                                <span><span class="star-rating">&#9733;</span> 4.8 (23件)</span>
+                                <span>&#128188; 経験15年</span>
+                                <span>&#9989; 成約率 92%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="application-message">
+                        <p class="application-message-label">応募メッセージ</p>
+                        <p>お世話になります。内装工事の経験が15年あり、マンションの内装工事を多数手がけてきました。急募とのことですので、即日対応可能です。ぜひご検討ください。</p>
+                    </div>
+                    <div class="application-actions">
+                        <button class="btn-action btn-success">&#9989; 採用する</button>
+                        <a href="message-detail.html" class="btn-action btn-primary">&#128172; メッセージを送る</a>
+                        <a href="worker-profile.html" class="btn-action btn-outline">プロフィールを見る</a>
+                        <button class="btn-action btn-danger" id="rejectBtn1">&#10060; 不採用</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 選考中 -->
+            <div class="application-card">
+                <div class="application-header">
+                    <div class="application-info">
+                        <h3 class="application-title">
+                            <a href="board-detail.html">電気配線工事（商業施設）</a>
+                        </h3>
+                        <div class="application-meta">
+                            <span>&#128197; 作業期間: 1/10 - 1/20</span>
+                            <span>&#128205; 新宿区</span>
+                            <span>&#128176; 日給 22,000円〜</span>
+                        </div>
+                    </div>
+                    <div class="application-status">
+                        <span class="status-badge status-reviewing">選考中</span>
+                        <p class="status-date">2日前に応募</p>
+                    </div>
+                </div>
+                <div class="application-body">
+                    <div class="applicant-info">
+                        <div class="applicant-avatar">鈴</div>
+                        <div class="applicant-details">
+                            <h4 class="applicant-name"><a href="worker-profile.html">鈴木 一郎</a></h4>
+                            <div class="applicant-skills">
+                                <span class="skill-tag">電気工事士</span>
+                                <span class="skill-tag">第一種電気工事士</span>
+                                <span class="skill-tag">消防設備士</span>
+                            </div>
+                            <div class="applicant-stats">
+                                <span><span class="star-rating">&#9733;</span> 4.9 (45件)</span>
+                                <span>&#128188; 経験20年</span>
+                                <span>&#9989; 成約率 95%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="application-message">
+                        <p class="application-message-label">応募メッセージ</p>
+                        <p>商業施設の電気配線工事を多数経験しております。第一種電気工事士の資格を保有しており、大規模工事にも対応可能です。よろしくお願いいたします。</p>
+                    </div>
+                    <div class="application-actions">
+                        <button class="btn-action btn-success">&#9989; 採用する</button>
+                        <a href="message-detail.html" class="btn-action btn-primary">&#128172; メッセージを送る</a>
+                        <a href="worker-profile.html" class="btn-action btn-outline">プロフィールを見る</a>
+                        <button class="btn-action btn-danger">&#10060; 不採用</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- スカウト送信済み -->
+            <div class="application-card">
+                <div class="application-header">
+                    <div class="application-info">
+                        <h3 class="application-title">
+                            <a href="board-detail.html">マンション大規模改修工事</a>
+                            <span class="badge badge-scout">スカウト</span>
+                        </h3>
+                        <div class="application-meta">
+                            <span>&#128197; 作業期間: 2/1 - 3/31</span>
+                            <span>&#128205; 目黒区</span>
+                            <span>&#128176; 月給 450,000円〜</span>
+                        </div>
+                    </div>
+                    <div class="application-status">
+                        <span class="status-badge status-interview">面談予定</span>
+                        <p class="status-date">12/18 14:00</p>
+                    </div>
+                </div>
+                <div class="application-body">
+                    <div class="scout-sent">
+                        <span class="scout-sent-icon">&#128140;</span>
+                        <div class="scout-sent-text">
+                            <strong>スカウトを送信しました</strong>
+                            <p class="scout-sent-date">12/10に送信 → 12/12に承諾</p>
+                        </div>
+                    </div>
+                    <div class="applicant-info">
+                        <div class="applicant-avatar">佐</div>
+                        <div class="applicant-details">
+                            <h4 class="applicant-name"><a href="worker-profile.html">佐藤 健太</a></h4>
+                            <div class="applicant-skills">
+                                <span class="skill-tag">建築施工管理技士</span>
+                                <span class="skill-tag">マンション改修</span>
+                                <span class="skill-tag">現場監督</span>
+                            </div>
+                            <div class="applicant-stats">
+                                <span><span class="star-rating">&#9733;</span> 5.0 (32件)</span>
+                                <span>&#128188; 経験25年</span>
+                                <span>&#9989; 成約率 98%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="application-actions">
+                        <button class="btn-action btn-success">&#9989; 採用確定</button>
+                        <a href="message-detail.html" class="btn-action btn-primary">&#128172; メッセージを送る</a>
+                        <a href="calendar.html" class="btn-action btn-outline">&#128197; 面談日時を変更</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 成約済み -->
+            <div class="application-card">
+                <div class="application-header">
+                    <div class="application-info">
+                        <h3 class="application-title">
+                            <a href="board-detail.html">戸建住宅リフォーム工事</a>
+                        </h3>
+                        <div class="application-meta">
+                            <span>&#128197; 作業期間: 12/5 - 12/12</span>
+                            <span>&#128205; 品川区</span>
+                            <span>&#128176; 日給 16,000円</span>
+                        </div>
+                    </div>
+                    <div class="application-status">
+                        <span class="status-badge status-accepted">成約済み</span>
+                        <p class="status-date">12/3に成約</p>
+                    </div>
+                </div>
+                <div class="application-body">
+                    <div class="applicant-info">
+                        <div class="applicant-avatar">山</div>
+                        <div class="applicant-details">
+                            <h4 class="applicant-name"><a href="worker-profile.html">山田 次郎</a></h4>
+                            <div class="applicant-skills">
+                                <span class="skill-tag">大工</span>
+                                <span class="skill-tag">リフォーム</span>
+                                <span class="skill-tag">木工</span>
+                            </div>
+                            <div class="applicant-stats">
+                                <span><span class="star-rating">&#9733;</span> 4.7 (18件)</span>
+                                <span>&#128188; 経験12年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="application-actions">
+                        <a href="message-detail.html" class="btn-action btn-primary">&#128172; メッセージを送る</a>
+                        <button class="btn-action btn-outline">&#9733; 評価を投稿</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 不成立 -->
+            <div class="application-card" style="opacity: 0.7;">
+                <div class="application-header">
+                    <div class="application-info">
+                        <h3 class="application-title">
+                            <a href="board-detail.html">オフィスビル設備点検</a>
+                        </h3>
+                        <div class="application-meta">
+                            <span>&#128197; 作業期間: 12/1 - 12/3</span>
+                            <span>&#128205; 港区</span>
+                            <span>&#128176; 日給 15,000円</span>
+                        </div>
+                    </div>
+                    <div class="application-status">
+                        <span class="status-badge status-rejected">不成立</span>
+                        <p class="status-date">11/28に辞退</p>
+                    </div>
+                </div>
+                <div class="application-body">
+                    <div class="applicant-info">
+                        <div class="applicant-avatar">高</div>
+                        <div class="applicant-details">
+                            <h4 class="applicant-name"><a href="worker-profile.html">高橋 三郎</a></h4>
+                            <div class="applicant-skills">
+                                <span class="skill-tag">設備管理</span>
+                                <span class="skill-tag">点検</span>
+                            </div>
+                            <div class="applicant-stats">
+                                <span><span class="star-rating">&#9733;</span> 4.5 (12件)</span>
+                                <span>&#128188; 経験8年</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="application-message">
+                        <p class="application-message-label">不成立理由</p>
+                        <p>応募者都合により辞退：「別の案件と日程が重なってしまいました」</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ページネーション -->
+        <div class="pagination">
+            <button class="page-btn disabled">&lt;</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">4</button>
+            <button class="page-btn">&gt;</button>
+        </div>
+    </main>
+
+    <!-- 不採用モーダル -->
+    <div class="modal-overlay" id="rejectModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">不採用の確認</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>この応募者を不採用としますか？不採用理由を入力すると、応募者に通知されます。</p>
+                <div class="form-group">
+                    <label>不採用理由（任意）</label>
+                    <textarea rows="4" placeholder="例：今回は他の候補者を採用することになりました。またの機会がございましたら、ぜひご応募ください。"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action btn-secondary" id="cancelReject">キャンセル</button>
+                <button class="btn-action btn-danger">不採用にする</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>建設<span>コネクト</span></h3>
+                    <p>建設業界の人材マッチングを<br>もっとスムーズに。</p>
+                </div>
+                <div class="footer-links">
+                    <h4>サービス</h4>
+                    <ul>
+                        <li><a href="board.html">案件を探す</a></li>
+                        <li><a href="worker-search.html">職人を探す</a></li>
+                        <li><a href="pricing.html">料金プラン</a></li>
+                        <li><a href="guide.html">ご利用ガイド</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>サポート</h4>
+                    <ul>
+                        <li><a href="faq.html">よくある質問</a></li>
+                        <li><a href="contact-form.html">お問い合わせ</a></li>
+                        <li><a href="terms.html">利用規約</a></li>
+                        <li><a href="privacy.html">プライバシーポリシー</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>会社情報</h4>
+                    <ul>
+                        <li><a href="company.html">運営会社</a></li>
+                        <li><a href="tokushoho.html">特定商取引法に基づく表記</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 建設コネクト All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // タブ切替
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // 不採用モーダル
+        const rejectModal = document.getElementById('rejectModal');
+        const rejectBtn = document.getElementById('rejectBtn1');
+        const closeModal = document.getElementById('closeModal');
+        const cancelReject = document.getElementById('cancelReject');
+
+        if (rejectBtn) {
+            rejectBtn.addEventListener('click', function() {
+                rejectModal.classList.add('active');
+            });
+        }
+
+        closeModal.addEventListener('click', function() {
+            rejectModal.classList.remove('active');
+        });
+
+        cancelReject.addEventListener('click', function() {
+            rejectModal.classList.remove('active');
+        });
+
+        rejectModal.addEventListener('click', function(e) {
+            if (e.target === rejectModal) {
+                rejectModal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
