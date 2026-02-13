@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>職人のための建設コネクト - 腕一本で、仕事が届く。</title>
+  <meta name="description" content="建設業の職人・一人親方のための仕事マッチングプラットフォーム。登録無料で、あなたのスキルに合った現場が直接届きます。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👷</text></svg>">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    /* ===== モバイルファースト LP固有スタイル ===== */
+    * { box-sizing: border-box; }
+
+    /* --- LP Header --- */
+    .lp-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      transition: box-shadow 0.3s ease;
+    }
+    .lp-header.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    .lp-header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lp-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .lp-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .lp-logo-text {
+      font-size: 16px;
+      font-weight: 800;
+      color: #1a365d;
+    }
+    .lp-logo-sub {
+      font-size: 8px;
+      color: #718096;
+      letter-spacing: 1px;
+    }
+    .lp-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #FFF;
+      flex-direction: column;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      gap: 12px;
+    }
+    .lp-nav.open {
+      display: flex;
+    }
+    .lp-nav a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: #4A5568;
+      padding: 8px 0;
+      transition: color 0.2s;
+    }
+    .lp-nav a:hover {
+      color: #ED8936;
+    }
+    .lp-nav-cta {
+      background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+      color: #FFF !important;
+      padding: 12px 24px !important;
+      border-radius: 8px;
+      font-weight: 700 !important;
+      text-align: center;
+    }
+    .lp-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+    }
+    .lp-hamburger span {
+      width: 22px;
+      height: 2px;
+      background: #1a365d;
+      transition: all 0.3s ease;
+    }
+
+    /* --- Hero (モバイルファースト) --- */
+    .lp-hero {
+      background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #2d5a8e 100%);
+      padding: 80px 16px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .lp-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+    }
+    .lp-hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .lp-hero-badge {
+      display: inline-block;
+      background: rgba(237, 137, 54, 0.2);
+      border: 1px solid rgba(237, 137, 54, 0.5);
+      color: #FBD38D;
+      padding: 5px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .lp-hero h1 {
+      font-size: 28px;
+      font-weight: 900;
+      color: #FFF;
+      line-height: 1.4;
+      margin-bottom: 14px;
+    }
+    .lp-hero h1 span {
+      color: #ED8936;
+    }
+    .lp-hero-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+    .lp-hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .lp-btn-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+      color: #FFF;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(237, 137, 54, 0.4);
+      transition: all 0.3s ease;
+    }
+    .lp-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(237, 137, 54, 0.5);
+    }
+    .lp-btn-secondary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #FFF;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .lp-btn-secondary:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    .lp-trust-bar {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+    .lp-trust-item {
+      text-align: center;
+    }
+    .lp-trust-item strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 900;
+      color: #FBD38D;
+    }
+    .lp-trust-item span {
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* --- Section共通 (モバイルファースト) --- */
+    .lp-section {
+      padding: 48px 16px;
+    }
+    .lp-section-white { background: #FFF; }
+    .lp-section-gray { background: #F7FAFC; }
+    .lp-section-title {
+      text-align: center;
+      font-size: 21px;
+      font-weight: 800;
+      color: #1a365d;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .lp-section-title span { color: #ED8936; }
+    .lp-section-subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: #718096;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .lp-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* --- Pain Points (モバイルファースト) --- */
+    .lp-pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .lp-pain-item {
+      background: #FFF;
+      border: 1.5px solid #FED7D7;
+      border-radius: 12px;
+      padding: 16px 12px;
+      text-align: center;
+    }
+    .lp-pain-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+    .lp-pain-item h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #C53030;
+      margin-bottom: 6px;
+    }
+    .lp-pain-item p {
+      font-size: 11px;
+      color: #4A5568;
+      line-height: 1.6;
+    }
+
+    /* --- Solution (モバイルファースト - カード型に刷新) --- */
+    .lp-solution-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .lp-solution-item {
+      background: #FFF;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .lp-solution-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .lp-solution-icon-pain {
+      background: #FFF5F5;
+    }
+    .lp-solution-icon-solve {
+      background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+    }
+    .lp-solution-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .lp-solution-pain {
+      font-size: 12px;
+      color: #E53E3E;
+      font-weight: 600;
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+    .lp-solution-answer {
+      font-size: 15px;
+      font-weight: 700;
+      color: #276749;
+      margin-bottom: 2px;
+    }
+    .lp-solution-desc {
+      font-size: 12px;
+      color: #718096;
+      line-height: 1.5;
+    }
+
+    /* --- Features (モバイルファースト - コンパクトリスト型) --- */
+    .lp-features-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .lp-feature-card {
+      background: #FFF;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .lp-feature-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #EBF8FF 0%, #BEE3F8 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .lp-feature-text { flex: 1; min-width: 0; }
+    .lp-feature-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 2px;
+    }
+    .lp-feature-card p {
+      font-size: 12px;
+      color: #718096;
+      line-height: 1.5;
+    }
+
+    /* --- How To (モバイルファースト - コンパクト縦型) --- */
+    .lp-howto-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .lp-howto-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 0;
+      position: relative;
+    }
+    .lp-howto-step:not(:last-child) {
+      border-bottom: none;
+    }
+    .lp-howto-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 56px;
+      bottom: -16px;
+      width: 2px;
+      background: #E2E8F0;
+    }
+    .lp-howto-number {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+      color: #FFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(237, 137, 54, 0.3);
+    }
+    .lp-howto-body { flex: 1; }
+    .lp-howto-body h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a365d;
+      margin-bottom: 4px;
+    }
+    .lp-howto-body p {
+      font-size: 12px;
+      color: #718096;
+      line-height: 1.6;
+    }
+
+    /* --- Stats (モバイルファースト) --- */
+    .lp-stats {
+      background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+      padding: 48px 16px;
+    }
+    .lp-stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .lp-stat-item { text-align: center; }
+    .lp-stat-icon {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+    .lp-stat-number {
+      font-size: 30px;
+      font-weight: 900;
+      color: #FBD38D;
+      margin-bottom: 2px;
+    }
+    .lp-stat-number span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .lp-stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      font-weight: 600;
+    }
+
+    /* --- Testimonials (モバイルファースト) --- */
+    .lp-testimonials-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .lp-testimonial-card {
+      background: #FFF;
+      border-radius: 12px;
+      padding: 20px 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      border-left: 3px solid #ED8936;
+    }
+    .lp-testimonial-quote {
+      font-size: 13px;
+      color: #4A5568;
+      line-height: 1.7;
+      margin-bottom: 14px;
+      position: relative;
+      padding-left: 18px;
+    }
+    .lp-testimonial-quote::before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: -4px;
+      font-size: 28px;
+      color: #ED8936;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .lp-testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .lp-testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #4299E1 0%, #3182CE 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .lp-testimonial-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a365d;
+    }
+    .lp-testimonial-role {
+      font-size: 11px;
+      color: #718096;
+    }
+    .lp-testimonial-stars {
+      margin-left: auto;
+      color: #ECC94B;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    /* --- Pricing (モバイルファースト) --- */
+    .lp-pricing-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .lp-pricing-card {
+      background: #FFF;
+      border-radius: 14px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      border: 2px solid #E2E8F0;
+      position: relative;
+    }
+    .lp-pricing-card.featured {
+      border-color: #ED8936;
+      box-shadow: 0 4px 24px rgba(237, 137, 54, 0.15);
+    }
+    .lp-pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+      color: #FFF;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .lp-pricing-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1a365d;
+      margin-bottom: 4px;
+    }
+    .lp-pricing-price {
+      font-size: 36px;
+      font-weight: 900;
+      color: #ED8936;
+      margin-bottom: 2px;
+    }
+    .lp-pricing-price small {
+      font-size: 14px;
+      font-weight: 600;
+      color: #718096;
+    }
+    .lp-pricing-desc {
+      font-size: 12px;
+      color: #718096;
+      margin-bottom: 16px;
+    }
+    .lp-pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      text-align: left;
+    }
+    .lp-pricing-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid #EDF2F7;
+      font-size: 13px;
+      color: #4A5568;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lp-pricing-features li:last-child { border-bottom: none; }
+    .lp-pricing-features .check {
+      color: #48BB78;
+      font-size: 14px;
+    }
+    .lp-pricing-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .lp-pricing-btn-primary {
+      background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+      color: #FFF;
+      box-shadow: 0 4px 15px rgba(237, 137, 54, 0.3);
+    }
+    .lp-pricing-btn-outline {
+      background: #FFF;
+      color: #4A5568;
+      border: 2px solid #E2E8F0;
+    }
+
+    /* --- FAQ (モバイルファースト) --- */
+    .lp-faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .lp-faq-item {
+      background: #FFF;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+    .lp-faq-question {
+      width: 100%;
+      padding: 16px;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1a365d;
+      text-align: left;
+      font-family: inherit;
+    }
+    .lp-faq-question:hover { background: #F7FAFC; }
+    .lp-faq-arrow {
+      font-size: 12px;
+      color: #A0AEC0;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+    .lp-faq-item.active .lp-faq-arrow {
+      transform: rotate(180deg);
+    }
+    .lp-faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .lp-faq-item.active .lp-faq-answer {
+      max-height: 300px;
+    }
+    .lp-faq-answer-inner {
+      padding: 0 16px 16px;
+      font-size: 13px;
+      color: #4A5568;
+      line-height: 1.7;
+    }
+
+    /* --- Final CTA (モバイルファースト) --- */
+    .lp-final-cta {
+      background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+      padding: 48px 16px;
+      text-align: center;
+    }
+    .lp-cta-free-badge {
+      display: inline-block;
+      background: #FFF;
+      color: #DD6B20;
+      font-size: 15px;
+      font-weight: 800;
+      padding: 10px 24px;
+      border-radius: 40px;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    .lp-final-cta h2 {
+      font-size: 22px;
+      font-weight: 900;
+      color: #FFF;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .lp-final-cta p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+    .lp-final-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFF;
+      color: #DD6B20;
+      padding: 16px 36px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    .lp-final-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.3);
+    }
+
+    /* --- Footer (モバイルファースト) --- */
+    .lp-footer {
+      background: #1a365d;
+      padding: 32px 16px;
+    }
+    .lp-footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .lp-footer-top {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .lp-footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lp-footer-logo-icon { font-size: 24px; }
+    .lp-footer-logo-text {
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFF;
+    }
+    .lp-footer-logo-sub {
+      font-size: 8px;
+      color: #90CDF4;
+      letter-spacing: 1px;
+    }
+    .lp-footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .lp-footer-links a {
+      font-size: 12px;
+      color: #90CDF4;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .lp-footer-links a:hover { color: #FFF; }
+    .lp-footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 16px;
+      text-align: center;
+    }
+    .lp-footer-copyright {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ===== Desktop (768px以上) ===== */
+    @media (min-width: 769px) {
+      .lp-header-inner {
+        padding: 12px 24px;
+      }
+      .lp-logo-icon { width: 40px; height: 40px; font-size: 22px; }
+      .lp-logo-text { font-size: 18px; }
+      .lp-nav {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        padding: 0;
+        box-shadow: none;
+        gap: 24px;
+        background: transparent;
+      }
+      .lp-nav a { padding: 0; }
+      .lp-hamburger { display: none; }
+
+      .lp-hero {
+        padding: 140px 24px 80px;
+      }
+      .lp-hero-badge { font-size: 14px; padding: 6px 20px; margin-bottom: 24px; }
+      .lp-hero h1 { font-size: 44px; margin-bottom: 20px; }
+      .lp-hero-sub { font-size: 18px; margin-bottom: 40px; }
+      .lp-hero-actions {
+        flex-direction: row;
+        justify-content: center;
+        gap: 16px;
+        margin-bottom: 48px;
+      }
+      .lp-btn-primary {
+        display: inline-flex;
+        padding: 18px 40px;
+        font-size: 18px;
+      }
+      .lp-btn-secondary {
+        display: inline-flex;
+        padding: 16px 36px;
+        font-size: 16px;
+      }
+      .lp-trust-bar { gap: 40px; }
+      .lp-trust-item strong { font-size: 28px; }
+      .lp-trust-item span { font-size: 13px; }
+
+      .lp-section { padding: 80px 24px; }
+      .lp-section-title { font-size: 28px; margin-bottom: 16px; }
+      .lp-section-subtitle { font-size: 16px; margin-bottom: 48px; }
+
+      .lp-pain-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .lp-pain-item { padding: 28px 20px; border-radius: 16px; }
+      .lp-pain-icon { font-size: 36px; margin-bottom: 12px; }
+      .lp-pain-item h3 { font-size: 15px; margin-bottom: 8px; }
+      .lp-pain-item p { font-size: 13px; }
+
+      .lp-solution-list {
+        gap: 16px;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .lp-solution-item { padding: 20px 24px; gap: 18px; }
+      .lp-solution-icon { width: 52px; height: 52px; font-size: 26px; }
+      .lp-solution-pain { font-size: 13px; }
+      .lp-solution-answer { font-size: 17px; }
+      .lp-solution-desc { font-size: 13px; }
+
+      .lp-features-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .lp-feature-card { padding: 20px; gap: 16px; }
+      .lp-feature-icon { width: 48px; height: 48px; font-size: 24px; }
+      .lp-feature-card h3 { font-size: 15px; }
+      .lp-feature-card p { font-size: 13px; }
+
+      .lp-howto-steps {
+        flex-direction: row;
+        gap: 0;
+        max-width: 800px;
+        align-items: flex-start;
+      }
+      .lp-howto-step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+        padding: 0 16px;
+        gap: 0;
+      }
+      .lp-howto-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        left: calc(50% + 28px);
+        top: 20px;
+        bottom: auto;
+        width: calc(100% - 56px);
+        height: 2px;
+        background: #E2E8F0;
+      }
+      .lp-howto-number { margin-bottom: 16px; width: 48px; height: 48px; font-size: 22px; }
+      .lp-howto-body h3 { font-size: 16px; margin-bottom: 8px; }
+      .lp-howto-body p { font-size: 13px; }
+
+      .lp-stats { padding: 80px 24px; }
+      .lp-stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+      }
+      .lp-stat-icon { font-size: 32px; margin-bottom: 8px; }
+      .lp-stat-number { font-size: 42px; }
+      .lp-stat-label { font-size: 14px; }
+
+      .lp-testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .lp-testimonial-card { padding: 28px 24px; }
+      .lp-testimonial-avatar { width: 48px; height: 48px; font-size: 24px; }
+
+      .lp-cta-free-badge { font-size: 18px; padding: 12px 32px; }
+
+      .lp-faq-question { padding: 20px 24px; font-size: 15px; }
+      .lp-faq-answer-inner { padding: 0 24px 20px; font-size: 14px; }
+
+      .lp-final-cta { padding: 80px 24px; }
+      .lp-final-cta h2 { font-size: 30px; }
+      .lp-final-cta p { font-size: 16px; margin-bottom: 36px; }
+      .lp-final-cta-btn { padding: 18px 48px; font-size: 18px; }
+
+      .lp-footer { padding: 40px 24px; }
+      .lp-footer-top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 32px;
+      }
+      .lp-footer-links { gap: 32px; }
+      .lp-footer-links a { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="lp-header" id="top">
+    <div class="lp-header-inner">
+      <a href="../index.html" class="lp-logo">
+        <div class="lp-logo-icon">🏗️</div>
+        <div>
+          <div class="lp-logo-text">建設コネクト</div>
+          <div class="lp-logo-sub">KENSETSU CONNECT</div>
+        </div>
+      </a>
+      <button class="lp-hamburger" onclick="document.querySelector('.lp-nav').classList.toggle('open')" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="lp-nav">
+        <a href="#features">特徴</a>
+        <a href="#howto">使い方</a>
+        <a href="#pricing">料金</a>
+        <a href="#faq">FAQ</a>
+        <a href="../register.html" class="lp-nav-cta">無料で登録する</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ヒーロー -->
+  <section class="lp-hero">
+    <div class="lp-hero-content">
+      <div class="lp-hero-badge">👷 職人・一人親方のための求人プラットフォーム</div>
+      <h1>腕一本で、<span>仕事が届く。</span></h1>
+      <p class="lp-hero-sub">
+        案件探し・営業の手間はもう不要。<br>
+        あなたのスキルに合った現場が直接届きます。
+      </p>
+      <div class="lp-hero-actions">
+        <a href="../register.html" class="lp-btn-primary">✨ 今すぐ無料で登録する</a>
+        <a href="../board.html" class="lp-btn-secondary">📋 案件を見てみる</a>
+      </div>
+      <div class="lp-trust-bar">
+        <div class="lp-trust-item">
+          <strong>8,500+</strong>
+          <span>登録職人数</span>
+        </div>
+        <div class="lp-trust-item">
+          <strong>3,200+</strong>
+          <span>掲載案件数</span>
+        </div>
+        <div class="lp-trust-item">
+          <strong>¥0</strong>
+          <span>登録料</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 悩みセクション -->
+  <section class="lp-section lp-section-gray">
+    <div class="lp-container">
+      <h2 class="lp-section-title">こんな<span>お悩み</span>、ありませんか？</h2>
+      <p class="lp-section-subtitle">多くの職人・一人親方が抱える、仕事探しの課題</p>
+      <div class="lp-pain-grid">
+        <div class="lp-pain-item">
+          <div class="lp-pain-icon">😰</div>
+          <h3>仕事が途切れる不安</h3>
+          <p>現場が終わるたびに次の仕事探し。安定した案件確保が難しい。</p>
+        </div>
+        <div class="lp-pain-item">
+          <div class="lp-pain-icon">🤝</div>
+          <h3>知り合いの紹介頼み</h3>
+          <p>いつも人づてで仕事を探している。新規開拓の手段がない。</p>
+        </div>
+        <div class="lp-pain-item">
+          <div class="lp-pain-icon">💸</div>
+          <h3>単価交渉がしにくい</h3>
+          <p>技術はあるのに単価が上がらない。正当な評価がほしい。</p>
+        </div>
+        <div class="lp-pain-item">
+          <div class="lp-pain-icon">📝</div>
+          <h3>事務作業が面倒</h3>
+          <p>スケジュール管理やり取り...本業に集中したい。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 解決セクション -->
+  <section class="lp-section lp-section-white">
+    <div class="lp-container">
+      <h2 class="lp-section-title">建設コネクトが、<span>すべて解決</span></h2>
+      <p class="lp-section-subtitle">もう一人で悩む必要はありません。</p>
+      <div class="lp-solution-list">
+        <div class="lp-solution-item">
+          <div class="lp-solution-icon lp-solution-icon-solve">📩</div>
+          <div class="lp-solution-body">
+            <div class="lp-solution-pain">😰 仕事が途切れる</div>
+            <div class="lp-solution-answer">→ 毎日新着案件が届く</div>
+            <div class="lp-solution-desc">あなたの職種・エリアに合った案件を自動でお知らせ</div>
+          </div>
+        </div>
+        <div class="lp-solution-item">
+          <div class="lp-solution-icon lp-solution-icon-solve">🔗</div>
+          <div class="lp-solution-body">
+            <div class="lp-solution-pain">🤝 紹介に頼るしかない</div>
+            <div class="lp-solution-answer">→ 全国の発注者と直接つながる</div>
+            <div class="lp-solution-desc">中間マージンなし。元請けと直接やり取り</div>
+          </div>
+        </div>
+        <div class="lp-solution-item">
+          <div class="lp-solution-icon lp-solution-icon-solve">📈</div>
+          <div class="lp-solution-body">
+            <div class="lp-solution-pain">💸 単価が上がらない</div>
+            <div class="lp-solution-answer">→ ランク制度で実力を見える化</div>
+            <div class="lp-solution-desc">実績を積むほど高単価案件にアクセス可能</div>
+          </div>
+        </div>
+        <div class="lp-solution-item">
+          <div class="lp-solution-icon lp-solution-icon-solve">📱</div>
+          <div class="lp-solution-body">
+            <div class="lp-solution-pain">📝 事務作業が多い</div>
+            <div class="lp-solution-answer">→ スマホだけで管理が完結</div>
+            <div class="lp-solution-desc">空き状況を公開するだけで仕事のオファーが届く</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 機能紹介 -->
+  <section class="lp-section lp-section-gray" id="features">
+    <div class="lp-container">
+      <h2 class="lp-section-title">職人のための<span>6つの機能</span></h2>
+      <p class="lp-section-subtitle">本業に集中できる環境を提供します。</p>
+      <div class="lp-features-grid">
+        <div class="lp-feature-card">
+          <div class="lp-feature-icon">🤝</div>
+          <div class="lp-feature-text">
+            <h3>案件マッチング</h3>
+            <p>職種・エリア・空きスケジュールに合った案件を自動提案</p>
+          </div>
+        </div>
+        <div class="lp-feature-card">
+          <div class="lp-feature-icon">💬</div>
+          <div class="lp-feature-text">
+            <h3>ダイレクトメッセージ</h3>
+            <p>発注者と直接やり取り。中間業者なしで条件交渉</p>
+          </div>
+        </div>
+        <div class="lp-feature-card">
+          <div class="lp-feature-icon">📅</div>
+          <div class="lp-feature-text">
+            <h3>スケジュール管理</h3>
+            <p>カレンダーで空き状況を管理・公開。ダブルブッキング防止</p>
+          </div>
+        </div>
+        <div class="lp-feature-card">
+          <div class="lp-feature-icon">🏅</div>
+          <div class="lp-feature-text">
+            <h3>ランク・評価制度</h3>
+            <p>実績でランクアップ。高単価案件にアクセス可能に</p>
+          </div>
+        </div>
+        <div class="lp-feature-card">
+          <div class="lp-feature-icon">📋</div>
+          <div class="lp-feature-text">
+            <h3>プロフィール公開</h3>
+            <p>資格・実績・評価を掲載。あなたの腕をアピール</p>
+          </div>
+        </div>
+        <div class="lp-feature-card">
+          <div class="lp-feature-icon">📱</div>
+          <div class="lp-feature-text">
+            <h3>かんたん操作</h3>
+            <p>スマホだけで全機能利用可。シンプルな画面設計</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 使い方 -->
+  <section class="lp-section lp-section-white" id="howto">
+    <div class="lp-container">
+      <h2 class="lp-section-title">かんたん<span>3ステップ</span>で開始</h2>
+      <p class="lp-section-subtitle">登録は無料、たった2分で完了。</p>
+      <div class="lp-howto-steps">
+        <div class="lp-howto-step">
+          <div class="lp-howto-number">1</div>
+          <div class="lp-howto-body">
+            <h3>無料会員登録</h3>
+            <p>メールアドレスと基本情報を入力するだけ。費用は一切かかりません。</p>
+          </div>
+        </div>
+        <div class="lp-howto-step">
+          <div class="lp-howto-number">2</div>
+          <div class="lp-howto-body">
+            <h3>プロフィールを充実</h3>
+            <p>職種・資格・対応エリア・空きスケジュールを登録。強みをアピール。</p>
+          </div>
+        </div>
+        <div class="lp-howto-step">
+          <div class="lp-howto-number">3</div>
+          <div class="lp-howto-body">
+            <h3>応募 or オファーを受ける</h3>
+            <p>気になる案件に応募するか、発注者からのオファーを待つだけ。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数字で見る建設コネクト -->
+  <section class="lp-stats">
+    <div class="lp-container">
+      <h2 class="lp-section-title" style="color: #FFF; margin-bottom: 32px;">📊 数字で見る<span>建設コネクト</span></h2>
+      <div class="lp-stats-grid">
+        <div class="lp-stat-item">
+          <div class="lp-stat-icon">👷</div>
+          <div class="lp-stat-number">8,500<span>人+</span></div>
+          <div class="lp-stat-label">登録職人数</div>
+        </div>
+        <div class="lp-stat-item">
+          <div class="lp-stat-icon">📋</div>
+          <div class="lp-stat-number">200<span>件+</span></div>
+          <div class="lp-stat-label">月間新着案件数</div>
+        </div>
+        <div class="lp-stat-item">
+          <div class="lp-stat-icon">⚡</div>
+          <div class="lp-stat-number">3<span>日</span></div>
+          <div class="lp-stat-label">平均マッチング日数</div>
+        </div>
+        <div class="lp-stat-item">
+          <div class="lp-stat-icon">⭐</div>
+          <div class="lp-stat-number">94.5<span>%</span></div>
+          <div class="lp-stat-label">職人満足度</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 利用者の声 -->
+  <section class="lp-section lp-section-gray">
+    <div class="lp-container">
+      <h2 class="lp-section-title">💬 先輩職人の<span>声</span></h2>
+      <p class="lp-section-subtitle">建設コネクトを活用している職人の声をご紹介</p>
+      <div class="lp-testimonials-grid">
+        <div class="lp-testimonial-card">
+          <div class="lp-testimonial-quote">
+            紹介だけに頼っていた仕事探しが変わりました。登録して1週間で3件のオファーが届き、今では安定して仕事を確保できています。
+          </div>
+          <div class="lp-testimonial-author">
+            <div class="lp-testimonial-avatar">👷</div>
+            <div>
+              <div class="lp-testimonial-name">田中 大輔さん</div>
+              <div class="lp-testimonial-role">大工・経験20年 / 東京都</div>
+            </div>
+            <div class="lp-testimonial-stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="lp-testimonial-card">
+          <div class="lp-testimonial-quote">
+            一人親方として独立したばかりで不安でしたが、建設コネクトのおかげで元請けさんと直接つながれました。単価も以前より上がりました。
+          </div>
+          <div class="lp-testimonial-author">
+            <div class="lp-testimonial-avatar">⚡</div>
+            <div>
+              <div class="lp-testimonial-name">佐藤 誠さん</div>
+              <div class="lp-testimonial-role">電気工事士・経験12年 / 神奈川県</div>
+            </div>
+            <div class="lp-testimonial-stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="lp-testimonial-card">
+          <div class="lp-testimonial-quote">
+            スマホで空き状況を更新するだけで仕事が来るのが便利。50代の自分でも簡単に使えています。家族との時間も増えました。
+          </div>
+          <div class="lp-testimonial-author">
+            <div class="lp-testimonial-avatar">🏠</div>
+            <div>
+              <div class="lp-testimonial-name">山田 健一さん</div>
+              <div class="lp-testimonial-role">内装工・経験8年 / 埼玉県</div>
+            </div>
+            <div class="lp-testimonial-stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="lp-section lp-section-gray" id="faq">
+    <div class="lp-container">
+      <h2 class="lp-section-title">❓ よくある<span>ご質問</span></h2>
+      <p class="lp-section-subtitle">職人の方からよくいただくご質問にお答えします。</p>
+      <div class="lp-faq-list">
+        <div class="lp-faq-item">
+          <button class="lp-faq-question">
+            <span>本当に無料で使えますか？</span>
+            <span class="lp-faq-arrow">▼</span>
+          </button>
+          <div class="lp-faq-answer">
+            <div class="lp-faq-answer-inner">
+              はい、職人の方は基本無料でご利用いただけます。登録料・月額料ともに0円で、案件の閲覧やプロフィール公開、メッセージ機能をご利用いただけます。
+            </div>
+          </div>
+        </div>
+        <div class="lp-faq-item">
+          <button class="lp-faq-question">
+            <span>一人親方でも登録できますか？</span>
+            <span class="lp-faq-arrow">▼</span>
+          </button>
+          <div class="lp-faq-answer">
+            <div class="lp-faq-answer-inner">
+              もちろんです。個人事業主・一人親方の方も多数ご利用いただいています。法人登記は不要で、個人でもすべての機能をご利用いただけます。
+            </div>
+          </div>
+        </div>
+        <div class="lp-faq-item">
+          <button class="lp-faq-question">
+            <span>どんな職種に対応していますか？</span>
+            <span class="lp-faq-arrow">▼</span>
+          </button>
+          <div class="lp-faq-answer">
+            <div class="lp-faq-answer-inner">
+              電気工事、配管工事、大工、塗装、足場、内装、空調、清掃、土木など、建設業の幅広い職種に対応しています。
+            </div>
+          </div>
+        </div>
+        <div class="lp-faq-item">
+          <button class="lp-faq-question">
+            <span>スマートフォンだけで使えますか？</span>
+            <span class="lp-faq-arrow">▼</span>
+          </button>
+          <div class="lp-faq-answer">
+            <div class="lp-faq-answer-inner">
+              はい、スマートフォンのブラウザから全機能をご利用いただけます。アプリのインストールは不要です。
+            </div>
+          </div>
+        </div>
+        <div class="lp-faq-item">
+          <button class="lp-faq-question">
+            <span>仕事を断ることはできますか？</span>
+            <span class="lp-faq-arrow">▼</span>
+          </button>
+          <div class="lp-faq-answer">
+            <div class="lp-faq-answer-inner">
+              はい、オファーが届いても応募するかどうかはご自身の判断です。強制は一切ありません。
+            </div>
+          </div>
+        </div>
+        <div class="lp-faq-item">
+          <button class="lp-faq-question">
+            <span>退会はいつでもできますか？</span>
+            <span class="lp-faq-arrow">▼</span>
+          </button>
+          <div class="lp-faq-answer">
+            <div class="lp-faq-answer-inner">
+              はい、いつでも無料で退会できます。違約金やペナルティは一切ありません。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最終CTA -->
+  <section class="lp-final-cta" id="pricing">
+    <div class="lp-container">
+      <div class="lp-cta-free-badge">職人の方は無料で利用可能</div>
+      <h2>あなたの腕を、<br>待っている現場がある。</h2>
+      <p>登録は無料・たった2分で完了。<br>今すぐ建設コネクトを始めましょう。</p>
+      <a href="../register.html" class="lp-final-cta-btn">無料で登録する</a>
+    </div>
+  </section>
+
+  <!-- フッター -->
+  <footer class="lp-footer">
+    <div class="lp-footer-inner">
+      <div class="lp-footer-top">
+        <div>
+          <div class="lp-footer-logo">
+            <span class="lp-footer-logo-icon">🏗️</span>
+            <div>
+              <div class="lp-footer-logo-text">建設コネクト</div>
+              <div class="lp-footer-logo-sub">KENSETSU CONNECT</div>
+            </div>
+          </div>
+        </div>
+        <div class="lp-footer-links">
+          <a href="../index.html">トップ</a>
+          <a href="../board.html">掲示板</a>
+          <a href="../pricing.html">料金プラン</a>
+          <a href="../guide.html">利用ガイド</a>
+          <a href="../terms.html">利用規約</a>
+          <a href="../privacy.html">プライバシーポリシー</a>
+          <a href="../company.html">運営会社</a>
+        </div>
+      </div>
+      <div class="lp-footer-bottom">
+        <p class="lp-footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // ヘッダースクロール影
+    window.addEventListener('scroll', function() {
+      var header = document.querySelector('.lp-header');
+      if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // スムーススクロール
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          var headerHeight = document.querySelector('.lp-header').offsetHeight;
+          var targetPos = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+          window.scrollTo({ top: targetPos, behavior: 'smooth' });
+          document.querySelector('.lp-nav').classList.remove('open');
+        }
+      });
+    });
+
+    // FAQアコーディオン
+    document.querySelectorAll('.lp-faq-question').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var item = this.closest('.lp-faq-item');
+        var isActive = item.classList.contains('active');
+        document.querySelectorAll('.lp-faq-item').forEach(function(el) {
+          el.classList.remove('active');
+        });
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
