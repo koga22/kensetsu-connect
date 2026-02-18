@@ -7,6 +7,191 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
   <link rel="stylesheet" href="css/styles.css">
   <style>
+    /* ===== モバイルファースト LP共通ヘッダー・フッター ===== */
+    * { box-sizing: border-box; }
+
+    /* --- LP Header --- */
+    .lp-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      transition: box-shadow 0.3s ease;
+    }
+    .lp-header.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+    .lp-header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .lp-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .lp-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .lp-logo-text {
+      font-size: 16px;
+      font-weight: 800;
+      color: #1a365d;
+    }
+    .lp-logo-sub {
+      font-size: 8px;
+      color: #718096;
+      letter-spacing: 1px;
+    }
+    .lp-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #FFF;
+      flex-direction: column;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      gap: 12px;
+    }
+    .lp-nav.open {
+      display: flex;
+    }
+    .lp-nav a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: #4A5568;
+      padding: 8px 0;
+      transition: color 0.2s;
+    }
+    .lp-nav a:hover {
+      color: #ED8936;
+    }
+    .lp-nav-cta {
+      background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);
+      color: #FFF !important;
+      padding: 12px 24px !important;
+      border-radius: 8px;
+      font-weight: 700 !important;
+      text-align: center;
+    }
+    .lp-hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+    }
+    .lp-hamburger span {
+      width: 22px;
+      height: 2px;
+      background: #1a365d;
+      transition: all 0.3s ease;
+    }
+
+    /* --- LP Footer --- */
+    .lp-footer {
+      background: #1a365d;
+      padding: 32px 16px;
+    }
+    .lp-footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .lp-footer-top {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .lp-footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .lp-footer-logo-icon { font-size: 24px; }
+    .lp-footer-logo-text {
+      font-size: 14px;
+      font-weight: 800;
+      color: #FFF;
+    }
+    .lp-footer-logo-sub {
+      font-size: 8px;
+      color: #90CDF4;
+      letter-spacing: 1px;
+    }
+    .lp-footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .lp-footer-links a {
+      font-size: 12px;
+      color: #90CDF4;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .lp-footer-links a:hover { color: #FFF; }
+    .lp-footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 16px;
+      text-align: center;
+    }
+    .lp-footer-copyright {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ===== Desktop (768px以上) ===== */
+    @media (min-width: 769px) {
+      .lp-header-inner {
+        padding: 12px 24px;
+      }
+      .lp-logo-icon { width: 40px; height: 40px; font-size: 22px; }
+      .lp-logo-text { font-size: 18px; }
+      .lp-nav {
+        display: flex;
+        position: static;
+        flex-direction: row;
+        padding: 0;
+        box-shadow: none;
+        gap: 24px;
+        background: transparent;
+      }
+      .lp-nav a { padding: 0; }
+      .lp-hamburger { display: none; }
+
+      .lp-footer { padding: 40px 24px; }
+      .lp-footer-top {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 32px;
+      }
+      .lp-footer-links { gap: 32px; }
+      .lp-footer-links a { font-size: 13px; }
+    }
+
+    /* ===== 利用規約固有スタイル ===== */
     .terms-container {
       max-width: 900px;
       margin: 0 auto;
@@ -103,28 +288,30 @@
 </head>
 <body>
   <!-- ヘッダー -->
-  <header class="header">
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <div class="logo-icon">🏗️</div>
-        <div class="logo-text">
-          <h1>建設コネクト</h1>
-          <p>KENSETSU CONNECT</p>
+  <header class="lp-header" id="top">
+    <div class="lp-header-inner">
+      <a href="index.html" class="lp-logo">
+        <div class="lp-logo-icon">🏗️</div>
+        <div>
+          <div class="lp-logo-text">建設コネクト</div>
+          <div class="lp-logo-sub">KENSETSU CONNECT</div>
         </div>
       </a>
-
-      <nav class="nav">
-        <a href="index.html" class="nav-btn">🏠 トップ</a>
-        <a href="board.html" class="nav-btn">📋 掲示板</a>
-        <a href="pricing.html" class="nav-btn">💰 料金プラン</a>
-        <a href="mypage.html" class="nav-btn">👤 マイページ</a>
-        <a href="login.html" class="btn-login">ログイン</a>
+      <button class="lp-hamburger" onclick="document.querySelector('.lp-nav').classList.toggle('open')" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="lp-nav">
+        <a href="lp/index.html">トップ</a>
+        <a href="board.html">掲示板</a>
+        <a href="pricing.html">料金プラン</a>
+        <a href="guide.html">利用ガイド</a>
+        <a href="register.html" class="lp-nav-cta">無料で登録する</a>
       </nav>
     </div>
   </header>
 
   <!-- メインコンテンツ -->
-  <main style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+  <main style="max-width: 1200px; margin: 0 auto; padding: 80px 16px 48px;">
     <div class="terms-container">
       <!-- ページタイトル -->
       <div class="terms-header">
@@ -373,45 +560,44 @@
   </main>
 
   <!-- フッター -->
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-top">
+  <footer class="lp-footer">
+    <div class="lp-footer-inner">
+      <div class="lp-footer-top">
         <div>
-          <div class="footer-logo">
-            <span class="footer-logo-icon">🏗️</span>
+          <div class="lp-footer-logo">
+            <span class="lp-footer-logo-icon">🏗️</span>
             <div>
-              <p class="footer-logo-text">建設コネクト</p>
-              <p class="footer-logo-sub">KENSETSU CONNECT</p>
+              <div class="lp-footer-logo-text">建設コネクト</div>
+              <div class="lp-footer-logo-sub">KENSETSU CONNECT</div>
             </div>
           </div>
-          <p class="footer-desc">建設業界の人材マッチングをもっとスマートに。</p>
         </div>
-        <div class="footer-links">
-          <div class="footer-links-group">
-            <h4>サービス</h4>
-            <a href="board.html">掲示板</a>
-            <a href="board-post.html">求人を投稿</a>
-            <a href="pricing.html">料金プラン</a>
-          </div>
-          <div class="footer-links-group">
-            <h4>サポート</h4>
-            <a href="guide.html">利用ガイド</a>
-            <a href="faq.html">よくある質問</a>
-            <a href="contact-form.html">お問い合わせ</a>
-          </div>
-          <div class="footer-links-group">
-            <h4>会社情報</h4>
-            <a href="company.html">運営会社</a>
-            <a href="terms.html">利用規約</a>
-            <a href="privacy.html">プライバシーポリシー</a>
-            <a href="tokushoho.html">特定商取引法に基づく表記</a>
-          </div>
+        <div class="lp-footer-links">
+          <a href="index.html">トップ</a>
+          <a href="board.html">掲示板</a>
+          <a href="pricing.html">料金プラン</a>
+          <a href="guide.html">利用ガイド</a>
+          <a href="terms.html">利用規約</a>
+          <a href="privacy.html">プライバシーポリシー</a>
+          <a href="company.html">運営会社</a>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p class="footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
+      <div class="lp-footer-bottom">
+        <p class="lp-footer-copyright">© 2025 Kensetsu Connect. All rights reserved.</p>
       </div>
     </div>
   </footer>
+  <!-- JavaScript -->
+  <script>
+    // ヘッダースクロール影
+    window.addEventListener('scroll', function() {
+      var header = document.querySelector('.lp-header');
+      if (window.scrollY > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
 </body>
 </html>
