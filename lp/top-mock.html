@@ -7,27 +7,20 @@
   <meta name="description" content="建設業界に特化したマッチングプラットフォーム。案件探しも、人材探しも、これ一つで。">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👷</text></svg>">
   <link rel="stylesheet" href="../css/styles.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
   <style>
-    /* ===== Material Symbols 共通設定 ===== */
-    .material-symbols-rounded {
-      font-family: 'Material Symbols Rounded';
-      font-weight: normal;
+    /* ===== Noto Color Emoji - 全環境で統一された絵文字表示 ===== */
+    @font-face {
+      font-family: 'Noto Color Emoji';
       font-style: normal;
-      font-size: inherit;
-      line-height: 1;
-      letter-spacing: normal;
-      text-transform: none;
-      display: inline-block;
-      white-space: nowrap;
-      word-wrap: normal;
-      direction: ltr;
-      -webkit-font-smoothing: antialiased;
-      font-variation-settings: 'FILL' 1;
+      font-display: swap;
+      font-weight: 400;
+      src: url(https://cdn.jsdelivr.net/fontsource/fonts/noto-color-emoji@latest/emoji-400-normal.woff2) format('woff2'),
+           url(https://cdn.jsdelivr.net/fontsource/fonts/noto-color-emoji@latest/emoji-400-normal.woff) format('woff');
     }
 
     /* ===== モバイルファースト トップページ固有スタイル ===== */
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; font-family: inherit; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif, "Noto Color Emoji"; }
 
     /* --- Header --- */
     .lp-header {
@@ -67,7 +60,6 @@
       justify-content: center;
       font-size: 20px;
     }
-    .lp-logo-icon .material-symbols-rounded { font-size: 20px; color: #FFF; }
     .lp-logo-text {
       font-size: 16px;
       font-weight: 800;
@@ -310,10 +302,6 @@
     .lp-usertype-features li:last-child {
       border-bottom: none;
     }
-    .lp-usertype-features .material-symbols-rounded {
-      font-size: 18px;
-      color: #48BB78;
-    }
     .lp-usertype-btn {
       display: flex;
       align-items: center;
@@ -517,7 +505,6 @@
       gap: 8px;
     }
     .lp-footer-logo-icon { font-size: 24px; }
-    .lp-footer-logo-icon .material-symbols-rounded { font-size: 24px; color: #FBD38D; }
     .lp-footer-logo-text {
       font-size: 14px;
       font-weight: 800;
@@ -613,7 +600,6 @@
       }
       .lp-feature-card { padding: 20px; gap: 16px; }
       .lp-feature-icon { width: 48px; height: 48px; font-size: 24px; }
-      .lp-feature-icon .material-symbols-rounded { font-size: 24px; }
       .lp-feature-card h3 { font-size: 15px; }
       .lp-feature-card p { font-size: 13px; }
 
@@ -672,7 +658,7 @@
   <header class="lp-header" id="top">
     <div class="lp-header-inner">
       <a href="../index.html" class="lp-logo">
-        <div class="lp-logo-icon"><span class="material-symbols-rounded">construction</span></div>
+        <div class="lp-logo-icon">🏗️</div>
         <div>
           <div class="lp-logo-text">建設コネクト</div>
           <div class="lp-logo-sub">KENSETSU CONNECT</div>
@@ -697,10 +683,10 @@
       <p class="lp-hero-sub">職人と企業の新しい出会いを、ここから。</p>
       <p class="lp-hero-desc">建設業界に特化したマッチングプラットフォーム。<br>案件探しも、人材探しも、これ一つで。</p>
       <div class="lp-hero-actions">
-        <a href="/signup?type=worker" class="lp-btn-primary"><span class="material-symbols-rounded">engineering</span> 職人として登録</a>
-        <a href="/signup?type=contractor" class="lp-btn-secondary"><span class="material-symbols-rounded">business</span> 元請けとして登録</a>
+        <a href="/signup?type=worker" class="lp-btn-primary">👷 職人として登録</a>
+        <a href="/signup?type=contractor" class="lp-btn-secondary">🏢 元請けとして登録</a>
       </div>
-      <p class="lp-hero-note"><span class="material-symbols-rounded" style="font-size:14px;vertical-align:-2px">check_circle</span> 会員登録は無料・30秒で完了</p>
+      <p class="lp-hero-note">✅ 会員登録は無料・30秒で完了</p>
     </div>
   </section>
 
@@ -712,27 +698,27 @@
       <div class="lp-usertype-grid">
         <!-- 職人向け -->
         <div class="lp-usertype-card lp-usertype-worker">
-          <div class="lp-usertype-label"><span class="material-symbols-rounded" style="font-size:12px;vertical-align:-2px">engineering</span> 職人・協力会社向け</div>
+          <div class="lp-usertype-label">👷 職人・協力会社向け</div>
           <h3>案件を探す</h3>
           <p class="lp-usertype-catch">あなたのスキル、求められています</p>
           <ul class="lp-usertype-features">
-            <li><span class="material-symbols-rounded">check_circle</span> 職種・エリアで案件検索</li>
-            <li><span class="material-symbols-rounded">check_circle</span> カレンダーで空き日程管理</li>
-            <li><span class="material-symbols-rounded">check_circle</span> AI提案システム</li>
+            <li>✅ 職種・エリアで案件検索</li>
+            <li>✅ カレンダーで空き日程管理</li>
+            <li>✅ AI提案システム</li>
           </ul>
-          <a href="/signup?type=worker" class="lp-usertype-btn"><span class="material-symbols-rounded">arrow_forward</span> 職人として登録する</a>
+          <a href="/signup?type=worker" class="lp-usertype-btn">➡️ 職人として登録する</a>
         </div>
         <!-- 元請け向け -->
         <div class="lp-usertype-card lp-usertype-contractor">
-          <div class="lp-usertype-label"><span class="material-symbols-rounded" style="font-size:12px;vertical-align:-2px">business</span> 元請け・建設会社向け</div>
+          <div class="lp-usertype-label">🏢 元請け・建設会社向け</div>
           <h3>案件を依頼する</h3>
           <p class="lp-usertype-catch">即戦力の職人を、今すぐ</p>
           <ul class="lp-usertype-features">
-            <li><span class="material-symbols-rounded">check_circle</span> 案件投稿機能</li>
-            <li><span class="material-symbols-rounded">check_circle</span> 協力会社検索・スカウト</li>
-            <li><span class="material-symbols-rounded">check_circle</span> AI自動提案</li>
+            <li>✅ 案件投稿機能</li>
+            <li>✅ 協力会社検索・スカウト</li>
+            <li>✅ AI自動提案</li>
           </ul>
-          <a href="/signup?type=contractor" class="lp-usertype-btn"><span class="material-symbols-rounded">arrow_forward</span> 元請けとして登録する</a>
+          <a href="/signup?type=contractor" class="lp-usertype-btn">➡️ 元請けとして登録する</a>
         </div>
       </div>
     </div>
@@ -745,42 +731,42 @@
       <p class="lp-section-subtitle">建設業界に特化した、現場で本当に使える機能を</p>
       <div class="lp-features-grid">
         <div class="lp-feature-card">
-          <div class="lp-feature-icon"><span class="material-symbols-rounded" style="color:#2c5282">handshake</span></div>
+          <div class="lp-feature-icon">🤝</div>
           <div class="lp-feature-text">
             <h3>案件マッチング</h3>
             <p>職種・エリア・条件で最適な案件・人材を自動マッチング</p>
           </div>
         </div>
         <div class="lp-feature-card">
-          <div class="lp-feature-icon"><span class="material-symbols-rounded" style="color:#2c5282">calendar_month</span></div>
+          <div class="lp-feature-icon">📅</div>
           <div class="lp-feature-text">
             <h3>カレンダー連携</h3>
             <p>空きスケジュールを管理・公開。ダブルブッキングを防止</p>
           </div>
         </div>
         <div class="lp-feature-card">
-          <div class="lp-feature-icon" style="background: linear-gradient(135deg, #FEFCBF 0%, #FBD38D 100%);"><span class="material-symbols-rounded" style="color:#DD6B20">auto_awesome</span></div>
+          <div class="lp-feature-icon" style="background: linear-gradient(135deg, #FEFCBF 0%, #FBD38D 100%);">✨</div>
           <div class="lp-feature-text">
             <h3>AIレコメンド<span class="lp-feature-badge">プロプラン</span></h3>
             <p>AIが最適なマッチングを高精度で提案</p>
           </div>
         </div>
         <div class="lp-feature-card">
-          <div class="lp-feature-icon"><span class="material-symbols-rounded" style="color:#2c5282">chat</span></div>
+          <div class="lp-feature-icon">💬</div>
           <div class="lp-feature-text">
             <h3>チャット機能</h3>
             <p>マッチング成立後にチャットで直接やり取り。ファイル送信対応</p>
           </div>
         </div>
         <div class="lp-feature-card">
-          <div class="lp-feature-icon"><span class="material-symbols-rounded" style="color:#2c5282">military_tech</span></div>
+          <div class="lp-feature-icon">🏅</div>
           <div class="lp-feature-text">
             <h3>ランク制度</h3>
             <p>実績を可視化。ランクに応じた優先表示で信頼度アップ</p>
           </div>
         </div>
         <div class="lp-feature-card">
-          <div class="lp-feature-icon"><span class="material-symbols-rounded" style="color:#2c5282">smartphone</span></div>
+          <div class="lp-feature-icon">📱</div>
           <div class="lp-feature-text">
             <h3>シンプル操作</h3>
             <p>直感的なUI設計。スマホだけで全機能利用可能</p>
@@ -827,8 +813,8 @@
       <h2>建設業界の未来を、<br>一緒に。</h2>
       <p>登録は無料・30秒で完了。<br>今すぐ建設コネクトを始めましょう。</p>
       <div class="lp-final-cta-actions">
-        <a href="/signup" class="lp-final-cta-btn"><span class="material-symbols-rounded">person_add</span> 無料で会員登録</a>
-        <a href="/login" class="lp-final-cta-login"><span class="material-symbols-rounded" style="font-size:14px;vertical-align:-2px">login</span> すでにアカウントをお持ちの方はログイン</a>
+        <a href="/signup" class="lp-final-cta-btn">✏️ 無料で会員登録</a>
+        <a href="/login" class="lp-final-cta-login">🔑 すでにアカウントをお持ちの方はログイン</a>
       </div>
     </div>
   </section>
@@ -839,7 +825,7 @@
       <div class="lp-footer-top">
         <div>
           <div class="lp-footer-logo">
-            <span class="lp-footer-logo-icon"><span class="material-symbols-rounded">construction</span></span>
+            <span class="lp-footer-logo-icon">🏗️</span>
             <div>
               <div class="lp-footer-logo-text">建設コネクト</div>
               <div class="lp-footer-logo-sub">KENSETSU CONNECT</div>
