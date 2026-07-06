@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>建設業の元請会社・職人マッチング【無料】 | 建設コネクト（改修案）</title>
+  <meta name="description" content="建設業特化の元請会社・職人マッチングサービス。元請も職人も無料で登録。職種・エリアで簡単検索、最短即日でマッチング。会員登録は無料・30秒で完了。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Oswald:wght@500;700&display=swap">
+  <style>
+    /* ===== Noto Color Emoji（社内共通ルール） ===== */
+    @font-face {
+      font-family: 'Noto Color Emoji';
+      font-style: normal; font-display: swap; font-weight: 400;
+      src: url(https://cdn.jsdelivr.net/fontsource/fonts/noto-color-emoji@latest/emoji-400-normal.woff2) format('woff2'),
+           url(https://cdn.jsdelivr.net/fontsource/fonts/noto-color-emoji@latest/emoji-400-normal.woff) format('woff');
+    }
+
+    /* ===== カラートークン（本番準拠） ===== */
+    :root {
+      --color-white: #fff;
+      --color-secondary-bg: #f7fafc;
+      --color-text-primary: #2d3748;
+      --color-text-secondary: #718096;
+      --color-primary: #ed8936;
+      --color-primary-foreground: #fff;
+      --color-primary-hover: #dd6b20;
+      --color-border: #e2e8f0;
+      --color-header-bg: #1a365d;
+      --color-header-bg-light: #2c5282;
+      --color-header-text-muted: #90cdf4;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Noto Sans JP", sans-serif, "Noto Color Emoji";
+      background: var(--color-white);
+      color: var(--color-text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; color: inherit; }
+    .page { display: flex; min-height: 100vh; flex-direction: column; }
+    .wrap-7xl { margin: 0 auto; max-width: 80rem; }
+    .wrap-275 { margin: 0 auto; max-width: 68.75rem; }
+    .wrap-200 { margin: 0 auto; max-width: 50rem; }
+    main { flex: 1; }
+
+    /* ===== Header ===== */
+    .header { position: sticky; top: 0; z-index: 100; }
+    .header-bar { position: relative; backdrop-filter: blur(4px); background: rgba(255,255,255,0.97); box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+    .header-inner { display: flex; height: 64px; align-items: center; justify-content: space-between; padding: 0 16px; }
+    .brand { display: flex; align-items: center; gap: 8px; }
+    .brand-icon { display: flex; height: 36px; width: 36px; align-items: center; justify-content: center; border-radius: 8px; font-size: 20px; background: linear-gradient(to bottom right, var(--color-header-bg), var(--color-header-bg-light)); }
+    .brand-name { font-size: 16px; font-weight: 800; color: var(--color-header-bg); }
+    .brand-sub { font-size: 8px; letter-spacing: .15em; text-transform: uppercase; color: var(--color-text-secondary); }
+    .nav { display: flex; align-items: center; gap: 8px; }
+    .nav-links { display: none; align-items: center; gap: 4px; }
+    .nav-links a { padding: 8px 12px; font-size: 14px; font-weight: 500; color: var(--color-text-secondary); white-space: nowrap; transition: color .2s; }
+    .nav-links a:hover { color: var(--color-text-primary); }
+    .nav-divider { display: none; width: 1px; height: 24px; background: var(--color-border); }
+    .nav-iconbtn { display: none; width: 72px; flex-direction: column; align-items: center; gap: 2px; border-radius: 8px; padding: 6px 0; font-size: 12px; font-weight: 500; background: #f3f4f6; color: var(--color-text-secondary); transition: all .2s; }
+    .nav-iconbtn:hover { background: #e5e7eb; color: var(--color-text-primary); }
+    .nav-iconbtn svg { width: 32px; height: 32px; }
+    .nav-login { display: none; padding: 8px; font-size: 14px; font-weight: 500; color: var(--color-text-secondary); white-space: nowrap; }
+    .nav-login:hover { color: var(--color-text-primary); }
+    .btn-signup-pc { display: none; border-radius: 8px; padding: 10px 16px; font-size: 14px; font-weight: 700; color: var(--color-primary-foreground); white-space: nowrap; transition: all .2s; background: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-hover)); }
+    .btn-signup-pc:hover { box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+    .btn-signup-mobile { border-radius: 8px; padding: 10px 12px; font-size: 14px; font-weight: 700; color: var(--color-primary-foreground); white-space: nowrap; background: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-hover)); }
+    .hamburger { display: flex; height: 40px; width: 40px; align-items: center; justify-content: center; border-radius: 8px; background: none; border: none; cursor: pointer; color: var(--color-text-secondary); }
+    .hamburger:hover { background: #f3f4f6; }
+    .hamburger svg { width: 24px; height: 24px; }
+    .mobile-menu { position: absolute; left: 0; right: 0; top: 100%; z-index: 50; display: none; }
+    .mobile-menu.open { display: block; }
+    .mobile-menu-inner { background: #fff; border-top: 1px solid var(--color-border); box-shadow: 0 10px 15px rgba(0,0,0,0.1); padding: 12px 16px 20px; }
+    .mobile-menu-inner a.m-link { display: block; border-radius: 8px; padding: 12px 16px; font-size: 16px; font-weight: 500; color: var(--color-text-primary); }
+    .mobile-menu-inner a.m-link:hover { background: #f9fafb; }
+    .mobile-menu-icon { display: flex; align-items: center; gap: 12px; border-radius: 8px; padding: 12px 16px; font-size: 16px; font-weight: 500; color: var(--color-text-primary); }
+    .mobile-menu-icon:hover { background: #f9fafb; }
+    .mobile-menu-icon svg { width: 20px; height: 20px; }
+    .mobile-divider { border-top: 1px solid var(--color-border); margin: 8px 0; }
+    .mobile-auth { display: flex; gap: 12px; }
+    .mobile-auth a { flex: 1; border-radius: 8px; padding: 12px 16px; text-align: center; font-size: 14px; font-weight: 700; }
+    .mobile-auth .m-login { border: 1px solid var(--color-border); color: var(--color-text-primary); }
+    .mobile-auth .m-login:hover { background: #f9fafb; }
+    .mobile-auth .m-signup { color: #fff; background: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-hover)); }
+
+    /* ===== Hero（①FV強化） ===== */
+    .hero { position: relative; overflow: hidden; background: linear-gradient(135deg, #1a365d, #2c5282, #2b6cb0); }
+    .hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size: 30px 30px; }
+    .hero-inner { position: relative; z-index: 10; padding: 56px 16px 96px; text-align: center; }
+    /* バッジ（建設業界専門の…） */
+    .hero-badge {
+      display: inline-block; border-radius: 9999px; padding: 8px 20px; margin-bottom: 20px;
+      font-size: 13px; font-weight: 700; color: #fff;
+      background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.30);
+    }
+    .hero h1 { font-size: 34px; font-weight: 900; line-height: 1.2; color: #fff; }
+    .hero h1 span { color: var(--color-primary); }
+    /* 登録会員数 */
+    .hero-members { margin-top: 14px; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.9); }
+    .hero-members .num { font-size: 22px; font-weight: 900; color: var(--color-primary); }
+    /* 改善①: 訴求2行を主役級に拡大（補足pをやめてリスト化） */
+    .hero-msgs { margin: 24px auto 0; display: flex; flex-direction: column; gap: 12px; max-width: 30rem; }
+    .hero-msg { display: flex; align-items: center; gap: 12px; border-radius: 14px; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.22); padding: 14px 18px; }
+    .hero-msg-ico { font-size: 26px; line-height: 1; flex-shrink: 0; }
+    .hero-msg-text { font-size: 18px; font-weight: 800; color: #fff; line-height: 1.35; text-align: left; }
+    .hero-msg-text b { color: var(--color-primary); font-weight: 900; }
+
+    /* ===== Section common ===== */
+    .sec { padding: 48px 16px; }
+    .sec-white { background: #fff; }
+    .sec-gray { background: var(--color-secondary-bg); }
+    .sec-title { text-align: center; font-size: 21px; font-weight: 800; line-height: 1.3; color: var(--color-header-bg); }
+    .sec-title span { color: var(--color-primary); }
+    .sec-sub { margin-top: 10px; text-align: center; font-size: 13px; line-height: 1.7; color: var(--color-text-secondary); }
+
+    /* ===== ②実績（添付：上段3項目＋下段2項目／青背景に被せる） ===== */
+    /* ヒーロー直下に重ねる。背景は透明にしてカード上半分を青に食い込ませる */
+    .stats-band { background: transparent; padding: 0 16px 8px; margin-top: -72px; position: relative; z-index: 20; }
+    .stats-card {
+      margin: 0 auto; max-width: 56rem; border-radius: 20px; border: 1px solid var(--color-border);
+      background: #fff; box-shadow: 0 8px 28px rgba(0,0,0,0.10); padding: 22px 12px;
+    }
+    .stats-row { display: grid; align-items: center; }
+    .stats-row-top { grid-template-columns: repeat(2, 1fr); }
+    .stats-row-bottom { grid-template-columns: repeat(2, 1fr); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--color-border); }
+    .stat-cell { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; padding: 14px 4px; }
+    .stat-cell + .stat-cell::before { content: ''; position: absolute; left: 0; top: 12%; height: 76%; width: 1px; background: var(--color-border); }
+    .stat-numrow { display: flex; align-items: baseline; gap: 2px; }
+    .stat-num { font-size: 34px; font-weight: 900; line-height: 1; color: var(--color-primary); }
+    .stat-unit { font-size: 15px; font-weight: 700; color: var(--color-text-primary); }
+    .stat-label { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--color-text-primary); }
+    .stat-label .ico { font-size: 28px; color: var(--color-header-bg); }
+
+    /* ===== ③チケット・ログインボーナス（SPも左右2カラム） ===== */
+    .promo { background: linear-gradient(135deg, #fff7ed, #fff); }
+    .promo-grid { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
+    .promo-card {
+      position: relative; flex: 1; min-width: 0; border-radius: 16px; border: 2px solid #FBD9B0; background: #fff;
+      padding: 18px 16px; box-shadow: 0 4px 20px rgba(237,137,54,0.08); overflow: hidden;
+    }
+    .promo-card::after { content: ''; position: absolute; right: -20px; top: -20px; width: 90px; height: 90px; border-radius: 50%; background: rgba(237,137,54,0.08); }
+    /* 縦2段になったのでアイコン左・見出し右の横並び */
+    .promo-head { display: flex; flex-direction: row; align-items: center; gap: 14px; position: relative; z-index: 1; }
+    .promo-ico { display: flex; height: 48px; width: 48px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 14px; font-size: 26px; background: linear-gradient(to bottom right, #EBF8FF, #BEE3F8); }
+    .promo-card h3 { font-size: 17px; font-weight: 800; color: var(--color-header-bg); }
+    .promo-card p { margin-top: 8px; font-size: 13px; line-height: 1.7; color: var(--color-text-secondary); position: relative; z-index: 1; }
+    .promo-badge { display: inline-block; margin-top: 12px; border-radius: 9999px; background: #FFF5EB; color: var(--color-primary-hover); font-size: 11px; font-weight: 700; padding: 4px 12px; position: relative; z-index: 1; }
+
+    /* ===== User type ===== */
+    .usertype-grid { display: flex; flex-direction: column; gap: 16px; }
+    .ut-card { flex: 1; border-radius: 16px; border: 2px solid var(--color-border); background: var(--color-secondary-bg); padding: 24px; transition: all .2s; }
+    .ut-card:hover { border-color: var(--color-primary); box-shadow: 0 4px 24px rgba(237,137,54,0.12); }
+    .ut-tag { display: inline-block; border-radius: 9999px; padding: 4px 12px; font-size: 11px; font-weight: 700; }
+    .ut-tag.worker { background: #EBF8FF; color: #2c5282; }
+    .ut-tag.contractor { background: #FFF5F5; color: #C53030; }
+    .ut-card h3 { margin-top: 12px; font-size: 18px; font-weight: 800; color: var(--color-header-bg); }
+    .ut-card > p { margin-top: 6px; font-size: 13px; line-height: 1.7; color: var(--color-text-secondary); }
+    .ut-list { margin: 16px 0 20px; list-style: none; }
+    .ut-list li { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #EDF2F7; padding: 8px 0; font-size: 13px; color: #4A5568; }
+    .ut-list li:last-child { border-bottom: 0; }
+    .ut-btn { display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 12px; padding: 14px 0; font-size: 15px; font-weight: 700; color: #fff; transition: transform .2s; }
+    .ut-btn:hover { transform: translateY(-2px); }
+    .ut-btn.worker { background: linear-gradient(to bottom right, #2c5282, #1a365d); box-shadow: 0 4px 15px rgba(44,82,130,0.3); }
+    .ut-btn.contractor { background: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-hover)); box-shadow: 0 4px 15px rgba(237,137,54,0.3); }
+
+    /* ===== Features ===== */
+    .feat-grid { margin-top: 28px; display: flex; flex-direction: column; gap: 10px; }
+    .feat-card { display: flex; align-items: center; gap: 14px; border-radius: 12px; background: #fff; padding: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .feat-icon { display: flex; height: 44px; width: 44px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 12px; font-size: 22px; background: linear-gradient(to bottom right, #EBF8FF, #BEE3F8); }
+    .feat-body { min-width: 0; flex: 1; }
+    .feat-body h3 { font-size: 14px; font-weight: 700; color: var(--color-header-bg); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .feat-body p { margin-top: 2px; font-size: 12px; line-height: 1.4; color: var(--color-text-secondary); }
+    .feat-soon { display: inline-block; border-radius: 9999px; background: #FFF5EB; color: var(--color-primary-hover); font-size: 10px; font-weight: 700; padding: 2px 8px; line-height: 1.5; }
+    .feat-card.is-upcoming { background: #fbfcfd; }
+    .feat-card.is-upcoming .feat-icon { opacity: .75; }
+
+    /* ===== ④お客様の声（添付デザイン：グリーン・イラスト・3ブロック） ===== */
+    /* このセクションのみグリーン基調（サイト全体のトークンは変更しない） */
+    .voice2 {
+      --vg: #4a9b54;          /* メイングリーン */
+      --vg-strong: #3a8c46;   /* 強調テキスト */
+      --vg-dot: #cfe6d2;      /* ドット・点線 */
+      --vg-soft: #eef7ef;     /* 淡いグリーン背景 */
+    }
+    .voice2-card {
+      position: relative; margin: 0 auto; max-width: 38rem;
+      border-radius: 22px; background: #fff; padding: 0 0 22px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08); border: 1px solid #e6efe7; overflow: hidden;
+    }
+    /* 見出し */
+    .voice2-head { display: flex; align-items: center; justify-content: center; gap: 10px; position: relative; z-index: 1; margin-top: 26px; padding: 0 16px; }
+    .voice2-head .deco { color: var(--vg); font-size: 18px; font-weight: 900; opacity: .7; }
+    .voice2-head .ico { font-size: 26px; line-height: 1; }
+    .voice2-head h2 { font-size: 24px; font-weight: 900; color: var(--color-header-bg); letter-spacing: .04em; }
+    .voice2-underline { width: 56px; height: 3px; border-radius: 2px; background: var(--vg); margin: 8px auto 0; position: relative; z-index: 1; }
+    /* キャラ＋吹き出し */
+    .voice2-intro { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 22px 4px; position: relative; z-index: 1; }
+    .voice2-char { flex-shrink: 0; width: 96px; }
+    .voice2-char img { width: 100%; height: auto; display: block; }
+    .voice2-bubble {
+      position: relative; background: var(--vg-soft); border: 1px solid var(--vg-dot);
+      border-radius: 14px; padding: 12px 16px; font-size: 14px; font-weight: 700;
+      line-height: 1.6; color: var(--color-text-primary);
+    }
+    .voice2-bubble::before {
+      content: ''; position: absolute; left: -8px; top: 50%; transform: translateY(-50%);
+      border-style: solid; border-width: 7px 8px 7px 0; border-color: transparent var(--vg-soft) transparent transparent;
+    }
+    /* 本文カード（緑枠・街並み背景） */
+    .voice2-quotebox {
+      position: relative; margin: 14px 22px 0; border: 1.5px solid var(--vg-dot);
+      border-radius: 14px; background: #fff; padding: 14px 16px 16px; overflow: hidden; z-index: 1;
+    }
+    .voice2-quotebox::after {
+      content: ''; position: absolute; right: 0; bottom: 0; left: 0; height: 56px;
+      background-image: radial-gradient(circle, var(--vg-dot) 1.5px, transparent 2px);
+      background-size: 16px 16px; opacity: .5; pointer-events: none;
+    }
+    .voice2-qlabel { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--vg-strong); margin-bottom: 8px; }
+    .voice2-block { position: relative; z-index: 1; font-size: 15px; line-height: 1.85; color: var(--color-text-primary); font-weight: 500; }
+    .voice2-block .em { color: var(--vg-strong); font-weight: 700; }
+    /* フッターバー（関東エリア｜電気工事会社 様） */
+    .voice2-foot { display: flex; align-items: center; gap: 10px; margin: 14px 22px 0; }
+    .voice2-foot .who { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--color-header-bg); white-space: nowrap; }
+    .voice2-foot .pin { color: var(--vg); }
+    .voice2-foot .sep { color: var(--vg-dot); }
+    .voice2-note { margin-top: 14px; text-align: center; font-size: 12px; color: var(--color-text-secondary); }
+    .voice2-note + .voice2-note { margin-top: 4px; }
+
+    /* ===== How to ===== */
+    .howto-steps { margin: 28px auto 0; display: flex; max-width: 31.25rem; flex-direction: column; }
+    .howto-step { position: relative; display: flex; align-items: flex-start; gap: 14px; padding: 16px 0; }
+    .howto-line { position: absolute; left: 20px; top: 56px; bottom: 0; width: 2px; background: var(--color-border); }
+    .howto-num { display: flex; height: 40px; width: 40px; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 9999px; font-size: 18px; font-weight: 800; color: #fff; background: linear-gradient(to bottom right, var(--color-primary), var(--color-primary-hover)); box-shadow: 0 3px 10px rgba(237,137,54,0.3); position: relative; z-index: 1; }
+    .howto-body { flex: 1; }
+    .howto-body h3 { font-size: 15px; font-weight: 700; color: var(--color-header-bg); }
+    .howto-body p { margin-top: 4px; font-size: 12px; line-height: 1.7; color: var(--color-text-secondary); }
+
+    /* ===== CTA（赤） ===== */
+    .cta { background: linear-gradient(to bottom right, #b94047, #9a3039); padding: 48px 16px; text-align: center; }
+    .cta h2 { font-size: 22px; font-weight: 900; line-height: 1.3; color: #fff; }
+    .cta p { margin-top: 12px; font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.9); }
+    .cta-actions { margin-top: 28px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 12px; background: #fff; padding: 16px 36px; font-size: 16px; font-weight: 800; color: #b94047; box-shadow: 0 6px 24px rgba(0,0,0,0.2); transition: all .2s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,0.3); }
+    .cta-login { font-size: 13px; color: rgba(255,255,255,0.8); transition: color .2s; }
+    .cta-login:hover { color: #fff; }
+
+    /* ===== Footer ===== */
+    .footer { background: var(--color-header-bg); padding: 32px 16px; }
+    .footer-top { display: flex; flex-direction: column; gap: 20px; }
+    .footer-brand { display: flex; align-items: center; gap: 8px; }
+    .footer-brand-icon { font-size: 24px; }
+    .footer-brand-name { font-size: 14px; font-weight: 800; color: #fff; }
+    .footer-brand-sub { font-size: 8px; letter-spacing: .15em; color: var(--color-header-text-muted); }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 16px; }
+    .footer-nav a { font-size: 14px; color: var(--color-header-text-muted); transition: color .2s; }
+    .footer-nav a:hover { color: #fff; }
+    .footer-bottom { margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; text-align: center; }
+    .footer-bottom p { font-size: 11px; color: rgba(255,255,255,0.5); }
+
+    /* ===== Footer 公式キャラクター紹介 ===== */
+    .footer-chars { margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 22px; }
+    .footer-chars-title { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 16px; text-align: center; }
+    .footer-chars-grid { display: flex; justify-content: center; align-items: flex-start; gap: 16px; }
+    .footer-char { width: 96px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .footer-char-img { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; background: #fff; border: 2px solid rgba(255,255,255,0.25); }
+    .footer-char-img img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .footer-char-name { margin-top: 8px; font-size: 12px; font-weight: 800; color: #fff; }
+    .footer-char-role { margin-top: 2px; font-size: 10px; line-height: 1.4; color: var(--color-header-text-muted); }
+    .footer-x-wrap { margin-top: 20px; text-align: center; }
+    .footer-x-btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 9999px; background: #000; border: 1px solid rgba(255,255,255,0.3); padding: 11px 24px; font-size: 14px; font-weight: 700; color: #fff; transition: all .2s; }
+    .footer-x-btn:hover { background: #1a1a1a; transform: translateY(-1px); }
+    .footer-x-btn svg { width: 18px; height: 18px; fill: #fff; }
+
+    /* ===== Cookie ===== */
+    .cookie { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; border-top: 1px solid var(--color-border); background: #fff; padding: 16px; box-shadow: 0 -4px 20px rgba(0,0,0,0.08); }
+    .cookie.hidden { display: none; }
+    .cookie p { font-size: 14px; color: var(--color-text-secondary); }
+    .cookie p a { color: var(--color-primary); text-decoration: underline; }
+    .cookie-actions { margin-top: 12px; display: flex; gap: 12px; }
+    .cookie-actions button { min-height: 44px; flex: 1; border-radius: 8px; padding: 8px 16px; font-size: 14px; font-weight: 500; cursor: pointer; }
+    .cookie-actions .c-deny { border: 1px solid var(--color-border); background: #fff; color: var(--color-text-primary); }
+    .cookie-actions .c-deny:hover { background: rgba(0,0,0,0.05); }
+    .cookie-actions .c-allow { border: none; color: #fff; background: var(--color-primary); }
+    .cookie-actions .c-allow:hover { background: rgba(237,137,54,0.9); }
+
+    /* ===== Desktop (md: 768px+) ===== */
+    @media (min-width: 768px) {
+      .header-inner { height: 80px; padding: 0 24px; }
+      .nav-links, .nav-iconbtn, .nav-login, .btn-signup-pc, .nav-divider { display: flex; }
+      .nav-login { display: inline-block; }
+      .btn-signup-pc { display: inline-block; }
+      .btn-signup-mobile, .hamburger { display: none; }
+
+      .hero-inner { padding: 72px 24px 130px; }
+      .hero-badge { font-size: 15px; padding: 9px 24px; margin-bottom: 24px; }
+      .hero h1 { font-size: 52px; }
+      .hero-members { margin-top: 18px; font-size: 18px; }
+      .hero-members .num { font-size: 28px; }
+      .hero-msgs { flex-direction: row; max-width: 46rem; gap: 16px; }
+      .hero-msg { flex: 1; }
+      .hero-msg-text { font-size: 20px; }
+
+      .stats-band { margin-top: -88px; }
+      .stats-card { padding: 30px 24px; }
+      .stats-row-bottom { margin-top: 18px; padding-top: 18px; }
+      .stat-num { font-size: 46px; }
+      .stat-unit { font-size: 18px; }
+      .stat-label { font-size: 15px; }
+      .stat-label .ico { font-size: 34px; }
+
+      .sec { padding: 80px 24px; }
+      .sec-title { font-size: 28px; }
+      .sec-sub { font-size: 16px; }
+
+      .promo-grid { margin-top: 48px; flex-direction: row; gap: 24px; }
+      .promo-card { padding: 32px; }
+      .promo-head { gap: 14px; }
+      .promo-ico { height: 52px; width: 52px; border-radius: 14px; font-size: 28px; }
+      .promo-card h3 { font-size: 19px; }
+      .promo-card p { font-size: 14px; }
+
+      .usertype-grid { flex-direction: row; gap: 24px; }
+      .ut-card { padding: 32px; }
+      .ut-card h3 { font-size: 20px; }
+
+      .feat-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .feat-card { padding: 20px; gap: 16px; }
+      .feat-icon { height: 48px; width: 48px; font-size: 24px; }
+      .feat-body h3 { font-size: 15px; }
+      .feat-body p { font-size: 13px; }
+
+      .voice2-card { padding-bottom: 26px; }
+      .voice2-head { margin-top: 30px; }
+      .voice2-head h2 { font-size: 28px; }
+      .voice2-head .ico { font-size: 32px; }
+      .voice2-head .deco { font-size: 22px; }
+      .voice2-intro { padding: 22px 32px 4px; gap: 16px; }
+      .voice2-char { width: 120px; }
+      .voice2-bubble { font-size: 15px; padding: 14px 18px; }
+      .voice2-quotebox { margin: 16px 32px 0; padding: 18px 22px 20px; }
+      .voice2-block { font-size: 16px; }
+      .voice2-foot { margin: 16px 32px 0; }
+      .voice2-foot .who { font-size: 15px; }
+      .voice2-note { margin-top: 22px; font-size: 13px; }
+
+      .howto-steps { margin-top: 48px; max-width: 50rem; flex-direction: row; align-items: flex-start; }
+      .howto-step { flex: 1; flex-direction: column; align-items: center; padding: 0 16px; text-align: center; }
+      .howto-line { left: auto; top: 20px; bottom: auto; height: 2px; width: calc(100% - 56px); left: calc(50% + 28px); }
+      .howto-num { height: 48px; width: 48px; font-size: 22px; margin-bottom: 16px; }
+      .howto-body h3 { font-size: 16px; margin-bottom: 8px; }
+      .howto-body p { font-size: 13px; }
+
+      .cta { padding: 80px 24px; }
+      .cta h2 { font-size: 30px; }
+      .cta p { font-size: 16px; }
+      .cta-actions { margin-top: 36px; }
+      .cta-btn { padding: 16px 48px; font-size: 18px; }
+
+      .footer { padding: 40px 24px; }
+      .footer-top { flex-direction: row; align-items: flex-start; justify-content: space-between; }
+      .footer-nav { gap: 32px; }
+      .footer-chars-grid { gap: 40px; }
+      .footer-char { width: 120px; }
+      .footer-char-img { width: 76px; height: 76px; }
+      .footer-char-name { font-size: 13px; }
+      .footer-char-role { font-size: 11px; }
+      .cookie { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 32px; }
+      .cookie-actions { margin-top: 0; flex-shrink: 0; }
+      .cookie-actions button { flex: initial; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- ===== Header ===== -->
+    <header class="header">
+      <div class="header-bar">
+        <div class="wrap-7xl header-inner">
+          <a class="brand" href="#">
+            <div class="brand-icon">🏗️</div>
+            <div>
+              <div class="brand-name">建設コネクト</div>
+              <div class="brand-sub">Kensetsu Connect</div>
+            </div>
+          </a>
+          <nav class="nav">
+            <div class="nav-links">
+              <a href="#usertype">使い方</a>
+              <a href="#features">機能</a>
+              <a href="#howto">はじめ方</a>
+            </div>
+            <div class="nav-divider"></div>
+            <a class="nav-iconbtn" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"></path><path d="M14 6a6 6 0 0 1 6 6v3"></path><path d="M4 15v-3a6 6 0 0 1 6-6"></path><rect x="2" y="15" width="20" height="4" rx="1"></rect></svg>
+              <span>職人を探す</span>
+            </a>
+            <a class="nav-iconbtn" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="8" rx="1"></rect><path d="M17 14v7"></path><path d="M7 14v7"></path><path d="M17 3v3"></path><path d="M7 3v3"></path><path d="M10 14 2.3 6.3"></path><path d="m14 6 7.7 7.7"></path><path d="m8 6 8 8"></path></svg>
+              <span>現場を探す</span>
+            </a>
+            <div class="nav-divider"></div>
+            <a class="nav-login" href="#">ログイン</a>
+            <a class="btn-signup-pc" href="#">無料で登録する</a>
+            <a class="btn-signup-mobile" href="#">会員登録する</a>
+            <button type="button" class="hamburger" id="hamburger" aria-expanded="false" aria-label="メニュー">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path></svg>
+            </button>
+          </nav>
+          <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-inner">
+              <a class="m-link" href="#usertype">使い方</a>
+              <a class="m-link" href="#features">機能</a>
+              <a class="m-link" href="#howto">はじめ方</a>
+              <div class="mobile-divider"></div>
+              <a class="mobile-menu-icon" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"></path><path d="M14 6a6 6 0 0 1 6 6v3"></path><path d="M4 15v-3a6 6 0 0 1 6-6"></path><rect x="2" y="15" width="20" height="4" rx="1"></rect></svg>
+                <span>職人を探す</span>
+              </a>
+              <a class="mobile-menu-icon" href="#">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="8" rx="1"></rect><path d="M17 14v7"></path><path d="M7 14v7"></path><path d="M17 3v3"></path><path d="M7 3v3"></path><path d="M10 14 2.3 6.3"></path><path d="m14 6 7.7 7.7"></path><path d="m8 6 8 8"></path></svg>
+                <span>現場を探す</span>
+              </a>
+              <div class="mobile-divider"></div>
+              <div class="mobile-auth">
+                <a class="m-login" href="#">ログイン</a>
+                <a class="m-signup" href="#">会員登録する</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===== ① ファーストビュー（添付デザイン） ===== -->
+      <section class="hero">
+        <div class="wrap-200 hero-inner">
+          <span class="hero-badge">建設業に、新しい出会いの形を</span>
+          <h1>現場と人を、<span>つなぐ。</span></h1>
+          <p class="hero-members"><span aria-hidden="true">👥</span>登録会員数 <span class="num">634</span>名</p>
+          <div class="hero-msgs">
+            <div class="hero-msg">
+              <span class="hero-msg-ico">🔍</span>
+              <span class="hero-msg-text">今すぐ<b>職人</b>を探したい</span>
+            </div>
+            <div class="hero-msg">
+              <span class="hero-msg-ico">👷</span>
+              <span class="hero-msg-text">空いてる日に<b>現場</b>に入りたい</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ② 実績（添付：上段3項目＋下段2項目） ===== -->
+      <section class="stats-band">
+        <div class="stats-card">
+          <div class="stats-row stats-row-top">
+            <div class="stat-cell">
+              <p class="stat-label"><span class="ico" aria-hidden="true">👤</span>職人登録数</p>
+              <div class="stat-numrow"><span class="stat-num">421</span><span class="stat-unit">名</span></div>
+            </div>
+            <div class="stat-cell">
+              <p class="stat-label"><span class="ico" aria-hidden="true">🏢</span>元請登録数</p>
+              <div class="stat-numrow"><span class="stat-num">220</span><span class="stat-unit">社</span></div>
+            </div>
+          </div>
+          <div class="stats-row stats-row-bottom">
+            <div class="stat-cell">
+              <p class="stat-label"><span class="ico" aria-hidden="true">📋</span>公開現場数</p>
+              <div class="stat-numrow"><span class="stat-num">165</span><span class="stat-unit">件</span></div>
+            </div>
+            <div class="stat-cell">
+              <p class="stat-label"><span class="ico" aria-hidden="true">💬</span>チャットルーム数</p>
+              <div class="stat-numrow"><span class="stat-num">190</span><span class="stat-unit">件</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ③ 職人向け・元請向け案内 ===== -->
+      <section id="usertype" class="sec sec-white">
+        <div class="wrap-275">
+          <div class="usertype-grid">
+            <div class="ut-card">
+              <span class="ut-tag worker">👷 職人・協力会社向け</span>
+              <h3>現場を探す</h3>
+              <p>あなたのスキル、求められています</p>
+              <ul class="ut-list">
+                <li>✅ 職種・エリアで現場検索</li>
+                <li>✅ カレンダーで空き日程管理</li>
+              </ul>
+              <a class="ut-btn worker" href="#">➡️ 職人として登録する</a>
+            </div>
+            <div class="ut-card">
+              <span class="ut-tag contractor">🏢 元請け・建設会社向け</span>
+              <h3>現場を掲載する</h3>
+              <p>即戦力の職人を、今すぐ</p>
+              <ul class="ut-list">
+                <li>✅ 現場掲載機能</li>
+                <li>✅ 協力会社検索・スカウト</li>
+              </ul>
+              <a class="ut-btn contractor" href="#">➡️ 元請けとして登録する</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ④ チケット・ログインボーナス ===== -->
+      <section class="sec promo">
+        <div class="wrap-275">
+          <h2 class="sec-title">続けるほど<span>おトク</span>な機能</h2>
+          <p class="sec-sub">毎日の利用がそのまま"見つけてもらえる力"になります</p>
+          <div class="promo-grid">
+            <div class="promo-card">
+              <div class="promo-head">
+                <div class="promo-ico">🎟️</div>
+                <h3>チケット機能</h3>
+              </div>
+              <p>チケットを使うと、あなたの掲載現場やプロフィールを検索結果の上位に表示。より多くの相手に見つけてもらえます。</p>
+              <span class="promo-badge">上位表示でアピール</span>
+            </div>
+            <div class="promo-card">
+              <div class="promo-head">
+                <div class="promo-ico">🎁</div>
+                <h3>毎日ログインボーナス</h3>
+              </div>
+              <p>毎日ログインするだけでチケットをGET。続けるほどおトクに、上位表示のチャンスが広がります。</p>
+              <span class="promo-badge">ログインでチケットGET</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ⑤ 機能紹介 ===== -->
+      <section id="features" class="sec sec-gray">
+        <div class="wrap-275">
+          <h2 class="sec-title">充実の<span>機能</span></h2>
+          <p class="sec-sub">建設業界に特化した、現場で本当に使える機能を</p>
+          <div class="feat-grid">
+            <div class="feat-card">
+              <div class="feat-icon">🤝</div>
+              <div class="feat-body">
+                <h3>現場・職人検索</h3>
+                <p>職種・エリア・条件から最適な現場・職人を検索</p>
+              </div>
+            </div>
+            <div class="feat-card">
+              <div class="feat-icon">📅</div>
+              <div class="feat-body">
+                <h3>カレンダー連携</h3>
+                <p>空きスケジュールを管理・公開。ダブルブッキングを防止</p>
+              </div>
+            </div>
+            <div class="feat-card">
+              <div class="feat-icon">💬</div>
+              <div class="feat-body">
+                <h3>チャット機能</h3>
+                <p>気になる相手にすぐ連絡。電話・メール不要で手軽に相談</p>
+              </div>
+            </div>
+            <div class="feat-card">
+              <div class="feat-icon">🤖</div>
+              <div class="feat-body">
+                <h3>AI機能</h3>
+                <p>AIが掲載現場に合う職人をおすすめ</p>
+              </div>
+            </div>
+            <div class="feat-card is-upcoming">
+              <div class="feat-icon">💳</div>
+              <div class="feat-body">
+                <h3>チケット購入機能 <span class="feat-soon">準備中</span></h3>
+                <p>必要なときにチケットを追加購入できる仕組みを準備中</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ⑥ お客様の声（添付デザイン・グリーン・3ブロック・イラスト仮） ===== -->
+      <section class="sec sec-white voice2">
+        <div class="wrap-275">
+          <div class="voice2-card">
+            <!-- 見出し -->
+            <div class="voice2-head">
+              <span class="deco" aria-hidden="true">✦</span>
+              <span class="ico" aria-hidden="true">👤</span>
+              <h2>お客様の声</h2>
+              <span class="deco" aria-hidden="true">✦</span>
+            </div>
+            <div class="voice2-underline" aria-hidden="true"></div>
+
+            <!-- キャラ（コネクトさん）＋吹き出し -->
+            <div class="voice2-intro">
+              <div class="voice2-char">
+                <img src="img/char-connect.png" alt="建設コネクト公式キャラクター コネクトさん">
+              </div>
+              <div class="voice2-bubble">ご利用者様から<br>こんな声を<br>いただいています😊</div>
+            </div>
+
+            <!-- 本文カード（緑枠・街並み背景） -->
+            <div class="voice2-quotebox">
+              <span class="voice2-qlabel"><span aria-hidden="true">💬</span>実際のご利用者様の声</span>
+              <p class="voice2-block">人手不足で困っていた際に建設コネクトで募集したところ、<span class="em">経験豊富な電気工事業者さん</span>に<span class="em">現場を応援していただき、とても助かりました。</span></p>
+            </div>
+
+            <!-- フッターバー -->
+            <div class="voice2-foot">
+              <span class="who">
+                <span class="pin" aria-hidden="true">📍</span>関東エリア
+                <span class="sep" aria-hidden="true">｜</span>電気工事会社 様
+              </span>
+            </div>
+          </div>
+          <p class="voice2-note">※掲載内容は一例です</p>
+          <p class="voice2-note">※地域や時期により現場状況は異なります</p>
+        </div>
+      </section>
+
+      <!-- ===== ⑦ かんたん3ステップ ===== -->
+      <section id="howto" class="sec sec-gray">
+        <div class="wrap-275">
+          <h2 class="sec-title">かんたん<span>3ステップ</span>で開始</h2>
+          <p class="sec-sub">登録は無料・たった30秒で完了</p>
+          <div class="howto-steps">
+            <div class="howto-step">
+              <div class="howto-line"></div>
+              <div class="howto-num">1</div>
+              <div class="howto-body">
+                <h3>無料会員登録（30秒）</h3>
+                <p>メールアドレスと基本情報を入力するだけ。基本機能は無料でご利用いただけます。</p>
+              </div>
+            </div>
+            <div class="howto-step">
+              <div class="howto-line"></div>
+              <div class="howto-num">2</div>
+              <div class="howto-body">
+                <h3>現場掲載 または 検索</h3>
+                <p>職人の方は現場を検索、元請けの方は現場を掲載して職人を募集。</p>
+              </div>
+            </div>
+            <div class="howto-step">
+              <div class="howto-num">3</div>
+              <div class="howto-body">
+                <h3>気になる相手に連絡</h3>
+                <p>職人情報や現場情報を見て、そのままチャットですぐに仕事の相談ができます。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ⑧ 会員登録CTA ===== -->
+      <section class="cta">
+        <div class="wrap-275">
+          <h2>今すぐ現場を探す<br>協力会社を見つける</h2>
+          <p>登録は無料・30秒で完了。<br>今すぐ建設コネクトを始めましょう。</p>
+          <div class="cta-actions">
+            <a class="cta-btn" href="#">✏️ 無料で会員登録</a>
+            <a class="cta-login" href="#">🔑 すでにアカウントをお持ちの方はログイン</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+      <div class="wrap-275">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <span class="footer-brand-icon">🏗️</span>
+            <div>
+              <div class="footer-brand-name">建設コネクト</div>
+              <div class="footer-brand-sub">KENSETSU CONNECT</div>
+            </div>
+          </div>
+          <nav class="footer-nav">
+            <a href="#">トップ</a>
+            <a href="#">職人を探す</a>
+            <a href="#">現場を探す</a>
+            <a href="#">利用規約</a>
+            <a href="#">プライバシーポリシー</a>
+            <a href="#">会社情報</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">お問い合わせ</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">公式X</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">建設コネクトコラム</a>
+          </nav>
+        </div>
+
+        <!-- ===== 公式キャラクター紹介＋X誘導 ===== -->
+        <div class="footer-chars">
+          <p class="footer-chars-title"><span aria-hidden="true">📣</span>建設コネクト公式キャラクター</p>
+          <div class="footer-chars-grid">
+            <div class="footer-char">
+              <div class="footer-char-img"><img src="img/char-ken.png" alt="建くん"></div>
+              <p class="footer-char-name">建くん</p>
+              <p class="footer-char-role">現場のリアル</p>
+            </div>
+            <div class="footer-char">
+              <div class="footer-char-img"><img src="img/char-setsu.png" alt="設ちゃん"></div>
+              <p class="footer-char-name">設ちゃん</p>
+              <p class="footer-char-role">建設豆知識</p>
+            </div>
+            <div class="footer-char">
+              <div class="footer-char-img"><img src="img/char-connect.png" alt="コネクトさん"></div>
+              <p class="footer-char-name">コネクトさん</p>
+              <p class="footer-char-role">建設コネクトの<br>最新情報</p>
+            </div>
+          </div>
+          <div class="footer-x-wrap">
+            <a class="footer-x-btn" href="#" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+              公式Xをチェック
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 Kensetsu Connect. All rights reserved.</p>
+          <p>事業再構築補助金により作成</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== Cookie ===== -->
+  <div class="cookie" id="cookie" role="dialog" aria-label="Cookie使用の同意">
+    <p>当サイトでは、利用状況の分析やサービス改善のためにCookieを使用しています。詳しくは<a href="#">プライバシーポリシー</a>をご覧ください。</p>
+    <div class="cookie-actions">
+      <button type="button" class="c-deny" id="cookieDeny">必須のみ</button>
+      <button type="button" class="c-allow" id="cookieAllow">すべて同意</button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('hamburger').addEventListener('click', function () {
+      var menu = document.getElementById('mobileMenu');
+      var open = menu.classList.toggle('open');
+      this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    function hideCookie() { document.getElementById('cookie').classList.add('hidden'); }
+    document.getElementById('cookieDeny').addEventListener('click', hideCookie);
+    document.getElementById('cookieAllow').addEventListener('click', hideCookie);
+  </script>
+</body>
+</html>
